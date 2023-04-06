@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Distance Sensor 1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
+</head>
+<body>
+    <h2>Distance Sensor</h2>
+    <div id="distance"></div>
+
+    <script>
+        // Connect to the MQTT broker
+        var client = new Paho.MQTT.Client("localhost", 1883, "clientId");
+
+        client.onConnectionLost = function(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("Connection lost: " + responseObject.errorMessage);
+            }
+        };
+
+        client.onMessageArrived = function(message) {
+            if (message.destinationName === "distance") {
+                var distance = parseFloat(message.payloadString).toFixed(2);
+                document.getElementById("distance").innerHTML = "Distance: " + distance + " cm";
+            }
+        };
+
+        client.connect({
+            onSuccess: function() {
+                console.log("Connected to MQTT broker");
+                client.subscribe("distance");
+            },
+            onFailure: function() {
+                console.log("Failed to connect to MQTT broker");
+            }
+        });
+    </script>
+</body>
+</html>
