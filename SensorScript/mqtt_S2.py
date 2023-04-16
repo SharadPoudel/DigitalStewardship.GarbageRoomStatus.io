@@ -4,8 +4,8 @@ import paho.mqtt.client as mqtt
 
 # Set up the GPIO pins
 GPIO.setmode(GPIO.BOARD)
-TRIG = 18
-ECHO = 16
+TRIG=15
+ECHO=22
 GPIO.setup(TRIG, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 
@@ -47,5 +47,5 @@ while True:
     #Publish the distance to the MQTT topic
     #client.publish("distance", str(distance))
 
-    # Wait for 3 seconds
-    time.sleep(3)
+    # Wait for 2 seconds
+    time.sleep(1)

@@ -5,11 +5,11 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 # Define GPIO pins for each sensor
-trig_pins = [4, 17, 27, 22, 5, 6, 13, 19, 26, 16, 20]
-echo_pins = [18, 23, 24, 25, 12, 16, 21, 20, 21, 12, 26]
+trig_pins = [18, 15]
+echo_pins = [16, 22]
 
 # Set up GPIO pins
-for i in range(11):
+for i in range(2):
     GPIO.setup(trig_pins[i], GPIO.OUT)
     GPIO.setup(echo_pins[i], GPIO.IN)
 
@@ -37,7 +37,7 @@ def measure_distance(trig_pin, echo_pin):
 
 # Loop to measure distances
 while True:
-    for i in range(11):
+    for i in range(2):
         distance = measure_distance(trig_pins[i], echo_pins[i])
         print("Distance from sensor {}: {} cm".format(i+1, distance))
     time.sleep(1)
