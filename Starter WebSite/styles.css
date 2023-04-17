@@ -6,7 +6,7 @@
 }
 
 .navbar {
-  background: #131313;
+  background: #ffffff;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -31,8 +31,8 @@
 }
 
 #navbar__logo {
-  background-color: #ff8177;
-  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-color: #000000;
+  background-image: linear-gradient(to top, #000000 0%, #000000 100%);
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -61,45 +61,17 @@
 }
 
 .navbar__links {
-  color: #fff;
+  color: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   padding: 0 1rem;
   height: 100%;
-}
-
-.navbar__btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1rem;
-  width: 100%;
-}
-
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  padding: 10px 20px;
-  height: 100%;
-  width: 100%;
-  border: none;
-  outline: none;
-  border-radius: 4px;
-  background: #f77062;
-  color: #fff;
-}
-
-.button:hover {
-  background: #4837ff;
-  transition: all 0.3s ease;
 }
 
 .navbar__links:hover {
-  color: #f77062;
+  color: #757575;
   transition: all 0.3s ease;
 }
 
@@ -128,7 +100,7 @@
   }
 
   .navbar__menu.active {
-    background: #131313;
+    background: #ffffff;
     top: 100%;
     opacity: 1;
     transition: all 0.5s ease;
@@ -146,7 +118,7 @@
     height: 3px;
     margin: 5px auto;
     transition: all 0.3s ease-in-out;
-    background: #fff;
+    background: #000000;
   }
 
   .navbar__item {
@@ -200,17 +172,17 @@
 
 /* Main Content CSS */
 .main {
-  background-color: #141414;
+  background-color: #e2e2e2;
 }
 
 .main__container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  /*display: grid;*/
+  /*grid-template-columns: 1fr 1fr;*/
   align-items: center;
   justify-self: center;
   margin: 0 auto;
   height: 90vh;
-  background-color: #131313;
+  background-color: #ffffff;
   z-index: 1;
   width: 100%;
   max-width: 1300px;
@@ -221,12 +193,13 @@
 .main__content {
   color: #fff;
   width: 100%;
-}
+} 
 
 .main__content h1 {
-  font-size: 4rem;
-  background-color: #ff8177;
-  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  font-size: 3rem;
+  margin-bottom: 0.67em;
+  background-color: #000000;
+  background-image: #000000;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -235,10 +208,11 @@
 }
 
 .main__content h2 {
-  font-size: 4rem;
-  margin-top: 10px;
-  background-color: #ff8177;
-  background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+  font-size: 1.5rem;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  background-color: #000000;
+  background-image: #000000;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -247,14 +221,16 @@
 }
 
 .main__content p {
-  margin-top: 1rem;
-  font-size: 2rem;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  font-size: 1rem;
   font-weight: 700;
+  color: #000000;
 }
 
 .main__btn {
   font-size: 1rem;
-  background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+  background: #000000;
   padding: 14px 32px;
   border: none;
   border-radius: 4px;
@@ -610,4 +586,73 @@
     padding: 10px;
     width: 100%;
   }
+}
+
+
+
+ /* Style the button that is used to open and close the collapsible content */
+ .collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.collapsible_expanded {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+/* Creating a grid here for displaying the different bin average statuses */
+.statuses__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+/* The container and content for cardboard box average status */
+.individual_statuses__container {
+  align-items: left;
+  justify-self: left;
+  height: 8vh;
+  background-color: #ffffff;
+  z-index: 1;
+  width: 100%;
+  padding: 10px;
+}
+
+.individual_statuses__content {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+/* Bin Fullness Bar */
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  padding: 3px;
+  height: 30%;
+}
+
+.progress-bar-fill {
+  display: block;
+  height: 100%;
+  background-color: #FD8900; /* Change this depending on sensor value */
 }
