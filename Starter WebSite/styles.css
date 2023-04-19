@@ -176,8 +176,6 @@
 }
 
 .main__container {
-  /*display: grid;*/
-  /*grid-template-columns: 1fr 1fr;*/
   align-items: center;
   justify-self: center;
   margin: 0 auto;
@@ -610,37 +608,46 @@
 
 /* Style the collapsible content. Note: hidden by default */
 .collapsible_expanded {
-  padding: 0 18px;
+  padding: 18px;
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
 }
 
-/* Creating a grid here for displaying the different bin average statuses */
-.statuses__container {
+/* Creating a grid here for displaying the different bin average statuses (and the warning icon)*/
+.averages__container { 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 100%;
   width: 100%;
 }
 
-/* The container and content for cardboard box average status */
-.individual_statuses__container {
+/* Container for each of the averages*/
+.individual_averages__container { 
   align-items: left;
   justify-self: left;
   height: 8vh;
   background-color: #ffffff;
   z-index: 1;
-  width: 100%;
+  width: 90%;
   padding: 10px;
 }
 
-.individual_statuses__content {
+.individual_averages__content { 
   display: grid;
   grid-template-columns: 0.5fr 1fr;
   height: 100%;
   width: 100%;
   align-items: center;
+}
+
+/* Container for the progress bar and description text*/
+.text_bar__container { 
+  align-items: left;
+  justify-self: left;
+  height: 100%;
+  z-index: 1;
+  width: 90%;
 }
 
 /* Bin Fullness Bar */
@@ -656,3 +663,25 @@
   height: 100%;
   background-color: #FD8900; /* Change this depending on sensor value */
 }
+
+.collapsible_expanded__container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+  justify-self: center;
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.collapsible_expanded_grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto 25%;
+}
+
+.grid-item {
+  /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+  width: 90%;
+  padding: 10px;
+}
+
