@@ -6,8 +6,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
     <script>
       // Connect to the MQTT broker
-      //var client = new Paho.MQTT.Client("localhost", Number(1883), "html_subscriber");
-        var client = new Paho.MQTT.Client('ws://localhost:8084/mqtt');
+      var client = new Paho.MQTT.Client("localhost", Number(8084), "html_subscriber");
+      //  var client = new Paho.MQTT.Client('ws://localhost:8084/mqtt');
       // Set callback handlers
       client.onConnectionLost = onConnectionLost;
       client.onMessageArrived = onMessageArrived;

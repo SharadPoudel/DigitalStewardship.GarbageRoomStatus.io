@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MQTT Subscriber 2 sensor data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+    <script>
+      // Connect to the MQTT broker
+      var client = new Paho.MQTT.Client("localhost", Number(8084), "html_subscriber");
+      //  var client = new Paho.MQTT.Client('ws://localhost:8084/mqtt');
+      // Set callback handlers
+      client.onConnectionLost = onConnectionLost;
+      client.onMessageArrived = onMessageArrived;
+
+      // Connect the client
+      client.connect({ onSuccess: onConnect });
+
+      // Called when the client connects
+      function onConnect() {
+        console.log("Connected to MQTT broker");
+        client.subscribe("sensordata/sensor1"); // Update topic for sensor1
+        client.subscribe("sensordata/sensor2"); // Update topic for sensor2
+      }
+
+      // Called when the client loses its connection
+      function onConnectionLost(responseObject) {
+        if (responseObject.errorCode !== 0) {
+          console.log("Connection lost: " + responseObject.errorMessage);
+        }
+      }
+
+      // Called when a message arrives
+      function onMessageArrived(message) {
+       // console.log("Message received: " + message.payloadString);
+        var topic = message.destinationName;
+        var payload = message.payloadString;
+        var dataElement = document.getElementById("data");
+
+        // Extract sensor name from the topic
+        var sensorName = topic.split("/")[1];
+
+        // Update the HTML based on the sensor name
+        if (sensorName === "sensor1") {
+          dataElement.innerHTML += "Message received from sensor 1: " + payload + "<br>";
+        } else if (sensorName === "sensor2") {
+          dataElement.innerHTML += "Message received from sensor 2: " + payload + "<br>";
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>MQTT Subscriber 2 sensor data</h1>
+    <p>Two Ultrasonic sensor</p>
+    <div id="data"></div> <!-- Use a div element to display received data -->
+  </body>
+</html>
+
+
+
