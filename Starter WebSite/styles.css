@@ -555,7 +555,7 @@
 .progress-bar-fill {
   display: block;
   height: 100%;
-  background-color: #FD8900; /* Change this depending on sensor value */
+  max-width: 100%;
 }
 
 /* Container for warning icon and collapsible arrow*/
