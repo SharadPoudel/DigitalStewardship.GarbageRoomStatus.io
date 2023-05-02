@@ -4,7 +4,48 @@
     <meta charset="UTF-8" />
     <title>MQTT Subscriber 2 sensor data</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+    
+        <script type="module"> 
+
+        // Firestore stuff
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getFirestore, collection, getDocs, addDoc, query } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
+            authDomain: "digitalstewardship.firebaseapp.com",
+            projectId: "digitalstewardship",
+            storageBucket: "digitalstewardship.appspot.com",
+            messagingSenderId: "469552118705",
+            appId: "1:469552118705:web:98fa6c5262ac8258d79b90"
+        };
+
+        //  Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+      
+      
+        async function addPost(id,msg) {
+            const add = await addDoc(collection(db, 'sensordata'), {
+                sensorid: id,
+                message: msg
+                });
+                
+                }
+                                  
+         
+         
+     </script>
+    
+    
+    
+    
+    
+    
+    
     <script>
+    
       // Connect to the MQTT broker
       var client = new Paho.MQTT.Client("localhost", Number(8084), "html_subscriber");
       //  var client = new Paho.MQTT.Client('ws://localhost:8084/mqtt');
@@ -20,6 +61,8 @@
         console.log("Connected to MQTT broker");
         client.subscribe("sensordata/sensor1"); // Update topic for sensor1
         client.subscribe("sensordata/sensor2"); // Update topic for sensor2
+        
+        
       }
 
       // Called when the client loses its connection
@@ -28,6 +71,11 @@
           console.log("Connection lost: " + responseObject.errorMessage);
         }
       }
+      
+          
+      
+      
+      
 
       // Called when a message arrives
       function onMessageArrived(message) {
@@ -35,6 +83,7 @@
         var topic = message.destinationName;
         var payload = message.payloadString;
         var dataElement = document.getElementById("data");
+        
 
         // Extract sensor name from the topic
         var sensorName = topic.split("/")[1];
@@ -45,8 +94,21 @@
         } else if (sensorName === "sensor2") {
           dataElement.innerHTML += "Message received from sensor 2: " + payload +  "<br>";
         }
+       // console.log(payload);
+       
+       addPost(1,payload);
+       
       }
+      
+      window.addPost = addPost;
+      
+      
     </script>
+    
+    
+
+    
+    
   </head>
 
   <body>
