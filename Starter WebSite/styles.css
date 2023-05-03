@@ -222,6 +222,17 @@
 .main__content p {
   font-size: 1rem;
   font-weight: 700;
+  margin-top: 1.3em;
+  margin-bottom: 1.3em;
+  color: #000000;
+  vertical-align:top;
+}
+
+.main__content p_UI {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   color: #000000;
   vertical-align:top;
 }
@@ -577,6 +588,7 @@
   background-color: #ffffff;
   border-style: solid;
   border-color: #000000;
+  overflow: visible;
 }
 
 .collapsible_expanded__container {
@@ -595,7 +607,6 @@
 }
 
 .grid-item {
-  /*border: 1px solid rgba(0, 0, 0, 0.8);*/
   width: 90%;
   padding: 10px;
 }
