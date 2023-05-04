@@ -23,92 +23,14 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+//here we start working on the progress bars
 
-/*
-const sensor_color_dict = { // change the keys to whatever name they have in the database
-  'sensor1': 'progressbar1', 
-  'sensor2': 'progressbar2', 
-  'sensor3': 'progressbar3',
-  'sensor4': 'progressbar4', 
-  'sensor5': 'progressbar5', 
-  'sensor6': 'progressbar6',
-  'sensor7': 'progressbar7', 
-  'sensor8': 'progressbar8', 
-  'sensor9': 'progressbar9', 
-  'sensor10': 'progressbar10', 
-  'sensor11': 'progressbar11'
-};
-
-for (const [sensorName, progressName] of Object.entries(sensor_color_dict)) {
-  var sensorValue = get_sensor_value(sensorName)
-  var progressbar_color = document.getElementById(progressName + "-color");
-  const color = get_progressbar_color(sensorValue); 
-  progressbar_color.style.backgroundColor = color;
-
-  var progressbar_text = document.getElementById(progressName + "-text"); 
-  progressbar_text.innerHTML = get_progressbar_text(sensorValue); 
-
-  var progressbar_span = document.getElementById(progressName + "-color");
-  progressbar_span.style.width = sensorValue + "%";
-
-}
-*/
-
-
-//now i start with the progress bars
 //the sensorName comes from the dict. the sensor names should be the same as they are in the database. 
 function get_sensor_value(sensorName) { 
   return 45;
 }
 
-/*
-var sensors_R6 = { 'cardboard0' : { 'sensor1' : 'progressbar1', 'sensor2' : 'progressbar2', 'sensor3' : 'progressbar3', 'sensor4' : 'progressbar4', 'sensor5' : 'progressbar5'},
-               'colored_glass0' : { 'sensor6' : 'progressbar6', 'sensor7' : 'progressbar7', 'sensor8' : 'progressbar8' },
-               'uncolored_glass0': { 'sensor9' : 'progressbar9', 'sensor10' : 'progressbar10', 'sensor11' : 'progressbar11' }
-                 };
-
-var averages = { 'cardboard0': 0,
-              'colored_glass0': 0,
-              'uncolored_glass0': 0
-           };
-
-
-for (const [typeName, sensors] of Object.entries(sensors_R6)) {
-  for (const [sensorName, progressName] of Object.entries(sensors)) {
-    var sensorValue = get_sensor_value(sensorName);
-
-    var progressbar_color = document.getElementById(progressName + "-color");
-    const color = get_progressbar_color(sensorValue); 
-    progressbar_color.style.backgroundColor = color;
-    averages[typeName] = averages[typeName] + sensorValue;
-
-    var progressbar_text = document.getElementById(progressName + "-text");
-    progressbar_text.innerHTML = get_progressbar_text(sensorValue); 
-
-    var progressbar_span = document.getElementById(progressName + "-color");
-    progressbar_span.style.width = sensorValue + "%";
-  }
-  averages[typeName] = averages[typeName] / Object.keys(sensors).length;
-}
-
-for (const [typeName, sensorValue_average] of Object.entries(averages)) {
-    console.log ("Average for " + typeName + " is " + sensorValue_average)
-
-    var progressbar_color = document.getElementById(typeName + "-average-color");
-    const color = get_progressbar_color(sensorValue_average); 
-    progressbar_color.style.backgroundColor = color;
-
-    var progressbar_text = document.getElementById(typeName + "-average-text"); 
-    progressbar_text.innerHTML = get_progressbar_text(sensorValue_average); 
-
-    var progressbar_span = document.getElementById(typeName + "-average-color"); 
-    progressbar_span.style.width = sensorValue_average + "%";
-}
-
-*/
-
-
-
+//dicts for each recycling room. these are dicts in dicts. in the first level key is waste type and value is sensor info. in the second level the key is the sensor name and the value is the ID in the HTML
 var sensors_R6 = { 'cardboard' : { 'sensor1' : 'progressbar1', 'sensor2' : 'progressbar2', 'sensor3' : 'progressbar3', 'sensor4' : 'progressbar4', 'sensor5' : 'progressbar5'},
                'colored_glass' : { 'sensor6' : 'progressbar6', 'sensor7' : 'progressbar7', 'sensor8' : 'progressbar8' },
                'uncolored_glass': { 'sensor9' : 'progressbar9', 'sensor10' : 'progressbar10', 'sensor11' : 'progressbar11' }
@@ -118,61 +40,51 @@ var sensors_R7 = { 'cardboard' : { 'sensor12' : 'progressbar12', 'sensor13' : 'p
                  'colored_glass' : { 'sensor17' : 'progressbar17', 'sensor18' : 'progressbar18', 'sensor19' : 'progressbar19' },
                  'uncolored_glass': { 'sensor20' : 'progressbar20', 'sensor21' : 'progressbar21', 'sensor22' : 'progressbar22' }
                  };
-
-var averages = { 'cardboard': 0,
+           
+//progress_bar_setup() takes the sensor_dict (sensors_R6 or sensors_R7) and pane. pane is top (collapsible) or bottom (collapsible). 
+function progress_bar_setup(sensor_dict, pane)
+{
+  var averages = { 'cardboard': 0, //this dict will hold the average sensor value for each waste type
               'colored_glass': 0,
               'uncolored_glass': 0
            };
 
-for (const [typeName, sensors] of Object.entries(sensors_R6)) {
-  progress_bar_setup(typeName,sensors,'top_');
-}
-
-for (const [typeName, sensors] of Object.entries(sensors_R7)) {
-  progress_bar_setup(typeName,sensors,'bottom_');
-}
-
-function progress_bar_setup(typeName, sensors, pane)
-{
+  //loop across the sensor_dict. keys are waste types and values are dict of sensors. 
+  for (const [typeName, sensors] of Object.entries(sensor_dict)) {
     //setup for each progress bar that corresponds to one sensor
-    for (const [sensorName, progressName] of Object.entries(sensors)) {
+    for (const [sensorName, progressName] of Object.entries(sensors)) { //loop across each value in sensor_dict which are dicts themselves. 
         var sensorValue = get_sensor_value(sensorName);
 
         var progressbar_color = document.getElementById(pane + progressName + "-color");
         const color = get_progressbar_color(sensorValue); 
-        progressbar_color.style.backgroundColor = color;
+        progressbar_color.style.backgroundColor = color; //color the progress bar
         averages[typeName] = averages[typeName] + sensorValue; //add the sensor value to averages dict so we have a total value per waste type
 
         var progressbar_text = document.getElementById(pane + progressName+ "-text");
-        progressbar_text.innerHTML = get_progressbar_text(sensorValue); 
+        progressbar_text.innerHTML = get_progressbar_text(sensorValue); //set the text for the progress bar
 
         var progressbar_span = document.getElementById(pane + progressName + "-color");
-        progressbar_span.style.width = sensorValue + "%";
+        progressbar_span.style.width = sensorValue + "%"; //set the span of the progress bar
     }
-    averages[typeName] = averages[typeName] / Object.keys(sensors).length; // caluclate the average value per waste type
+    averages[typeName] = averages[typeName] / Object.keys(sensors).length; // calculate the average sensor value per waste type
+  }
 
-    //setup for progress bars with averages
-    for (const [typeName, sensorValue_average] of Object.entries(averages)) {
-        console.log ("Average for " + typeName + " is " + sensorValue_average)
+  //setup for progress bars with averages
+  for (const [typeName, sensorValue_average] of Object.entries(averages)) { //loop across the averages dict
+      var progressbar_color = document.getElementById(pane + typeName+ "-average-color");
+      const color = get_progressbar_color(sensorValue_average); 
+      progressbar_color.style.backgroundColor = color; //color the average progress bar
 
-        var progressbar_color = document.getElementById(pane + typeName+ "-average-color");
-        const color = get_progressbar_color(sensorValue_average); 
-        progressbar_color.style.backgroundColor = color;
+      var progressbar_text = document.getElementById(pane + typeName + "-average-text"); 
+      progressbar_text.innerHTML = get_progressbar_text(sensorValue_average);//set the text for the average progress bar
 
-        var progressbar_text = document.getElementById(pane + typeName + "-average-text"); 
-        progressbar_text.innerHTML = get_progressbar_text(sensorValue_average); 
-
-        var progressbar_span = document.getElementById(pane + typeName + "-average-color"); 
-        progressbar_span.style.width = sensorValue_average + "%";
+      var progressbar_span = document.getElementById(pane + typeName + "-average-color"); 
+      progressbar_span.style.width = sensorValue_average + "%"; //set the span for the average progress bar
     }
 }
 
 
-
-
-
-
-// get_progressbar_color() returns the color for the progress bar fill
+// get_progressbar_color() returns the color for the progress bar
 function get_progressbar_color(sensor_value) {
   if (sensor_value < 50) {
     return "#009E2C";
@@ -189,7 +101,6 @@ function get_progressbar_color(sensor_value) {
 }
 
 //get_progressbar_text() returns the text for the progress bar 
-
 function get_progressbar_text(sensor_value) {
   if (sensor_value < 50) { // should it be a different message if the sensor registers a negative value (and something's probably wrong)?
     return "Det finns plats";
@@ -204,6 +115,10 @@ function get_progressbar_text(sensor_value) {
     return "Det är överfullt"; 
   } 
 }
+
+//calling progress_bar_setup() twice so we set up both collapsibles
+progress_bar_setup(sensors_R6,'top_');
+progress_bar_setup(sensors_R7,'bottom_');
 
 
 
