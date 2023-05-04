@@ -7,6 +7,7 @@ menu.addEventListener('click', function() {
 });
 
 
+//this is for making the collapsible interactive
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
@@ -23,15 +24,7 @@ for (i = 0; i < coll.length; i++) {
 }
 
 
-//testing with dummy value, also this is just one sensor
-//sensor_value_1 = 40;
-//sensor_value_2 = 70;
-//sensor_value_3 = 95;
-
-function get_sensor_value(sensorName) {
-  return 95;
-}
-
+/*
 const sensor_color_dict = { // change the keys to whatever name they have in the database
   'sensor1': 'progressbar1', 
   'sensor2': 'progressbar2', 
@@ -59,9 +52,127 @@ for (const [sensorName, progressName] of Object.entries(sensor_color_dict)) {
   progressbar_span.style.width = sensorValue + "%";
 
 }
+*/
 
 
-// These functions return the color for the progress bar fill and what text to display
+//now i start with the progress bars
+//the sensorName comes from the dict. the sensor names should be the same as they are in the database. 
+function get_sensor_value(sensorName) { 
+  return 45;
+}
+
+/*
+var sensors_R6 = { 'cardboard0' : { 'sensor1' : 'progressbar1', 'sensor2' : 'progressbar2', 'sensor3' : 'progressbar3', 'sensor4' : 'progressbar4', 'sensor5' : 'progressbar5'},
+               'colored_glass0' : { 'sensor6' : 'progressbar6', 'sensor7' : 'progressbar7', 'sensor8' : 'progressbar8' },
+               'uncolored_glass0': { 'sensor9' : 'progressbar9', 'sensor10' : 'progressbar10', 'sensor11' : 'progressbar11' }
+                 };
+
+var averages = { 'cardboard0': 0,
+              'colored_glass0': 0,
+              'uncolored_glass0': 0
+           };
+
+
+for (const [typeName, sensors] of Object.entries(sensors_R6)) {
+  for (const [sensorName, progressName] of Object.entries(sensors)) {
+    var sensorValue = get_sensor_value(sensorName);
+
+    var progressbar_color = document.getElementById(progressName + "-color");
+    const color = get_progressbar_color(sensorValue); 
+    progressbar_color.style.backgroundColor = color;
+    averages[typeName] = averages[typeName] + sensorValue;
+
+    var progressbar_text = document.getElementById(progressName + "-text");
+    progressbar_text.innerHTML = get_progressbar_text(sensorValue); 
+
+    var progressbar_span = document.getElementById(progressName + "-color");
+    progressbar_span.style.width = sensorValue + "%";
+  }
+  averages[typeName] = averages[typeName] / Object.keys(sensors).length;
+}
+
+for (const [typeName, sensorValue_average] of Object.entries(averages)) {
+    console.log ("Average for " + typeName + " is " + sensorValue_average)
+
+    var progressbar_color = document.getElementById(typeName + "-average-color");
+    const color = get_progressbar_color(sensorValue_average); 
+    progressbar_color.style.backgroundColor = color;
+
+    var progressbar_text = document.getElementById(typeName + "-average-text"); 
+    progressbar_text.innerHTML = get_progressbar_text(sensorValue_average); 
+
+    var progressbar_span = document.getElementById(typeName + "-average-color"); 
+    progressbar_span.style.width = sensorValue_average + "%";
+}
+
+*/
+
+
+
+var sensors_R6 = { 'cardboard' : { 'sensor1' : 'progressbar1', 'sensor2' : 'progressbar2', 'sensor3' : 'progressbar3', 'sensor4' : 'progressbar4', 'sensor5' : 'progressbar5'},
+               'colored_glass' : { 'sensor6' : 'progressbar6', 'sensor7' : 'progressbar7', 'sensor8' : 'progressbar8' },
+               'uncolored_glass': { 'sensor9' : 'progressbar9', 'sensor10' : 'progressbar10', 'sensor11' : 'progressbar11' }
+                 };
+
+var sensors_R7 = { 'cardboard' : { 'sensor12' : 'progressbar12', 'sensor13' : 'progressbar13', 'sensor14' : 'progressbar14', 'sensor15' : 'progressbar15', 'sensor16' : 'progressbar16'},
+                 'colored_glass' : { 'sensor17' : 'progressbar17', 'sensor18' : 'progressbar18', 'sensor19' : 'progressbar19' },
+                 'uncolored_glass': { 'sensor20' : 'progressbar20', 'sensor21' : 'progressbar21', 'sensor22' : 'progressbar22' }
+                 };
+
+var averages = { 'cardboard': 0,
+              'colored_glass': 0,
+              'uncolored_glass': 0
+           };
+
+for (const [typeName, sensors] of Object.entries(sensors_R6)) {
+  progress_bar_setup(typeName,sensors,'top_');
+}
+
+for (const [typeName, sensors] of Object.entries(sensors_R7)) {
+  progress_bar_setup(typeName,sensors,'bottom_');
+}
+
+function progress_bar_setup(typeName, sensors, pane)
+{
+    //setup for each progress bar that corresponds to one sensor
+    for (const [sensorName, progressName] of Object.entries(sensors)) {
+        var sensorValue = get_sensor_value(sensorName);
+
+        var progressbar_color = document.getElementById(pane + progressName + "-color");
+        const color = get_progressbar_color(sensorValue); 
+        progressbar_color.style.backgroundColor = color;
+        averages[typeName] = averages[typeName] + sensorValue; //add the sensor value to averages dict so we have a total value per waste type
+
+        var progressbar_text = document.getElementById(pane + progressName+ "-text");
+        progressbar_text.innerHTML = get_progressbar_text(sensorValue); 
+
+        var progressbar_span = document.getElementById(pane + progressName + "-color");
+        progressbar_span.style.width = sensorValue + "%";
+    }
+    averages[typeName] = averages[typeName] / Object.keys(sensors).length; // caluclate the average value per waste type
+
+    //setup for progress bars with averages
+    for (const [typeName, sensorValue_average] of Object.entries(averages)) {
+        console.log ("Average for " + typeName + " is " + sensorValue_average)
+
+        var progressbar_color = document.getElementById(pane + typeName+ "-average-color");
+        const color = get_progressbar_color(sensorValue_average); 
+        progressbar_color.style.backgroundColor = color;
+
+        var progressbar_text = document.getElementById(pane + typeName + "-average-text"); 
+        progressbar_text.innerHTML = get_progressbar_text(sensorValue_average); 
+
+        var progressbar_span = document.getElementById(pane + typeName + "-average-color"); 
+        progressbar_span.style.width = sensorValue_average + "%";
+    }
+}
+
+
+
+
+
+
+// get_progressbar_color() returns the color for the progress bar fill
 function get_progressbar_color(sensor_value) {
   if (sensor_value < 50) {
     return "#009E2C";
@@ -76,6 +187,8 @@ function get_progressbar_color(sensor_value) {
     return "#000000"; 
   }
 }
+
+//get_progressbar_text() returns the text for the progress bar 
 
 function get_progressbar_text(sensor_value) {
   if (sensor_value < 50) { // should it be a different message if the sensor registers a negative value (and something's probably wrong)?
@@ -92,12 +205,5 @@ function get_progressbar_text(sensor_value) {
   } 
 }
 
-//setting up the average progress bars
 
-// create function that calculates the average of a set of sensor values. this average will determine span, color and text of averages progress bars. 
-    // how can I create one fucntion that calculates the average for all 6 average progress bars?
-
-// call get_progressbar_color() with the average value and color the average progress bars with the return value of the function
-
-// call get_progressbar_text() with the average value and color the average progress bars with the return value of the function
 
