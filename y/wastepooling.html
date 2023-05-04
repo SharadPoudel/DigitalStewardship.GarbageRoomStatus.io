@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <script type='module' src='./firebase_config.js'></script>
+    <style>
+        .item-name-label {
+            font-size: 20px;
+        }
+
+        img {
+            border-style: solid;
+        }
+
+        label {
+            display: block;
+            overflow-wrap: break-word;
+            text-align: left;
+        }
+
+        body {
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+
+        .image-capture {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .post-template-div {
+            inline-size: min-content;
+            border-style: solid;
+            padding: 10px;
+            display: inline-block;
+            box-sizing: border-box;
+            margin: 10px;
+
+        }
+
+        h1 {
+            margin: 10px;
+        }
+
+        .intro-p {
+            margin: 10px;
+        }
+
+        .post-image-label {
+            text-align: center;
+            border-style: solid;
+        }
+
+
+        .top-container-div {
+            border-style: solid;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .post-completed-div {
+            inline-size: min-content;
+            border-style: solid;
+            padding: 10px;
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 10px;
+            vertical-align: top;
+        }
+
+        .delete-label {
+
+            width: fit-content;
+        }
+
+        .save-label {
+
+            width: fit-content;
+        }
+
+        .save-div {
+            border-style: solid;
+            padding: 3px;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .delete-div {
+            border-style: solid;
+            padding: 3px;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .post-container-div {
+            height: 800px;
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Wastepooling</h1>
+    <p class="intro-p">On this page you can post your bulky waste in need of pickup or select a post to offer pickup in
+        Granngården, Beckomberga. </p>
+
+    <form id="post-form">
+        <div class="top-container-div">
+            <h2>Do you have any bulky waste in need of pickup?</h2>
+
+            <img src="../images/image_preview.png" width="200" height="200" id="image-container">
+            <input type="file" class="image-capture" accept="image/*" id="file-input">
+            <label class="post-image-label" for="file-input">Choose image</label>
+            <div>
+                <label for="item-name-input">Item name: </label>
+                <input id="item-name-input">
+            </div>
+
+            <div>
+                <label for="address-input">Address: </label>
+                <input id="address-input">
+            </div>
+
+            <input type="button" class="button-div" onclick="savePost()" value="Post">
+        </div>
+    </form>
+
+    <div id="post-container-div" class="post-container-div"></div>
+
+
+    <script type="module">
+
+        // Firestore stuff
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getFirestore, collection, getDocs, addDoc, query } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
+            authDomain: "digitalstewardship.firebaseapp.com",
+            projectId: "digitalstewardship",
+            storageBucket: "digitalstewardship.appspot.com",
+            messagingSenderId: "469552118705",
+            appId: "1:469552118705:web:98fa6c5262ac8258d79b90"
+        };
+
+        //  Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // get all posts
+        async function getPosts(db) {
+            // const postsSnapshot = await getDocs(itemNameCol, addressCol, emailCol, imageCol);
+            //const postList = postsSnapshot.docs.map(doc => doc.data());
+            //return postList;
+            var postList;
+
+            const q = query(collection(db, "digitalstewardship"));
+
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+
+                // console.log(doc.id, " => ", doc.data());
+                postList = querySnapshot.docs.map(doc => doc.data());
+
+            });
+            return postList;
+        }
+
+        async function getItems(db) {
+            const itemNameCol = collection(db, 'itemname');
+
+            const itemNameSnapshot = await getDocs(itemNameCol);
+            //const addressSnapshot = await getDocs(addressCol);
+            //const emailSnapshot = await getDocs(emailCol);
+            //const imageSnapshot = await getDocs(imageCol);
+            // const postsSnapshot = await getDocs(itemNameCol, addressCol, emailCol, imageCol);
+            const itemList = itemNameSnapshot.docs.map(doc => doc.data());
+            return itemList;
+        }
+
+
+        async function addPost(i, a, e, img) {
+            const add = await addDoc(collection(db, 'digitalstewardship'), {
+                itemname: i,
+                address: a,
+                email: e,
+                image: img
+            });
+
+            // console.log("Document written with ID: ", add.id);
+        }
+
+
+        async function deletePost(postid) {
+
+            var posts = getPosts();
+
+            for (let i = 0; i < posts; i++) {
+                if (posts.id == postid) {
+                    const deletepost = await db.collection('digitalstewardship').remove({
+
+                        postid
+                    })
+                }
+            }
+        }
+
+        var postList = getPosts(db);
+        console.log(postList);
+
+
+        for (const [key, value] of Object.entries(postList)) {
+            console.log(`${key}: ${value}`);
+        }
+
+
+        // addPost("02/05", "bromms", "me@you.hi", "img.png");
+
+        let postCompleted;
+
+        var postImageInput, itemPic, itemName, address, postImagePreview;
+
+        const fileInput = document.getElementById('file-input');
+
+        itemName = document.getElementById('item-name-input');
+        address = document.getElementById('address-input');
+        postImageInput = document.getElementById('file-input');
+        postImagePreview = document.getElementById('image-container');
+
+        postImageInput.addEventListener('change', async (e) => {
+            itemPic = e.target.files[0];
+            postImagePreview.src = window.URL.createObjectURL(itemPic);
+        });
+
+        // might be something with type=module that hampers with this one
+        const savePost = () => {
+
+            postCompleted = document.createElement('div');
+            postCompleted.setAttribute('class', 'post-completed-div');
+            postCompleted.setAttribute('id', 'post-completed-div');
+
+            image = document.createElement('img');
+            image = new Image(200, 200);
+            image.src = window.URL.createObjectURL(itemPic);
+
+            item = document.createElement('label');
+            item.setAttribute('class', 'item-name-label');
+            item.innerHTML = itemName.value;
+
+            postAddress = document.createElement('label');
+            postAddress.innerHTML = address.value;
+
+            postDelete = document.createElement('div');
+            postDelete.setAttribute('class', 'delete-div');
+
+            postDeleteLabel = document.createElement('label');
+            postDeleteLabel.innerHTML = 'Delete?';
+            postDeleteLabel.setAttribute('class', 'delete-label');
+            postDeleteLabel.setAttribute('id', 'post-delete-button');
+            postDeleteLabel.onclick = function () { deleteCompletedPost() };
+
+            postDelete.appendChild(postDeleteLabel);
+
+            postCompleted.appendChild(image);
+            postCompleted.appendChild(item);
+            postCompleted.appendChild(postAddress);
+            postCompleted.appendChild(postDelete);
+
+            // addPost(itemName.value, address.value, "hej", "hej");
+
+            document.getElementById('post-container-div').appendChild(postCompleted);
+            document.getElementById('post-form').reset();
+            document.getElementById('image-container').src = "../images/image_preview.png";
+
+        }
+
+        function deleteCompletedPost() {
+            postCompleted.remove();
+            // needs db connection
+        }
+
+
+        // window.savePost = savePost;
+    </script>
+
+
+</body>
+
+</html>
