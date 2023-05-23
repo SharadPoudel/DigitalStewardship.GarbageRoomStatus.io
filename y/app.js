@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Get sensor value from firestore from a sensorid. Right now it just gets the last value - we need to figure out what value we want it to get. Maybe based on a timestamp or something.
-async function getSensorValue(sensornum) {
+async function get_sensor_value(sensornum) {
 
   var value
 
@@ -30,18 +30,23 @@ async function getSensorValue(sensornum) {
 
     if (doc.data().sensorid == sensornum) {
       value = doc.data().message;
+      value = value.split(" ")
+      value = value[3]
+      value = value.replace(/[^a-zA-Z0-9 ]/g, '')
+      value = parseInt(value);
       console.log(value);
     }
   });
+
   return value;
 }
 
-var value = getSensorValue('sensor1');
+var value = get_sensor_value('sensor1');
 
 
-value.then(function (result) {
-  console.log(result);
-});
+//value.then(function (result) {
+  //console.log(result);
+//});
 
 
 const menu = document.querySelector('#mobile-menu');
@@ -73,11 +78,6 @@ for (i = 0; i < coll.length; i++) {
 
 //here we start working on the progress bars
 
-//the sensorName comes from the dict. the sensor names should be the same as they are in the database. 
-function get_sensor_value(sensorName) {
-  return 45;
-}
-
 //dicts for each recycling room. these are dicts in dicts. in the first level key is waste type and value is sensor info. in the second level the key is the sensor name and the value is the ID in the HTML
 var sensors_R6 = {
   'cardboard': { 'sensor1': 'progressbar1', 'sensor2': 'progressbar2', 'sensor3': 'progressbar3', 'sensor4': 'progressbar4', 'sensor5': 'progressbar5' },
@@ -103,18 +103,23 @@ function progress_bar_setup(sensor_dict, pane) {
   for (const [typeName, sensors] of Object.entries(sensor_dict)) {
     //setup for each progress bar that corresponds to one sensor
     for (const [sensorName, progressName] of Object.entries(sensors)) { //loop across each value in sensor_dict which are dicts themselves. 
-      var sensorValue = get_sensor_value(sensorName);
+      var value = get_sensor_value(sensorName);
 
-      var progressbar_color = document.getElementById(pane + progressName + "-color");
-      const color = get_progressbar_color(sensorValue);
-      progressbar_color.style.backgroundColor = color; //color the progress bar
-      averages[typeName] = averages[typeName] + sensorValue; //add the sensor value to averages dict so we have a total value per waste type
+      value.then(function (sensorValue) {
+        console.log(sensorValue);
+        var progressbar_color = document.getElementById(pane + progressName + "-color");
+        const color = get_progressbar_color(sensorValue);
+        progressbar_color.style.backgroundColor = color; //color the progress bar
+        averages[typeName] = averages[typeName] + sensorValue; //add the sensor value to averages dict so we have a total value per waste type
 
-      var progressbar_text = document.getElementById(pane + progressName + "-text");
-      progressbar_text.innerHTML = get_progressbar_text(sensorValue); //set the text for the progress bar
+        var progressbar_text = document.getElementById(pane + progressName + "-text");
+        progressbar_text.innerHTML = get_progressbar_text(sensorValue); //set the text for the progress bar
 
-      var progressbar_span = document.getElementById(pane + progressName + "-color");
-      progressbar_span.style.width = sensorValue + "%"; //set the span of the progress bar
+        var progressbar_span = document.getElementById(pane + progressName + "-color");
+        progressbar_span.style.width = sensorValue + "%"; //set the span of the progress bar
+    
+    });
+
     }
     averages[typeName] = averages[typeName] / Object.keys(sensors).length; // calculate the average sensor value per waste type
   }
