@@ -30,10 +30,10 @@ async function get_sensor_value(sensornum) {
 
     if (doc.data().sensorid == sensornum) {
       value = doc.data().message;
-      value = value.split(" ")
-      value = value[3]
-      value = value.replace(/[^a-zA-Z0-9 ]/g, '')
-      value = parseInt(value);
+      value = value.split(" ") //remove when we have the right message
+      value = value[3] //remove when we have the right message
+      value = value.replace(/[^a-zA-Z0-9 ]/g, '') //remove when we have the right message
+      value = parseInt(value); 
       console.log(value);
     }
   });
@@ -70,6 +70,7 @@ for (i = 0; i < coll.length; i++) {
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
       content.style.display = "none";
+      document.getElementById("collapsible_arrow").src="collapsible_arrow_up.svg";
     } else {
       content.style.display = "block";
     }

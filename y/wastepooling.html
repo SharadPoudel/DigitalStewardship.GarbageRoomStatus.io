@@ -3,14 +3,26 @@
 
 
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Stewardship</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    
     <script type='module' src='./firebase_config.js'></script>
     <style>
         .item-name-label {
             font-size: 20px;
-        }
-
-        img {
-            border-style: solid;
         }
 
         label {
@@ -43,29 +55,21 @@
 
         }
 
-        h1 {
-            margin: 10px;
-        }
-
         .intro-p {
             margin: 10px;
         }
 
-        .post-image-label {
-            text-align: center;
-            border-style: solid;
-        }
 
 
         .top-container-div {
-            border-style: solid;
             padding: 10px;
             margin: 10px;
         }
 
         .post-completed-div {
             inline-size: min-content;
-            border-style: solid;
+            background-color: #4D8D6E;
+
             padding: 10px;
             box-sizing: border-box;
             display: inline-block;
@@ -96,15 +100,19 @@
         }
 
         .delete-div {
+            background-color: transparent;
+            border-radius: 2px;;
             border-style: solid;
-            padding: 3px;
+            border-color: #E5EFE5;
             display: inline-block;
             width: fit-content;
         }
 
         .contact-div {
+            background-color: transparent;
+            border-radius: 2px;;
             border-style: solid;
-            padding: 3px;
+            border-color: #E5EFE5;
             display: inline-block;
             width: fit-content;
         }
@@ -112,47 +120,71 @@
         .post-container-div {
             height: 800px;
 
-
         }
     </style>
 </head>
 
 <body>
-
-    <h1>Wastepooling</h1>
-    <p class="intro-p">On this page you can post your bulky waste in need of pickup or select a post to offer pickup in
-        Granngården, Beckomberga. </p>
-
-    <form id="post-form">
-        <div class="top-container-div">
-            <h2>Do you have any bulky waste in need of pickup?</h2>
-
-            <img src="../images/image_preview.png" width="200" height="200" id="image-container">
-            <input type="file" class="image-capture" accept="image/*" id="file-input" onchange="sendImage()">
-            <label class="post-image-label" for="file-input">Choose image</label>
-            <div>
-                <label for="item-name-input">Item name: </label>
-                <input id="item-name-input">
-            </div>
-
-            <div>
-                <label for="address-input">Address: </label>
-                <input id="address-input">
-            </div>
-
-            <div>
-                <label for="email-input">Your email: </label>
-                <input id="email-input">
-            </div>
-
-
-            <input type="button" class="button-div" onclick="savePost()" value="Post">
+<!-- Navbar Section -->
+    <nav class="navbar">
+      <div class="navbar__container">
+        <img id="logo" src="images/logo.svg" width="20%"/>
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
         </div>
-    </form>
-    <div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="/status_page.html" class="navbar__links">Status</a>
+          </li>
+          <li class="navbar__item">
+            <a href="/wastepooling.html" class="navbar__links">WastePooling</a>
+          </li>
+          <li class="navbar__item">
+            <a href="/partsense.html" class="navbar__links">Rapportera Grovsopor</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content"> 
+                <h1>Wastepooling</h1>
+                <p class="intro-p">On this page you can post your bulky waste in need of pickup or select a post to offer pickup in
+                Granngården, Beckomberga. </p>
 
+                <form class="intro-p" id="post-form">
+                    <div class="top-container-div">
+                        <h2>Do you have any bulky waste in need of pickup?</h2>
+
+                        <div class="form-container">
+                            <div>
+                                <label for="item-name-input">Namn på artikeln: </label>
+                                <input id="item-name-input">
+                            </div>
+
+                            <div>
+                                <label for="address-input">Adress: </label>
+                                <input id="address-input">
+                            </div>
+
+                            <div>
+                                <label for="email-input">E-post: </label>
+                                <input id="email-input">
+                            </div>
+                        </div>
+
+                        <img src="../images/image_preview.png" width="200" height="200" id="image-container">
+                        <input type="file" class="image-capture" accept="image/*" id="file-input" onchange="sendImage()">
+                        <label class="post-image-label" for="file-input">Välj bild</label>
+
+                        <input type="button" class="button-div" onclick="savePost()" value="Post">
+                    </div>
+                </form>
+                <div id="post-container-div" class="post-container-div" onload="getPosts()"></div>
+            </div>
+        </div>
     </div>
-    <div id="post-container-div" class="post-container-div" onload="getPosts()"></div>
 
 
     <script type="module">
