@@ -159,16 +159,16 @@ function get_progressbar_color(sensor_value) {
 //get_progressbar_text() returns the text for the progress bar 
 function get_progressbar_text(sensor_value) {
   if (sensor_value < 50) { // should it be a different message if the sensor registers a negative value (and something's probably wrong)?
-    return "Det finns plats";
+    return "Finns plats";
   }
   else if (sensor_value >= 50 && sensor_value < 90) {
-    return "Det finns lite plats";
+    return "Lite plats";
   }
   else if (sensor_value >= 90 && sensor_value <= 100) {
-    return "Det är nästan fullt";
+    return "Nästan fullt";
   }
   else if (sensor_value > 100) {
-    return "Det är överfullt";
+    return "Överfullt";
   }
 }
 
