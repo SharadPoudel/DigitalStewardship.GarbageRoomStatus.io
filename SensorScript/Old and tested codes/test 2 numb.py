@@ -48,18 +48,18 @@ while True:
     
 
        # Calculate percentage for sensor 1
-    if distance1 < 15:
+    if distance1 < 50:
         percentage1 = 100
-    elif distance1 >= 150:
+    elif distance1 >= 200:
         percentage1 = 0
     else:
         percentage1 = 100 - ((distance1 - 50) / 150 * 100)
     percentage1 = round(percentage1)
 
     # Calculate percentage for sensor 2
-    if distance2 < 15:
+    if distance2 < 50:
         percentage2 = 100
-    elif distance2 >= 150:
+    elif distance2 >= 200:
         percentage2 = 0
     else:
         percentage2 = 100 - ((distance2 - 50) / 150 * 100)
@@ -73,29 +73,30 @@ while True:
     print("Sensor 2 - Percentage: {}%".format(percentage2))
 
     # Publish distance and percentage to MQTT topics
-    topic1 = "sensordata/sensor1"
+    #topic1 = "sensordata/sensor1"
     #message1 = "{} cm / {}%".format(distance1, percentage1)
     
     #topic1 = 1
-    message1 = percentage1
+    #message1 = percentage1
     
-    client.publish(topic1, message1)
-    topic2 = "sensordata/sensor2"
-    #message2 = "{} cm / {}%".format(distance2, percentage2)
+   # client.publish(topic1, message1)
+    #topic2 = "sensordata/sensor2"
+   # message2 = "{} cm / {}%".format(distance2, percentage2)
     
     #topic2 = 2
-    message2 = percentage2
+    #message2 = percentage2
     
-    client.publish(topic2, message2)
+    #client.publish(topic2, message2)
     # just send the number of percentage decimal number zero - one or one to hundred.
 
     # Publish percentage to MQTT topics
-     #topic1 = "sensordata/sensor1"
-     #message1 = str(percentage1)
-     #client.publish(topic1, message1)
-     #topic2 = "sensordata/sensor2"
-     #message2 = str(percentage2)
-     #client.publish(topic2, message2)
+         topic1 = "sensordata/sensor1"
+         message1 = str(percentage1)
+     
+     client.publish(topic1, message1)
+     topic2 = "sensordata/sensor2"
+     message2 = str(percentage2)
+     client.publish(topic2, message2)
 
     # Wait for 1 second
     time.sleep(1)

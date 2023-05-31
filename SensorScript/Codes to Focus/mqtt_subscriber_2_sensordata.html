@@ -34,17 +34,10 @@
                 
                 }
                                   
-         
-         
-     </script>
+                
     
     
-    
-    
-    
-    
-    
-    <script>
+   
     
       // Connect to the MQTT broker
       var client = new Paho.MQTT.Client("localhost", Number(8084), "html_subscriber");
@@ -87,16 +80,28 @@
 
         // Extract sensor name from the topic
         var sensorName = topic.split("/")[1];
-
+        
+      
         // Update the HTML based on the sensor name
         if (sensorName === "sensor1") {
           dataElement.innerHTML = "Message received from sensor 1: " + payload + "<br>";
-        } else if (sensorName === "sensor2") {
+        console.log(sensorName);
+        
+        addPost(sensorName,payload);
+        
+        } 
+        
+        else if (sensorName === "sensor2") {
           dataElement.innerHTML += "Message received from sensor 2: " + payload +  "<br>";
+        console.log(sensorName);
+                
+        addPost(sensorName,payload);
+        
         }
-       // console.log(payload);
+        
+       console.log(payload);
        
-       addPost(1,payload);
+       
        
       }
       
