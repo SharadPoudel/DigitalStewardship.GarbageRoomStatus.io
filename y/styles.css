@@ -420,11 +420,19 @@
 
 
  /* Style the button that is used to open and close the collapsible content */
+ .collapsible_container {
+  margin-bottom: 5vh;
+  border-style: solid;
+  border-color: #4D8D6E;
+  border-radius: 12px;
+  background-color: #4D8D6E;
+}
+
  .collapsible {
   background-color: #4D8D6E;
   border-style: solid;
   border-color: #4D8D6E;
-   /*border-radius: 12px; */
+  border-radius: 12px; 
   color: #444;
   cursor: pointer;
   padding: 18px;
@@ -453,6 +461,57 @@
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
   background-color: #5A9C7C;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+
+.collapsible_expanded {
+  padding: 18px;
+  display: none;
+  background-color: #F9FCFA;
+  border-style: solid;
+  border-color: #4D8D6E;
+  border-radius: 0px 0px 12px 12px;
+  overflow: visible;
+}
+
+.collapsible_expanded__container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+  justify-self: center;
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* in the expanded view, the containers for each status is made one column instead of the original two columns. due to removed icons */
+@media screen and (max-width: 480px) {
+  .collapsible_expanded__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-self: center;
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.collapsible_expanded_grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto 25%;
+}
+
+@media screen and (max-width: 480px) {
+  .collapsible_expanded_grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+}
+
+.grid-item {
+  width: 90%;
 }
 
 /* Creating a grid here for displaying the different bin average statuses (and the warning icon)*/
@@ -544,55 +603,7 @@
   padding: 5px;
 }
 
-/* Style the collapsible content. Note: hidden by default */
-.collapsible_expanded {
-  padding: 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #F9FCFA;
-  border-style: solid;
-  border-color: #4D8D6E;
-  overflow: visible;
-}
 
-.collapsible_expanded__container {
-  display: grid;
-  grid-template-columns: 0.5fr 1fr;
-  align-items: center;
-  justify-self: center;
-  height: 50px;
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* in the expanded view, the containers for each status is made one column instead of the original two columns. due to removed icons */
-@media screen and (max-width: 480px) {
-  .collapsible_expanded__container {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    justify-self: center;
-    height: 50px;
-    width: 100%;
-    margin-top: 10px;
-  }
-}
-
-.collapsible_expanded_grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto 25%;
-}
-
-@media screen and (max-width: 480px) {
-  .collapsible_expanded_grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-  }
-}
-
-.grid-item {
-  width: 90%;
-}
 
 /*The banner warning that there is bulky waste on the floor.*/
 .warning_banner {
@@ -673,4 +684,12 @@
   }
 
 }
+
+@media screen and (max-width: 480px) {
+  .logo{
+    width: 200px;
+  }
+}
+
+
 
