@@ -1,0 +1,388 @@
+<!--https://www.youtube.com/watch?v=FazgJVnrVuI-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Stewardship</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+      <div class="navbar__container">
+        <img id="logo" class="logo" src="images/logo.svg" width="20%"/>
+        <div class="navbar__toggle" id="mobile-menu">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+          <li class="navbar__item">
+            <a href="/status_page.html" class="navbar__links">Status</a>
+          </li>
+          <li class="navbar__item">
+            <a href="/wastepooling.html" class="navbar__links">WastePooling</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="main">
+      <div class="main__container">
+        <div class="main__content">  
+          <h1>Var kan jag slänga mina sopor?</h1>
+          <p>Här kan du se vilket soprum som har utrymme för dina sopor.</p>
+          <div class="collapsible_container">
+            <button type="button" class="collapsible"><h2>Status på Follingbogatan 6</h2> 
+              <div class="averages__container">
+                <div class="individual_averages__container">
+                  <div class="individual_averages__content"> 
+                    <img id="cardboard_box__img" src="images/cardboard_box_icon.svg" />
+                    <div class="text_bar_container">
+                      <p_UI id="top_cardboard-average-text">Lite plats</p_UI>
+                      <div id="top_cardboard-average" class="progress-bar">
+                        <span id="top_cardboard-average-color" class="progress-bar-fill"></span>
+                      </div>
+                      <p_UI margin-top: 0em;>5 kärl</p_UI>
+                    </div> 
+                  </div>
+                </div>
+                <div class="individual_averages__container">
+                  <div class="individual_averages__content"> 
+                    <img id="colored_glass__img" src="images/colored_glass_icon.svg" />
+                    <div class="text_bar_container">
+                      <p_UI id="top_colored_glass-average-text">Lite plats</p_UI>
+                      <div id="top_colored_glass-average" class="progress-bar">
+                        <span id="top_colored_glass-average-color" class="progress-bar-fill"></span>
+                      </div>
+                      <p_UI margin-top: 0em;>3 kärl</p_UI>
+                    </div>
+                  </div>
+                </div>
+                <div class="individual_averages__container">
+                  <div class="individual_averages__content"> 
+                    <img id="uncolored_glass__img" src="images/uncolored_glass_icon.svg" />
+                    <div class="text_bar_container">
+                      <p_UI id="top_uncolored_glass-average-text" >Lite plats</p_UI>
+                      <div id="top_uncolored_glass-average" class="progress-bar">
+                        <span id="top_uncolored_glass-average-color" class="progress-bar-fill"></span>
+                      </div>
+                      <p_UI margin-top: 0em;>3 kärl</p_UI>
+                    </div> 
+                  </div>
+                </div>
+                <div class="warning_icon_arrow__container">
+                  <img id="bulky_waste_warning_black__img" class="bulky_waste_warning_icon" src="images/bulky_waste_warning_icon_black.svg" />
+                  <img id="collapsible_arrow" class="collapsible_arrow" justify-self="right" src="images/collapsible_arrow_down.svg"/>
+                </div>
+              </div>
+              <p_clickmore>Klicka för mer information om kärlen. </p_clickmore>
+            </button>
+            <div class="collapsible_expanded">
+              <div class="collapsible_expanded_grid-container">
+                <div class="grid-item">
+                  <h2_expanded>Kartonger</h2_expanded>
+                  <div class="collapsible_expanded__container">
+                    <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar1-text">Lite plats</p_UI>
+                      <div id="top_progressbar1" class="progress-bar">
+                        <span id="top_progressbar1-color" class="progress-bar-fill"></span>
+                      </div>                    
+                    </div> 
+                  </div>
+                  <div class="collapsible_expanded__container">
+                    <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50% />
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar2-text">Lite plats</p_UI>
+                      <div id="top_progressbar2" class="progress-bar">
+                        <span id="top_progressbar2-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="collapsible_expanded__container">
+                    <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar3-text">Lite plats</p_UI>
+                      <div id="top_progressbar3" class="progress-bar">
+                        <span id="top_progressbar3-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="collapsible_expanded__container">
+                    <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar4-text">Lite plats</p_UI>
+                      <div id="top_progressbar4" class="progress-bar">
+                        <span id="top_progressbar4-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="collapsible_expanded__container">
+                    <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar5-text">Lite plats</p_UI>
+                      <div id="top_progressbar5" class="progress-bar">
+                        <span id="top_progressbar5-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid-item">
+                  <h2_expanded>Färgat glas</h2_expanded>
+                  <div class="collapsible_expanded__container">
+                    <img id="colored_glass__img" class="colored_glass__img_expanded" src="images/colored_glass_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar6-text">Lite plats</p_UI>
+                      <div id="top_progressbar6" class="progress-bar">
+                        <span id="top_progressbar6-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="collapsible_expanded__container">
+                    <img id="colored_glass__img" class="colored_glass__img_expanded" src="images/colored_glass_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar7-text">Lite plats</p_UI>
+                      <div id="top_progressbar7" class="progress-bar">
+                        <span id="top_progressbar7-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="collapsible_expanded__container">
+                    <img id="colored_glass__img" class="colored_glass__img_expanded" src="images/colored_glass_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar8-text">Lite plats</p_UI>
+                      <div id="top_progressbar8" class="progress-bar">
+                        <span id="top_progressbar8-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+                <div class="grid-item">
+                  <h2_expanded>Ofärgat glas</h2_expanded>
+                  <div class="collapsible_expanded__container">
+                    <img id="uncolored_glass__img" class="uncolored_glass__img_expanded" src="images/uncolored_glass_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar9-text">Lite plats</p_UI>
+                      <div id="top_progressbar9" class="progress-bar">
+                        <span id="top_progressbar9-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="collapsible_expanded__container">
+                    <img id="uncolored_glass__img" class="uncolored_glass__img_expanded" src="images/uncolored_glass_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar10-text">Lite plats</p_UI>
+                      <div id="top_progressbar10" class="progress-bar">
+                        <span id="top_progressbar10-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="collapsible_expanded__container">
+                    <img id="uncolored_glass__img" class="uncolored_glass__img_expanded" src="images/uncolored_glass_icon.svg" width=50%/>
+                    <div class="text_bar_container">
+                      <p_UI id="top_progressbar11-text">Lite plats</p_UI>
+                      <div id="top_progressbar11" class="progress-bar">
+                        <span id="top_progressbar11-color" class="progress-bar-fill"></span>
+                      </div>
+                    </div> 
+                  </div>
+              </div>  
+            </div>
+            <div class="warning_banner">
+              <div class="warning_columns">
+                <div class="warning_icon_text">
+                  <img id="bulky_waste_warning_white__img" src="images/bulky_waste_warning_icon_white.svg" />
+                  <p color="#ffffff">Det finns grovt avfall på golvet.</p>
+                  <!-- can insert the "action taken" text here if needed --> 
+                </div>
+              </div>
+            </div>
+          
+          
+          
+            </div>
+          </div>
+        <button type="button" class="collapsible"><h2>Status på Follingbogatan 7</h2> 
+          <div class="averages__container">
+            <div class="individual_averages__container">
+              <div class="individual_averages__content"> 
+                <img id="cardboard_box__img" src="images/cardboard_box_icon.svg" />
+                <div class="text_bar_container">
+                  <p_UI id="bottom_cardboard-average-text">Lite plats</p_UI>
+                  <div id="bottom_cardboard-average" class="progress-bar">
+                    <span id="bottom_cardboard-average-color" class="progress-bar-fill"></span>
+                  </div>
+                  <p_UI margin-top: 0em;>5 kärl</p_UI>
+                </div> 
+              </div>
+            </div>
+            <div class="individual_averages__container">
+              <div class="individual_averages__content"> 
+                <img id="colored_glass__img" src="images/colored_glass_icon.svg" />
+                <div class="text_bar_container">
+                  <p_UI id="bottom_colored_glass-average-text">Lite plats</p_UI>
+                  <div id="bottom_colored_glass-average" class="progress-bar">
+                    <span id="bottom_colored_glass-average-color" class="progress-bar-fill"></span>
+                  </div>
+                  <p_UI margin-top: 0em;>3 kärl</p_UI>
+                </div>
+              </div>
+            </div>
+            <div class="individual_averages__container">
+              <div class="individual_averages__content"> 
+                <img id="uncolored_glass__img" src="images/uncolored_glass_icon.svg" />
+                <div class="text_bar_container">
+                  <p_UI id="bottom_uncolored_glass-average-text" >Lite plats</p_UI>
+                  <div id="bottom_uncolored_glass-average" class="progress-bar">
+                    <span id="bottom_uncolored_glass-average-color" class="progress-bar-fill"></span>
+                  </div>
+                  <p_UI margin-top: 0em;>3 kärl</p_UI>
+                </div> 
+              </div>
+            </div>
+            <div class="warning_icon_arrow__container">
+              <img id="bulky_waste_warning_black__img" class="bulky_waste_warning_icon" src="images/bulky_waste_warning_icon_black.svg" />
+              <img id="collapsible_arrow" class="collapsible_arrow" justify-self="right" src="images/collapsible_arrow_down.svg"/>
+            </div>
+          </div>
+          <p_clickmore>Klicka för mer information om kärlen. </p_clickmore>
+        </button>
+        <div class="collapsible_expanded">
+          <div class="collapsible_expanded_grid-container">
+            <div class="grid-item">
+              <h2_expanded>Kartonger</h2_expanded>
+              <div class="collapsible_expanded__container">
+                <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar12-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar12" class="progress-bar">
+                    <span id="bottom_progressbar12-color" class="progress-bar-fill"></span>
+                  </div>                    
+                </div> 
+              </div>
+              <div class="collapsible_expanded__container">
+                <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50% />
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar13-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar13" class="progress-bar">
+                    <span id="bottom_progressbar13-color" class="progress-bar-fill"></span>
+                  </div>
+                </div> 
+              </div>
+              <div class="collapsible_expanded__container">
+                <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar14-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar14" class="progress-bar">
+                    <span id="bottom_progressbar14-color" class="progress-bar-fill"></span>
+                  </div>
+                </div> 
+              </div>
+              <div class="collapsible_expanded__container">
+                <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar15-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar15" class="progress-bar">
+                    <span id="bottom_progressbar15-color" class="progress-bar-fill"></span>
+                  </div>
+                </div> 
+              </div>
+              <div class="collapsible_expanded__container">
+                <img id="cardboard_box__img" class="cardboard_box_img_expanded" src="images/cardboard_box_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar16-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar16" class="progress-bar">
+                    <span id="bottom_progressbar16-color" class="progress-bar-fill"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item">
+              <h2_expanded>Färgat glas</h2_expanded>
+              <div class="collapsible_expanded__container">
+                <img id="colored_glass__img" class="colored_glass__img_expanded" src="images/colored_glass_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar17-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar17" class="progress-bar">
+                    <span id="bottom_progressbar17-color" class="progress-bar-fill"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="collapsible_expanded__container">
+                <img id="colored_glass__img" class="colored_glass__img_expanded" src="images/colored_glass_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar18-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar18" class="progress-bar">
+                    <span id="bottom_progressbar18-color" class="progress-bar-fill"></span>
+                  </div>
+                </div> 
+              </div>
+              <div class="collapsible_expanded__container">
+                <img id="colored_glass__img" class="colored_glass__img_expanded" src="images/colored_glass_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar19-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar19" class="progress-bar">
+                    <span id="bottom_progressbar19-color" class="progress-bar-fill"></span>
+                  </div>
+                </div> 
+              </div>
+            </div>
+            <div class="grid-item">
+              <h2_expanded>Ofärgat glas</h2_expanded>
+              <div class="collapsible_expanded__container">
+                <img id="uncolored_glass__img" class="uncolored_glass__img_expanded" src="images/uncolored_glass_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar20-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar20" class="progress-bar">
+                    <span id="bottom_progressbar20-color" class="progress-bar-fill"></span>
+                  </div>
+                </div> 
+              </div>
+              <div class="collapsible_expanded__container">
+                <img id="uncolored_glass__img" class="uncolored_glass__img_expanded" src="images/uncolored_glass_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar21-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar21" class="progress-bar">
+                    <span id="bottom_progressbar21-color" class="progress-bar-fill"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="collapsible_expanded__container">
+                <img id="uncolored_glass__img" class="uncolored_glass__img_expanded" src="images/uncolored_glass_icon.svg" width=50%/>
+                <div class="text_bar_container">
+                  <p_UI id="bottom_progressbar22-text">Lite plats</p_UI>
+                  <div id="bottom_progressbar22" class="progress-bar">
+                    <span id="bottom_progressbar22-color" class="progress-bar-fill"></span>
+                  </div>
+                </div> 
+              </div>
+          </div>  
+        </div>
+        <div class="warning_banner">
+          <div class="warning_columns">
+            <div class="warning_icon_text">
+              <img id="bulky_waste_warning_white__img" src="images/bulky_waste_warning_icon_white.svg" />
+              <p color="#ffffff">Det finns grovt avfall på golvet.</p>
+              <!-- can insert the "action taken" text here if needed --> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
