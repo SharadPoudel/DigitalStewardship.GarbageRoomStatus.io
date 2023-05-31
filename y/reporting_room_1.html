@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Stewardship</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet" />
+
+
+    <script type='module' src='./firebase_config.js'></script>
+
+    <style>
+        .report-buttons-container {
+            padding: 10px;
+        }
+
+        .report-yes {
+            width: 40%;
+            height: 100px;
+            border-style: solid;
+            margin: 10px;
+        }
+
+        .report-no {
+            width: 40%;
+            height: 100px;
+            border-style: solid;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <img id="logo" src="images/logo.svg" width="20%" />
+
+        </div>
+        </div>
+    </nav>
+
+    <div class="report-buttons-container">
+        <label class="report-yes" onclick="reportTrue()">Yes</label>
+        <label class="report-no" onclick="reportFalse()">No</label>
+    </div>
+</body>
+
+<script type="module">
+    // Imports the neccesary resources from firestore abd firebase storage
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+    import { getFirestore, collection, getDocs, addDoc, query, setDoc, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+    // setting up the firebase to our project id
+    const firebaseConfig = {
+        apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
+        authDomain: "digitalstewardship.firebaseapp.com",
+        projectId: "digitalstewardship",
+        storageBucket: "digitalstewardship.appspot.com",
+        messagingSenderId: "469552118705",
+        appId: "1:469552118705:web:98fa6c5262ac8258d79b90"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function reportTrue() {
+
+        var roomnum;
+        var status;
+        var timestamp;
+
+        const add = await addDoc(collection(db, 'reporting'), {
+            roomnum: 1,
+            status: true,
+            timestamp: Date.now()
+        });
+        console.log("stored value for report true");
+
+    }
+
+    async function reportFalse() {
+
+        var roomnum;
+        var status;
+        var timestamp;
+
+        const add = await addDoc(collection(db, 'reporting'), {
+            roomnum: 1,
+            status: false,
+            timestamp: Date.now()
+        });
+        console.log("stored value for report false");
+
+    }
+
+    window.reportTrue = reportTrue;
+    window.reportFalse = reportFalse;
+</script>

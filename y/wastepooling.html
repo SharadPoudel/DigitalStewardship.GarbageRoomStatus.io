@@ -7,34 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Stewardship</title>
     <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet" />
 
-    
+
     <script type='module' src='./firebase_config.js'></script>
     <style>
         .item-name-label {
-            font-size: 20px;
+            font-size: 16px;
         }
 
+        .item-address-label {
+            font-size: 12px;
+        }
         label {
             display: block;
             overflow-wrap: break-word;
             text-align: left;
         }
 
-        body {
-            margin-left: 200px;
-            margin-right: 200px;
+        .image-container {
+            width: fit-content;
+            padding: 10px;
+
         }
+
+        .post-image-label {
+            width: fit-content;
+        }
+
 
         .image-capture {
             width: 0.1px;
@@ -64,6 +66,8 @@
         .top-container-div {
             padding: 10px;
             margin: 10px;
+            display: inline-block;
+            text-align: center;
         }
 
         .post-completed-div {
@@ -75,6 +79,13 @@
             display: inline-block;
             margin: 10px;
             vertical-align: top;
+        }
+
+        .button-div {
+            width: 20em;
+            text-align: center;
+            border-color: #E5EFE5;
+            color: #E5EFE5;
         }
 
         .delete-label {
@@ -101,7 +112,8 @@
 
         .delete-div {
             background-color: transparent;
-            border-radius: 2px;;
+            border-radius: 2px;
+            ;
             border-style: solid;
             border-color: #E5EFE5;
             display: inline-block;
@@ -110,74 +122,84 @@
 
         .contact-div {
             background-color: transparent;
-            border-radius: 2px;;
+            border-radius: 2px;
+            ;
             border-style: solid;
             border-color: #E5EFE5;
             display: inline-block;
             width: fit-content;
         }
 
-        .post-container-div {
-            height: 800px;
+        .top-container-div {
+            display: inline-block;
+        }
 
+        .form-inputs-div {
+            padding-left: 1.2em;
+            padding-bottom: 1.2em;
         }
     </style>
 </head>
 
 <body>
-<!-- Navbar Section -->
+    <!-- Navbar Section -->
     <nav class="navbar">
-      <div class="navbar__container">
-        <img id="logo" src="images/logo.svg" width="20%"/>
-        <div class="navbar__toggle" id="mobile-menu">
-          <span class="bar"></span> <span class="bar"></span>
-          <span class="bar"></span>
+        <div class="navbar__container">
+            <img id="logo" src="images/logo.svg" width="20%" />
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span> <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/status_page.html" class="navbar__links">Status</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/wastepooling.html" class="navbar__links">WastePooling</a>
+                </li>
+            </ul>
         </div>
-        <ul class="navbar__menu">
-          <li class="navbar__item">
-            <a href="/status_page.html" class="navbar__links">Status</a>
-          </li>
-          <li class="navbar__item">
-            <a href="/wastepooling.html" class="navbar__links">WastePooling</a>
-          </li>
-          <li class="navbar__item">
-            <a href="/partsense.html" class="navbar__links">Rapportera Grovsopor</a>
-          </li>
-        </ul>
-      </div>
     </nav>
     <div class="main">
         <div class="main__container">
-            <div class="main__content"> 
+            <div class="main__content">
                 <h1>Wastepooling</h1>
-                <p class="intro-p">On this page you can post your bulky waste in need of pickup or select a post to offer pickup in
-                Granngården, Beckomberga. </p>
+                <p class="intro-p">On this page you can post your bulky waste in need of pickup or select a post to
+                    offer pickup in
+                    Granngården, Beckomberga. </p>
 
-                <form class="intro-p" id="post-form">
+                <form id="post-form">
                     <div class="top-container-div">
                         <h2>Do you have any bulky waste in need of pickup?</h2>
-
                         <div class="form-container">
-                            <div>
-                                <label for="item-name-input">Namn på artikeln: </label>
-                                <input id="item-name-input">
+                            <div class="image-and-input-container">
+                                <label for="file-input">
+                                <img src="../images/image_preview.png" width="160" height="160" id="image-container">
+                                <input type="file" class="image-capture" accept="image/*" id="file-input"
+                                    onchange="sendImage()">
+                                </label>
+
                             </div>
 
-                            <div>
-                                <label for="address-input">Adress: </label>
-                                <input id="address-input">
+                            <div class="form-inputs-div">
+                                <div>
+                                    <label for="item-name-input">Namn på artikeln: </label>
+                                    <input id="item-name-input">
+                                </div>
+
+                                <div>
+                                    <label for="address-input">Adress: </label>
+                                    <input id="address-input">
+                                </div>
+
+                                <div>
+                                    <label for="email-input">E-post: </label>
+                                    <input id="email-input">
+                                </div>
+
                             </div>
 
-                            <div>
-                                <label for="email-input">E-post: </label>
-                                <input id="email-input">
-                            </div>
                         </div>
-
-                        <img src="../images/image_preview.png" width="200" height="200" id="image-container">
-                        <input type="file" class="image-capture" accept="image/*" id="file-input" onchange="sendImage()">
-                        <label class="post-image-label" for="file-input">Välj bild</label>
-
                         <input type="button" class="button-div" onclick="savePost()" value="Post">
                     </div>
                 </form>
@@ -253,7 +275,7 @@
                 postCompleted.setAttribute('id', 'post-completed-div');
 
                 let image = document.createElement('img');
-                image = new Image(200, 200);
+                image = new Image(160, 160);
                 image.src = doc.data().image;
 
                 let item = document.createElement('label');
@@ -261,6 +283,7 @@
                 item.innerHTML = doc.data().itemname;
 
                 let postAddress = document.createElement('label');
+                postAddress.setAttribute('class', 'item-address-label');
                 postAddress.innerHTML = doc.data().address;
 
                 let postDelete = document.createElement('div');
@@ -351,13 +374,13 @@
                     const imgRef = ref(storage, postid);
 
                     await deleteObject(imgRef).then(() => {
-                        
+
                         // File deleted successfully
                     }).catch((error) => {
                         // Uh-oh, an error occurred!
                     });
                 }
-            })            
+            })
         }
 
 
@@ -396,6 +419,7 @@
             var postImageInput = document.getElementById('file-input');
             files = postImageInput.files;
             photo = files[0];
+
             console.log(files[0]);
 
             // var item = getImageName();
@@ -416,11 +440,6 @@
                         postCompleted.setAttribute('class', 'post-completed-div');
                         postCompleted.setAttribute('id', 'post-completed-div');
             
-                        const mediaStream = new MediaStream();
-                        let image = document.createElement('img');
-                        image = new Image(200, 200);
-                        //image.srcObject = mediaStream;
-                        image.src = window.URL.createObjectURL(photo);
             
                         postItem = document.createElement('label');
                         postItem.setAttribute('class', 'item-name-label'); 
@@ -464,13 +483,17 @@
                         postCompleted.appendChild(postDelete);
                         postCompleted.appendChild(postContact); */
 
+
             postItem = document.createElement('label');
             postItem.innerHTML = itemName.value;
 
             postEmail = document.createElement('label');
             postEmail.innerHTML = email.value;
 
+
+            const stream = new MediaStream();
             let image = document.createElement('img');
+            image.srcObject = stream;
             image.src = window.URL.createObjectURL(photo);
 
             postAddress = document.createElement('label');
