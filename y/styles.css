@@ -303,10 +303,11 @@
     width: 100%;
     margin: 0 auto;
     height: 90vh;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .main__content {
-    text-align: center;
     margin-bottom: 4rem;
   }
 
@@ -316,13 +317,13 @@
   }
 
   .main__content h2 {
-    font-size: 3rem;
+    font-size: 1.5rem;
     color: #F4F9F6;
   }
 
   .main__content p {
     margin-top: 1rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -330,21 +331,33 @@
   .main__content h1 {
     font-size: 2rem;
     margin-top: 3rem;
+    max-width: 400px; /* hard coded for a screen 480 px wide */
   }
 
   .main__content h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .main__content h2_expanded {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    color: #000000;
   }
 
   .main__content p {
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 1.5rem;
+    max-width: 400px; /* hard coded for a screen 480 px wide */
   }
 
   .main__btn {
     padding: 12px 36px;
     margin: 2.5rem 0;
   }
+
+
 }
 
 
@@ -421,6 +434,22 @@
   font-size: 15px;
 }
 
+@media screen and (max-width: 480px) {
+  .collapsible {
+    background-color: #4D8D6E;
+    border-style: solid;
+    border-color: #4D8D6E;
+     /*border-radius: 12px; */
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+}
+
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
   background-color: #5A9C7C;
@@ -432,6 +461,15 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 100%;
   width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .averages__container { 
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 /* Container for each of the averages*/
@@ -446,6 +484,22 @@
   z-index: 1;
   width: 90%;
   padding: 5px;
+}
+
+@media screen and (max-width: 480px) {
+  .individual_averages__container { 
+    align-items: left;
+    justify-self: left;
+    height: 100%;
+    background-color: #F4F9F6;
+    border-radius: 12px;;
+    border-style: solid;
+    border-color: #D1D1D1;
+    z-index: 1;
+    width: 90%;
+    padding: 5px;
+    margin: 5px;
+  }
 }
 
 .individual_averages__content { 
@@ -511,14 +565,33 @@
   margin-top: 10px;
 }
 
+/* in the expanded view, the containers for each status is made one column instead of the original two columns. due to removed icons */
+@media screen and (max-width: 480px) {
+  .collapsible_expanded__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-self: center;
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
 .collapsible_expanded_grid-container {
   display: grid;
   grid-template-columns: auto auto auto 25%;
 }
 
+@media screen and (max-width: 480px) {
+  .collapsible_expanded_grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+}
+
 .grid-item {
   width: 90%;
-  padding: 10px;
 }
 
 /*The banner warning that there is bulky waste on the floor.*/
@@ -531,6 +604,14 @@
   display: grid;
   grid-template-columns: 30% 70%;
   align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .warning_columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
 }
 
 .warning_icon_text {
@@ -563,5 +644,33 @@
   border-radius: 2px;;
   border-style: solid;
   border-color: #E5EFE5;
+}
+
+/* hiding the bulky waste warning icon and arrow on collapsible when the screen width is 480px or less*/
+@media screen and (max-width: 480px) {
+  .bulky_waste_warning_icon{
+    display: none;
+  }
+
+  .collapsible_arrow{
+    display: none;
+  }
+}
+
+/* hiding the cardboard, colored glass and uncolored glass icons in expanded view when the screen width is 480px or less*/
+@media screen and (max-width: 480px) {
+
+  .cardboard_box_img_expanded{
+    display: none;
+  }
+
+  .colored_glass__img_expanded{
+    display: none;
+  }
+
+  .uncolored_glass__img_expanded{
+    display: none;
+  }
+
 }
 
