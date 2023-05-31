@@ -8,12 +8,6 @@
     <title>Digital Stewardship</title>
     <link rel="stylesheet" href="styles.css" />
     <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-      crossorigin="anonymous"
-    />
-    <link
       href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
@@ -28,10 +22,10 @@
           <span class="bar"></span>
         </div>
         <ul class="navbar__menu">
-          <li class="navbar__item">
+          <li class="navbar_item">
             <a href="/status_page.html" class="navbar__links">Status</a>
           </li>
-          <li class="navbar__item">
+          <li class="navbar_item">
             <a href="/wastepooling.html" class="navbar__links">WastePooling</a>
           </li>
         </ul>
@@ -40,14 +34,14 @@
 
     <!-- Hero Section -->
     <div class="main">
-      <div class="main__container">
-        <div class="main__content">  
+      <div class="main_container">
+        <div class="main_content">  
           <h1>Var kan jag slänga mina sopor?</h1>
           <p>Här kan du se vilket soprum som har utrymme för dina sopor.</p>
           <div class="collapsible_container">
             <button type="button" class="collapsible"><h2>Status på Follingbogatan 6</h2> 
               <div class="averages__container">
-                <div class="individual_averages__container">
+                <div class="individual_averages_container">
                   <div class="individual_averages__content"> 
                     <img id="cardboard_box__img" src="images/cardboard_box_icon.svg" />
                     <div class="text_bar_container">
@@ -59,7 +53,7 @@
                     </div> 
                   </div>
                 </div>
-                <div class="individual_averages__container">
+                <div class="individual_averages_container">
                   <div class="individual_averages__content"> 
                     <img id="colored_glass__img" src="images/colored_glass_icon.svg" />
                     <div class="text_bar_container">
@@ -71,7 +65,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="individual_averages__container">
+                <div class="individual_averages_container">
                   <div class="individual_averages__content"> 
                     <img id="uncolored_glass__img" src="images/uncolored_glass_icon.svg" />
                     <div class="text_bar_container">
@@ -84,7 +78,7 @@
                   </div>
                 </div>
                 <div class="warning_icon_arrow__container">
-                  <img id="bulky_waste_warning_black__img" class="bulky_waste_warning_icon" src="images/bulky_waste_warning_icon_black.svg" />
+                  <img id="bulky_waste_warning" class="bulky_waste_warning_icon" src="images/bulky_waste_icon.svg" />
                   <img id="collapsible_arrow" class="collapsible_arrow" justify-self="right" src="images/collapsible_arrow_down.svg"/>
                 </div>
               </div>
@@ -201,14 +195,9 @@
                   </div>
               </div>  
             </div>
-            <div class="warning_banner">
-              <div class="warning_columns">
-                <div class="warning_icon_text">
-                  <img id="bulky_waste_warning_white__img" src="images/bulky_waste_warning_icon_white.svg" />
-                  <p color="#ffffff">Det finns grovt avfall på golvet.</p>
-                  <!-- can insert the "action taken" text here if needed --> 
-                </div>
-              </div>
+            <div class="warning_icon_text">
+              <img id="bulky_waste_warning" src="images/bulky_waste_icon.svg" />
+              <p color="#ffffff">Det finns grovsopor på golvet.</p>
             </div>
           
           
@@ -217,7 +206,7 @@
           </div>
         <button type="button" class="collapsible"><h2>Status på Follingbogatan 7</h2> 
           <div class="averages__container">
-            <div class="individual_averages__container">
+            <div class="individual_averages_container">
               <div class="individual_averages__content"> 
                 <img id="cardboard_box__img" src="images/cardboard_box_icon.svg" />
                 <div class="text_bar_container">
@@ -229,7 +218,7 @@
                 </div> 
               </div>
             </div>
-            <div class="individual_averages__container">
+            <div class="individual_averages_container">
               <div class="individual_averages__content"> 
                 <img id="colored_glass__img" src="images/colored_glass_icon.svg" />
                 <div class="text_bar_container">
@@ -241,7 +230,7 @@
                 </div>
               </div>
             </div>
-            <div class="individual_averages__container">
+            <div class="individual_averages_container">
               <div class="individual_averages__content"> 
                 <img id="uncolored_glass__img" src="images/uncolored_glass_icon.svg" />
                 <div class="text_bar_container">
@@ -254,7 +243,7 @@
               </div>
             </div>
             <div class="warning_icon_arrow__container">
-              <img id="bulky_waste_warning_black__img" class="bulky_waste_warning_icon" src="images/bulky_waste_warning_icon_black.svg" />
+              <img id="bulky_waste_warning" class="bulky_waste_warning_icon" src="images/bulky_waste_icon.svg" />
               <img id="collapsible_arrow" class="collapsible_arrow" justify-self="right" src="images/collapsible_arrow_down.svg"/>
             </div>
           </div>
@@ -374,7 +363,7 @@
         <div class="warning_banner">
           <div class="warning_columns">
             <div class="warning_icon_text">
-              <img id="bulky_waste_warning_white__img" src="images/bulky_waste_warning_icon_white.svg" />
+              <img id="bulky_waste_warning" src="images/bulky_waste_icon.svg" />
               <p color="#ffffff">Det finns grovt avfall på golvet.</p>
               <!-- can insert the "action taken" text here if needed --> 
             </div>

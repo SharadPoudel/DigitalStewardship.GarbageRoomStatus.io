@@ -1,7 +1,13 @@
-* {
+*:not(#mobile-menu):not(.navbar__toggle .bar):not(.collapsible) {
   box-sizing: border-box;
   padding: 3px;
   font-family: 'roboto';
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .navbar {
@@ -54,8 +60,9 @@
   text-align: center;
 }
 
-.navbar__item {
+.navbar_item {
   height: 80px;
+  margin-left: 2em;
 }
 
 .navbar__links {
@@ -119,7 +126,7 @@
     background: #000000;
   }
 
-  .navbar__item {
+  .navbar_item {
     width: 100%;
   }
 
@@ -173,7 +180,7 @@
   background-color: #F9FCFA;
 }
 
-.main__container {
+.main_container {
   align-items: center;
   justify-self: center;
   margin: 0 auto;
@@ -186,12 +193,12 @@
   padding-left: 50px;
 }
 
-.main__content {
+.main_content {
   color: #fff;
   width: 100%;
 } 
 
-.main__content h1 {
+.main_content h1 {
   font-size: 3rem;
   font-weight: 400;
   margin-top: 0.67em;
@@ -199,7 +206,7 @@
   color: #000000;
 }
 
-.main__content h2 {
+.main_content h2 {
   font-size: 1.5rem;
   font-weight: 400;
   margin-top: 0.67em;
@@ -207,7 +214,7 @@
   color: #F4F9F6;
 }
 
-.main__content h2_expanded {
+.main_content h2_expanded {
   font-size: 1.5rem;
   font-weight: 400;
   margin-top: 0.67em;
@@ -216,7 +223,7 @@
 }
 
 
-.main__content p {
+.main_content p {
   font-size: 1rem;
   font-weight: 400;
   margin-top: 1.3em;
@@ -225,16 +232,16 @@
   vertical-align:top;
 }
 
-.main__content p_UI {
+.main_content p_UI {
   font-size: 1rem;
-  font-weight: 550;
+  font-weight: 450;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   color: #4D8D6E;
   vertical-align:top;
 }
 
-.main__content p_clickmore {
+.main_content p_clickmore {
   font-size: 1rem;
   font-weight: 400;
   margin-top: 1.3em;
@@ -295,7 +302,7 @@
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
-  .main__container {
+  .main_container {
     display: grid;
     grid-template-columns: auto;
     align-items: center;
@@ -307,47 +314,50 @@
     padding-right: 0px;
   }
 
-  .main__content {
+  .main_content {
     margin-bottom: 4rem;
   }
 
-  .main__content h1 {
+  .main_content h1 {
     font-size: 2.5rem;
     margin-top: 2rem;
   }
 
-  .main__content h2 {
+  .main_content h2 {
     font-size: 1.5rem;
     color: #F4F9F6;
   }
 
-  .main__content p {
+  .main_content p {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1rem;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .main__content h1 {
+  .main_content h1 {
     font-size: 1.8rem;
     margin-top: 3rem;
     max-width: 400px; /* hard coded for a screen 480 px wide */
   }
 
-  .main__content h2 {
+  .main_content h2 {
     font-size: 1.5rem;
   }
 
-  .main__content h2_expanded {
+  .main_content h2_expanded {
     font-size: 1.2rem;
     font-weight: 400;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
     color: #000000;
+    z-index: 1;
+    width: 90%;
+    display: flex;
   }
 
-  .main__content p {
+  .main_content p {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1.2rem;
     max-width: 400px; /* hard coded for a screen 480 px wide */
   }
@@ -512,6 +522,7 @@
 
 .grid-item {
   width: 90%;
+  gap: 20px;
 }
 
 /* Creating a grid here for displaying the different bin average statuses (and the warning icon)*/
@@ -528,11 +539,12 @@
     grid-template-columns: 1fr;
     height: 100%;
     width: 100%;
+    gap: 20px;
   }
 }
 
 /* Container for each of the averages*/
-.individual_averages__container { 
+.individual_averages_container { 
   align-items: left;
   justify-self: left;
   height: 100%;
@@ -543,21 +555,21 @@
   z-index: 1;
   width: 90%;
   padding: 5px;
+  
 }
 
 @media screen and (max-width: 480px) {
-  .individual_averages__container { 
-    align-items: left;
-    justify-self: left;
+  .individual_averages_container { 
+    justify-self: center;
     height: 100%;
+    width: 100%;
     background-color: #F4F9F6;
     border-radius: 12px;;
     border-style: solid;
     border-color: #D1D1D1;
     z-index: 1;
-    width: 90%;
     padding: 5px;
-    margin: 5px;
+    margin-bottom: 20px;
   }
 }
 
@@ -570,12 +582,13 @@
 }
 
 /* Container for the progress bar and description text*/
-.text_bar__container { 
-  align-items: left;
-  justify-self: left;
-  height: 100%;
+.text_bar_container {
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
   z-index: 1;
   width: 90%;
+  text-align: left; 
 }
 
 /* Bin Fullness Bar */
@@ -583,7 +596,7 @@
   width: 100%;
   background-color: #e0e0e0;
   padding: 3px;
-  height: 30%;
+  height: 20%;
 }
 
 .progress-bar-fill {
@@ -606,29 +619,21 @@
 
 
 /*The banner warning that there is bulky waste on the floor.*/
-.warning_banner {
-  background-color: #c52525;
-  width: 100%;
-  height: 100%;
-}
-.warning_columns {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  align-items: center;
-}
-
-@media screen and (max-width: 480px) {
-  .warning_columns {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-  }
-}
-
 .warning_icon_text {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 8% 80%;
   align-items: center;
+  justify-self: center; 
+  margin-top: 2%;
+}
+@media screen and (max-width: 480px) {
+  .warning_icon_text {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    align-items: center;
+    justify-self: center; 
+    margin-top: 5%;
+  }
 }
 
 .top-container-div {

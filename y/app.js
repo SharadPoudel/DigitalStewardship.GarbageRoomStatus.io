@@ -61,18 +61,21 @@ menu.addEventListener('click', function () {
 
 
 //this is for making the collapsible interactive
-var coll = document.getElementsByClassName("collapsible");
-var i;
+var collapsibles = document.getElementsByClassName("collapsible");
+var collapsibleArrows = document.getElementsByClassName("collapsible_arrow");
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
+for (var i = 0; i < collapsibles.length; i++) {
+  collapsibles[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
+    var collapsibleArrow = this.querySelector(".collapsible_arrow");
+    
     if (content.style.display === "block") {
       content.style.display = "none";
-      document.getElementById("collapsible_arrow").src="collapsible_arrow_up.svg";
+      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_down.svg"); // Set the source image to the down arrow
     } else {
       content.style.display = "block";
+      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_up.svg"); // Set the source image to the up arrow
     }
   });
 }
