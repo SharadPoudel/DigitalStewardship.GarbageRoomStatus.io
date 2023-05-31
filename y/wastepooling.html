@@ -64,13 +64,6 @@
             vertical-align: top;
         }
 
-        .button-div {
-            width: 20em;
-            text-align: center;
-            border-color: #E5EFE5;
-            color: #E5EFE5;
-        }
-
         .delete-label {
 
             width: fit-content;
@@ -157,36 +150,36 @@
                         <div class="form-container">
                             <div>
                                 <label for="item-name-input">Namn på artikeln</label>
-                                <input id="item-name-input">
+                                <input id="item-name-input" class="item-name-input">
                             </div>
 
                             <div>
                                 <label for="personal-name-input">Ditt namn</label>
-                                <input id="personal-name-input">
+                                <input id="personal-name-input" class="item-name-input">
                             </div>
 
                             <div>
                                 <label for="address-input">Adress</label>
-                                <input id="address-input">
+                                <input id="address-input" class="item-name-input">
                             </div>
 
                             <div>
                                 <label for="email-input">E-post</label>
-                                <input id="email-input">
+                                <input id="email-input" class="item-name-input">
                             </div>
 
                             <div>
                                 <label for="moreinfo-input">Ytterligare information</label>
-                                <input id="moreinfo-input">
+                                <input id="moreinfo-input" class="item-name-input">
                             </div>
 
                         </div>
                         <div class="addimage_savepost_container">
                             <label class="addimage_button">
-                              <img src="../images/image_preview.png" id="image-container">
+                              <img src="../images/addimage.svg" id="image-container">
                               <input type="file" class="image-capture" accept="image/*" id="file-input" onchange="sendImage()">
                             </label>
-                            <input type="button" class="button-div" onclick="savePost()" value="Post">
+                            <input type="button" class="button-div" onclick="savePost()" value="Publicera">
                           </div>
                           
                     </div>
