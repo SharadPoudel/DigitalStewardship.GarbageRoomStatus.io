@@ -329,7 +329,7 @@
 
 @media screen and (max-width: 480px) {
   .main__content h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-top: 3rem;
     max-width: 400px; /* hard coded for a screen 480 px wide */
   }
@@ -348,7 +348,7 @@
 
   .main__content p {
     margin-top: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     max-width: 400px; /* hard coded for a screen 480 px wide */
   }
 
