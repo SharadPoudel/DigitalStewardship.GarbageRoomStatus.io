@@ -50,14 +50,12 @@ var value = get_sensor_value('sensor1');
 
 
 const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.navbar__menu');
+const menuLinks = document.querySelector('.navbar_menu');
 
 menu.addEventListener('click', function () {
   menu.classList.toggle('is-active');
   menuLinks.classList.toggle('active');
 });
-
-
 
 
 //this is for making the collapsible interactive
@@ -72,10 +70,10 @@ for (var i = 0; i < collapsibles.length; i++) {
     
     if (content.style.display === "block") {
       content.style.display = "none";
-      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_down.svg"); // Set the source image to the down arrow
+      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_down.svg"); // set the source image to the down arrow
     } else {
       content.style.display = "block";
-      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_up.svg"); // Set the source image to the up arrow
+      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_up.svg"); // set the source image to the up arrow
     }
   });
 }

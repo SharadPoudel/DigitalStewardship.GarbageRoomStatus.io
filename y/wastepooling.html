@@ -25,12 +25,6 @@
             text-align: left;
         }
 
-        .image-container {
-            width: fit-content;
-            padding: 10px;
-
-        }
-
         .post-image-label {
             width: fit-content;
         }
@@ -57,15 +51,6 @@
 
         .intro-p {
             margin: 10px;
-        }
-
-
-
-        .top-container-div {
-            padding: 10px;
-            margin: 10px;
-            display: inline-block;
-            text-align: center;
         }
 
         .post-completed-div {
@@ -142,22 +127,22 @@
 <body>
     <!-- Navbar Section -->
     <nav class="navbar">
-        <div class="navbar__container">
-            <img id="logo" src="images/logo.svg" width="20%" />
-            <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span> <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="navbar__menu">
-                <li class="navbar_item">
-                    <a href="/status_page.html" class="navbar__links">Status</a>
-                </li>
-                <li class="navbar_item">
-                    <a href="/wastepooling.html" class="navbar__links">WastePooling</a>
-                </li>
-            </ul>
+        <div class="navbar_container">
+          <img id="logo" class="logo" src="images/logo.svg" width="20%"/>
+          <div class="navbar_toggle" id="mobile-menu">
+            <span class="bar"></span> <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <ul class="navbar_menu">
+            <li class="navbar_item">
+              <a href="/status_page.html" class="navbar_links">Status</a>
+            </li>
+            <li class="navbar_item">
+              <a href="/wastepooling.html" class="navbar_links">WastePooling</a>
+            </li>
+          </ul>
         </div>
-    </nav>
+      </nav>
     <div class="main">
         <div class="main_container">
             <div class="main_content">
@@ -168,37 +153,42 @@
 
                 <form id="post-form">
                     <div class="top-container-div">
-                        <h2>Do you have any bulky waste in need of pickup?</h2>
+                        <h2>Ny artikel</h2>
                         <div class="form-container">
-                            <div class="image-and-input-container">
-                                <label for="file-input">
-                                <img src="../images/image_preview.png" width="160" height="160" id="image-container">
-                                <input type="file" class="image-capture" accept="image/*" id="file-input"
-                                    onchange="sendImage()">
-                                </label>
-
+                            <div>
+                                <label for="item-name-input">Namn på artikeln</label>
+                                <input id="item-name-input">
                             </div>
 
-                            <div class="form-inputs-div">
-                                <div>
-                                    <label for="item-name-input">Namn på artikeln: </label>
-                                    <input id="item-name-input">
-                                </div>
+                            <div>
+                                <label for="personal-name-input">Ditt namn</label>
+                                <input id="personal-name-input">
+                            </div>
 
-                                <div>
-                                    <label for="address-input">Adress: </label>
-                                    <input id="address-input">
-                                </div>
+                            <div>
+                                <label for="address-input">Adress</label>
+                                <input id="address-input">
+                            </div>
 
-                                <div>
-                                    <label for="email-input">E-post: </label>
-                                    <input id="email-input">
-                                </div>
+                            <div>
+                                <label for="email-input">E-post</label>
+                                <input id="email-input">
+                            </div>
 
+                            <div>
+                                <label for="moreinfo-input">Ytterligare information</label>
+                                <input id="moreinfo-input">
                             </div>
 
                         </div>
-                        <input type="button" class="button-div" onclick="savePost()" value="Post">
+                        <div class="addimage_savepost_container">
+                            <label class="addimage_button">
+                              <img src="../images/image_preview.png" id="image-container">
+                              <input type="file" class="image-capture" accept="image/*" id="file-input" onchange="sendImage()">
+                            </label>
+                            <input type="button" class="button-div" onclick="savePost()" value="Post">
+                          </div>
+                          
                     </div>
                 </form>
                 <div id="post-container-div" class="post-container-div" onload="getPosts()"></div>
@@ -593,7 +583,7 @@
 
     </script>
 
-
+<script type="module" src="app.js"></script>
 </body>
 
 </html>
