@@ -106,10 +106,6 @@
             width: fit-content;
         }
 
-        .top-container-div {
-            display: inline-block;
-        }
-
         .form-inputs-div {
             padding-left: 1.2em;
             padding-bottom: 1.2em;
@@ -145,8 +141,8 @@
                     Granngården, Beckomberga. </p>
 
                 <form id="post-form">
-                    <div class="top-container-div">
-                        <h2>Ny artikel</h2>
+                    <label class="top-container-div">
+                        <h2 id="form-heading">Har du något grovt avfall som behöver hämtas?</h2>
                         <div class="form-container">
                             <div>
                                 <label for="item-name-input">Namn på artikeln</label>
@@ -182,7 +178,7 @@
                             <input type="button" class="button-div" onclick="savePost()" value="Publicera">
                           </div>
                           
-                    </div>
+                        </label>
                 </form>
                 <div id="post-container-div" class="post-container-div" onload="getPosts()"></div>
             </div>

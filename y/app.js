@@ -57,6 +57,40 @@ menu.addEventListener('click', function () {
   menuLinks.classList.toggle('active');
 });
 
+//removing and adding the form on the wastepooling page on click
+var inputs = document.querySelectorAll('.form-container input');
+var form = document.querySelector('.form-container');
+var button = document.querySelector('.top-container-div');
+var heading = document.getElementById('form-heading');
+
+for (var i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener('click', function (event) {
+    event.stopPropagation();
+  });
+}
+
+document.addEventListener('click', function (event) {
+  if (!form.contains(event.target)) {
+    form.style.display = 'none';
+    heading.textContent = 'Har du något grovt avfall som behöver hämtas?';
+  }
+});
+
+var isFormVisible = false; 
+
+button.addEventListener('click', function (event) {
+  if (!isFormVisible) {
+    heading.textContent = 'Ny artikel';
+    form.style.display = 'inline-grid';
+    isFormVisible = true;
+  } else {
+    heading.textContent = 'Har du något grovt avfall som behöver hämtas?';
+    form.style.display = 'none';
+    isFormVisible = false;
+  }
+  event.stopPropagation();
+});
+
 
 //this is for making the collapsible interactive
 var collapsibles = document.getElementsByClassName("collapsible");
