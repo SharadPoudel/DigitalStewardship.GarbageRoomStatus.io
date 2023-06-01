@@ -78,29 +78,61 @@ async function get_sensor_value(sensornum) {
 };
 
 const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.navbar__menu');
+const menuLinks = document.querySelector('.navbar_menu');
 
 menu.addEventListener('click', function () {
   menu.classList.toggle('is-active');
   menuLinks.classList.toggle('active');
 });
 
+//removing/adding the form and changing the heading in top-container-div on the wastepooling page on click
+document.addEventListener('DOMContentLoaded', function() { //make the wastepooling top-container-div interactive once the DOM, or the HTML page has been loaded. this basically prevents the collapsible from being non-interactive
+var inputs = document.querySelectorAll('.form-container input');
+var form = document.querySelector('.form-container');
+var button = document.querySelector('.top-container-div');
+var heading = document.getElementById('form-heading');
 
+//ensuring that clicking the input field doesn't close the whole form, aka setting the top-container-div display to none
+for (var i = 0; i < inputs.length; i++) { 
+  inputs[i].addEventListener('click', function (event) {
+    event.stopPropagation();
+  });
+}
+
+var FormVisible = false; 
+// if top-container-div has been clicked, and if the form is not visible then set it to visible and cheange the h2 to "Ny artikel"
+button.addEventListener('click', function (event) {
+  if (!FormVisible) {
+    heading.textContent = 'Ny artikel';
+    form.style.display = 'inline-grid';
+    FormVisible = true;
+  } else { //if the top-container-div has been clicked, and the form is visible, then set the form to not visible and change the h2 
+    heading.textContent = 'Har du något grovt avfall som behöver hämtas?';
+    form.style.display = 'none';
+    FormVisible = false;
+  }
+  event.stopPropagation(); //make sure this doesn't affect the parents
+});
+});
 
 
 //this is for making the collapsible interactive
-var coll = document.getElementsByClassName("collapsible");
-var i;
+var collapsibles = document.getElementsByClassName("collapsible");
+var collapsibleArrows = document.getElementsByClassName("collapsible_arrow");
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
+for (var i = 0; i < collapsibles.length; i++) {
+  collapsibles[i].addEventListener("click", function () {
     this.classList.toggle("active");
+    console.log("Collapsible was clicked");
     var content = this.nextElementSibling;
+    var collapsibleArrow = this.querySelector(".collapsible_arrow");
+    
     if (content.style.display === "block") {
       content.style.display = "none";
-      document.getElementById("collapsible_arrow").src = "collapsible_arrow_up.svg";
+      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_down.svg"); // set the source image to the down arrow
     } else {
       content.style.display = "block";
+      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_up.svg"); // set the source image to the up arrow
     }
   });
 }
