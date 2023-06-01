@@ -698,7 +698,7 @@ body {
 }
 
 /* Additional CSS for the wastepooling page */
-.top-container-div {
+label.top-container-div {
   background-color: #4D8D6E;
   border-color: #4D8D6E;
   border-style: solid;
@@ -706,6 +706,7 @@ body {
   padding: 18px;
   display: inline-block;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .form-container { 

@@ -57,38 +57,34 @@ menu.addEventListener('click', function () {
   menuLinks.classList.toggle('active');
 });
 
-//removing and adding the form on the wastepooling page on click
+//removing/adding the form and changing the heading in top-container-div on the wastepooling page on click
+document.addEventListener('DOMContentLoaded', function() { //make the wastepooling top-container-div interactive once the DOM, or the HTML page has been loaded. this basically prevents the collapsible from being non-interactive
 var inputs = document.querySelectorAll('.form-container input');
 var form = document.querySelector('.form-container');
 var button = document.querySelector('.top-container-div');
 var heading = document.getElementById('form-heading');
 
-for (var i = 0; i < inputs.length; i++) {
+//ensuring that clicking the input field doesn't close the whole form, aka setting the top-container-div display to none
+for (var i = 0; i < inputs.length; i++) { 
   inputs[i].addEventListener('click', function (event) {
     event.stopPropagation();
   });
 }
 
-document.addEventListener('click', function (event) {
-  if (!form.contains(event.target)) {
-    form.style.display = 'none';
-    heading.textContent = 'Har du något grovt avfall som behöver hämtas?';
-  }
-});
-
-var isFormVisible = false; 
-
+var FormVisible = false; 
+// if top-container-div has been clicked, and if the form is not visible then set it to visible and cheange the h2 to "Ny artikel"
 button.addEventListener('click', function (event) {
-  if (!isFormVisible) {
+  if (!FormVisible) {
     heading.textContent = 'Ny artikel';
     form.style.display = 'inline-grid';
-    isFormVisible = true;
-  } else {
+    FormVisible = true;
+  } else { //if the top-container-div has been clicked, and the form is visible, then set the form to not visible and change the h2 
     heading.textContent = 'Har du något grovt avfall som behöver hämtas?';
     form.style.display = 'none';
-    isFormVisible = false;
+    FormVisible = false;
   }
-  event.stopPropagation();
+  event.stopPropagation(); //make sure this doesn't affect the parents
+});
 });
 
 
@@ -99,6 +95,7 @@ var collapsibleArrows = document.getElementsByClassName("collapsible_arrow");
 for (var i = 0; i < collapsibles.length; i++) {
   collapsibles[i].addEventListener("click", function () {
     this.classList.toggle("active");
+    console.log("Collapsible was clicked");
     var content = this.nextElementSibling;
     var collapsibleArrow = this.querySelector(".collapsible_arrow");
     
