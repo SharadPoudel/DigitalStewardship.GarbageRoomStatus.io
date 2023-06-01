@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Stewardship</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet" />
+
+
+    <script type='module' src='./firebase_config.js'></script>
+
+    <style>
+        .report-buttons-container {
+            height: 20vh;
+            margin-top: 10vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+
+        .report-yes {
+            width: 90%;
+            height: 100px;
+            border-style: solid;
+            justify-self: center;
+            background-color: #4D8D6E;
+            border-color: #4D8D6E;
+            border-radius: 12px;
+            color: #F4F9F6;
+            justify-self: left;
+        }
+
+        .report-no {
+            width: 90%;
+            height: 100px;
+            border-style: solid;
+            justify-self: center;
+            background-color: #4D8D6E;
+            border-color: #4D8D6E;
+            border-radius: 12px;
+            color: #F4F9F6;
+            justify-self: right;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <img id="logo" class="logo" src="images/logo.svg" width="20%" />
+        </div>
+    </nav>
+    <div class="main">
+        <div class="main__content">
+            <h1>Finns det grovsopor på golvet?</h1>
+            <div class="report-buttons-container">
+                <button class="report-yes" onclick="reportTrue()">
+                    <h2>Ja</h2>
+                </button>
+                <button class="report-no" onclick="reportFalse()">
+                    <h2>Nej</h2>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="module">
+    // Imports the neccesary resources from firestore abd firebase storage
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+    import { getFirestore, collection, getDocs, addDoc, query, setDoc, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+    // setting up the firebase to our project id
+    const firebaseConfig = {
+        apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
+        authDomain: "digitalstewardship.firebaseapp.com",
+        projectId: "digitalstewardship",
+        storageBucket: "digitalstewardship.appspot.com",
+        messagingSenderId: "469552118705",
+        appId: "1:469552118705:web:98fa6c5262ac8258d79b90"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function reportTrue() {
+
+        var roomnum;
+        var status;
+        var timestamp;
+
+        const add = await addDoc(collection(db, 'reporting'), {
+            roomnum: 2,
+            status: true,
+            timestamp: Date.now()
+        });
+        console.log("stored value for report true");
+
+    }
+
+    async function reportFalse() {
+
+        var roomnum;
+        var status;
+        var timestamp;
+
+        const add = await addDoc(collection(db, 'reporting'), {
+            roomnum: 2,
+            status: false,
+            timestamp: Date.now()
+        });
+        console.log("stored value for report false");
+
+    }
+
+    window.reportTrue = reportTrue;
+    window.reportFalse = reportFalse;
+</script>

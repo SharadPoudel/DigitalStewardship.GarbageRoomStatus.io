@@ -16,38 +16,66 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
+// Get bulky waste status from firebase by room number and display the banner if there is bulky waste. Check if the banner is already shown.
+async function get_bulky_waste_status(roomnum) {
+
+  var bulkyWasteReport = [];
+  const q = query(collection(db, "reporting"));
+
+  var warningBanner = document.getElementById("warning-banner" + roomnum);
+  console.log(warningBanner);
+
+  warningBanner.style.display = 'none';
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+
+    if (roomnum == doc.data().roomnum) {
+      bulkyWasteReport.push(doc.data())
+    }
+  });
+
+  const mostRecentEntry = bulkyWasteReport.sort((a, b) => {
+    return b.timestamp - a.timestamp;
+  })[0];
+
+  console.log(mostRecentEntry);
+  console.log(mostRecentEntry.status);
+
+  if (mostRecentEntry.status == true) {
+    warningBanner.style.display = 'block';
+  }
+
+  return mostRecentEntry.status;
+}
+get_bulky_waste_status(1);
+get_bulky_waste_status(2);
+
 // Get sensor value from firestore from a sensorid. Right now it just gets the last value - we need to figure out what value we want it to get. Maybe based on a timestamp or something.
 async function get_sensor_value(sensornum) {
 
-  var value
-
+  var sensorValues = [];
   const q = query(collection(db, "sensordata"));
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
 
-    // allSensorValues = querySnapshot.docs.map(doc => doc.data());
-
     if (doc.data().sensorid == sensornum) {
-      value = doc.data().message;
-      value = value.split(" ") //remove when we have the right message
-      value = value[3] //remove when we have the right message
-      value = value.replace(/[^a-zA-Z0-9 ]/g, '') //remove when we have the right message
-      value = parseInt(value); 
-      console.log(value);
+      sensorValues.push(doc.data())
     }
   });
 
-  return value;
-}
+  const mostRecentEntry = sensorValues.sort((a, b) => {
+    return b.timestamp - a.timestamp;
+  })[0];
 
-var value = get_sensor_value('sensor1');
+  if (mostRecentEntry.message === undefined) {
+    mostRecentEntry.message = 50;
+  }
 
-
-//value.then(function (result) {
-  //console.log(result);
-//});
-
+  return mostRecentEntry.message;
+};
 
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.navbar__menu');
@@ -70,7 +98,7 @@ for (i = 0; i < coll.length; i++) {
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
       content.style.display = "none";
-      document.getElementById("collapsible_arrow").src="collapsible_arrow_up.svg";
+      document.getElementById("collapsible_arrow").src = "collapsible_arrow_up.svg";
     } else {
       content.style.display = "block";
     }
@@ -107,7 +135,7 @@ function progress_bar_setup(sensor_dict, pane) {
       var value = get_sensor_value(sensorName);
 
       value.then(function (sensorValue) {
-        console.log(sensorValue);
+        // console.log(sensorValue);
         var progressbar_color = document.getElementById(pane + progressName + "-color");
         const color = get_progressbar_color(sensorValue);
         progressbar_color.style.backgroundColor = color; //color the progress bar
@@ -118,8 +146,8 @@ function progress_bar_setup(sensor_dict, pane) {
 
         var progressbar_span = document.getElementById(pane + progressName + "-color");
         progressbar_span.style.width = sensorValue + "%"; //set the span of the progress bar
-    
-    });
+
+      });
 
     }
     averages[typeName] = averages[typeName] / Object.keys(sensors).length; // calculate the average sensor value per waste type

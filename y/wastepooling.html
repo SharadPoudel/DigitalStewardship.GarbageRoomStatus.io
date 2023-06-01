@@ -21,6 +21,7 @@
         .item-address-label {
             font-size: 12px;
         }
+
         label {
             display: block;
             overflow-wrap: break-word;
@@ -174,9 +175,10 @@
                         <div class="form-container">
                             <div class="image-and-input-container">
                                 <label for="file-input">
-                                <img src="../images/image_preview.png" width="160" height="160" id="image-container">
-                                <input type="file" class="image-capture" accept="image/*" id="file-input"
-                                    onchange="sendImage()">
+                                    <img src="../images/image_preview.png" width="160" height="160"
+                                        id="image-container">
+                                    <input type="file" class="image-capture" accept="image/*" id="file-input"
+                                        onchange="sendImage()">
                                 </label>
 
                             </div>
@@ -321,7 +323,7 @@
 
                 var postid = postCompleted.childNodes[i].src;
 
-                // console.log(postid);
+
                 i++
 
 
@@ -329,33 +331,28 @@
 
                 postDeleteLabel.onclick = function () { deletePost(postid) };
 
-                //console.log(postCompleted.src);
+
 
             });
-            // console.log(completedPosts);
+
             return postList;
 
         }
         var list = getPosts();
-
-        // console.log(completedPosts);
 
         async function addPost(i, a, e, img) {
             const add = await addDoc(collection(db, 'digitalstewardship'), {
                 itemname: i,
                 address: a,
                 email: e,
-                image: img
+                image: img,
+                timestamp: Date.now()
             });
             window.location.reload();
         }
 
         // send the image url as id.
         async function deletePost(postid) {
-
-            //console.log(Object.keys(post));
-            // console.log(postid);
-            // console.log(post.childNodes[0].src);
 
             const q = query(collection(db, "digitalstewardship"));
             const querySnapshot = await getDocs(q);
@@ -436,92 +433,49 @@
 
         const savePost = () => {
 
-            /*          postCompleted = document.createElement('div');
-                        postCompleted.setAttribute('class', 'post-completed-div');
-                        postCompleted.setAttribute('id', 'post-completed-div');
-            
-            
-                        postItem = document.createElement('label');
-                        postItem.setAttribute('class', 'item-name-label'); 
-                        postItem.innerHTML = itemName.value;
-            
-                        postEmail = document.createElement('label');
-                        postEmail.setAttribute('class', 'email-label');
-                        postEmail.innerHTML = email.value;
-            
-                        postAddress = document.createElement('label');
-                        postAddress.innerHTML = address.value;
-            
-                        let postDelete = document.createElement('div');
-                        postDelete.setAttribute('class', 'delete-div');
-            
-                        let postDeleteLabel = document.createElement('label');
-                        postDeleteLabel.innerHTML = 'Delete?';
-                        postDeleteLabel.setAttribute('class', 'delete-label');
-                        postDeleteLabel.setAttribute('id', 'post-delete-button');
-                        postDeleteLabel.onclick = function () { deletePost('1fhMEJ52e0CVkPqshGdy') };
-            
-                        let postContact = document.createElement('div');
-                        postContact.setAttribute('class', 'contact-div');
-            
-            
-                        let postContactLabel = document.createElement('label');
-                        postContactLabel.innerHTML = 'Contact';
-                        postContactLabel.setAttribute('class', 'contact-label');
-                        postContactLabel.setAttribute('id', 'post-contact-button');
-            
-            
-                        postContactLabel.onclick = function () { contactPeer() };
-            
-                        postDelete.appendChild(postDeleteLabel);
-            
-                        postContact.appendChild(postContactLabel);
-            
-                        postCompleted.appendChild(image);
-                        postCompleted.appendChild(postItem);
-                        postCompleted.appendChild(postAddress);
-                        postCompleted.appendChild(postDelete);
-                        postCompleted.appendChild(postContact); */
+            if (photo) {
+
+                postItem = document.createElement('label');
+                postItem.innerHTML = itemName.value;
+
+                postEmail = document.createElement('label');
+                postEmail.innerHTML = email.value;
 
 
-            postItem = document.createElement('label');
-            postItem.innerHTML = itemName.value;
+                const stream = new MediaStream();
+                let image = document.createElement('img');
+                image.srcObject = stream;
+                image.src = "../images/image_preview.png";
+                image.src = window.URL.createObjectURL(photo);
 
-            postEmail = document.createElement('label');
-            postEmail.innerHTML = email.value;
+                postAddress = document.createElement('label');
+                postAddress.innerHTML = address.value;
 
+                uploadImage(photo);
 
-            const stream = new MediaStream();
-            let image = document.createElement('img');
-            image.srcObject = stream;
-            image.src = window.URL.createObjectURL(photo);
+                // document.getElementById('post-container-div').appendChild(postCompleted);
+                document.getElementById('post-form').reset();
 
-            postAddress = document.createElement('label');
-            postAddress.innerHTML = address.value;
+                getDownloadURL(imagePreviewRef)
+                    .then((url) => {
 
-            uploadImage(photo);
+                        document.getElementById('image-container').src = url;
+                    })
+                    .catch((error) => {
 
-            // document.getElementById('post-container-div').appendChild(postCompleted);
-            document.getElementById('post-form').reset();
+                        switch (error.code) {
+                            case 'storage/object-not-found':
+                                break;
+                            case 'storage/unauthorized':
+                                break;
+                            case 'storage/canceled':
+                                break;
+                            case 'storage/unknown':
+                                break;
+                        }
+                    });
+            }
 
-            getDownloadURL(imagePreviewRef)
-                .then((url) => {
-
-                    document.getElementById('image-container').src = url;
-                })
-                .catch((error) => {
-
-                    switch (error.code) {
-                        case 'storage/object-not-found':
-                            break;
-                        case 'storage/unauthorized':
-                            break;
-                        case 'storage/canceled':
-                            break;
-                        case 'storage/unknown':
-                            break;
-                    }
-                });
         }
 
         window.savePost = savePost;
