@@ -23,7 +23,7 @@ async function get_bulky_waste_status(roomnum) {
   var bulkyWasteReport = [];
   const q = query(collection(db, "reporting"));
 
-  var warningBanner = document.getElementById("warning-banner" + roomnum);
+  var warningBanner = document.getElementById("warning_banner" + roomnum);
   console.log(warningBanner);
 
   warningBanner.style.display = 'none';
@@ -44,7 +44,7 @@ async function get_bulky_waste_status(roomnum) {
   console.log(mostRecentEntry.status);
 
   if (mostRecentEntry.status == true) {
-    warningBanner.style.display = 'block';
+    warningBanner.style.display = 'grid';
   }
 
   return mostRecentEntry.status;
