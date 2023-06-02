@@ -1,4 +1,4 @@
-*:not(#mobile-menu):not(.addimage_button):not(.top-container-div):not(.navbar_toggle .bar):not(.collapsible):not(.warning_icon_arrow_container):not(.warning_icon_text):not(.bulky_waste_warning_icon) {
+*:not(#mobile-menu):not(.post-form):not(.post-container-div):not(.post-completed-div):not(.addimage_button):not(.top-container-div):not(.navbar_toggle .bar):not(.collapsible):not(.warning_icon_arrow_container):not(.warning_icon_text):not(.bulky_waste_warning_icon) {
   box-sizing: border-box;
   padding: 3px;
   font-family: 'Roboto', sans-serif;
@@ -215,6 +215,14 @@ body {
   margin-bottom: 0.67em;
   color: #F4F9F6;
   text-align: left;
+}
+
+.main_content h2_reporting {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  color: #F4F9F6;
 }
 
 .main_content h2_expanded {
@@ -641,7 +649,7 @@ body {
 
 /*The warning inside the collapsible when expanded that there is bulky waste on the floor.*/
 .warning_icon_text {
-  display: none; /*change this value to grid when making it visible*/
+  display: none; /*change this value to grid when making it visible, and none when invisible*/
   grid-template-columns: 8% 80%;
   align-items: center;
   justify-self: center; 
@@ -771,20 +779,22 @@ label.top-container-div {
 }
 
 .post-container-div {
-  display: grid; 
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  justify-self: center;
-  width: 100%;
+  column-count: 4;
+  column-gap: 2em;
+  margin-top: 2em;
 }
 
 .post-completed-div {
-  inline-size: min-content;
   background-color: #4D8D6E;
-  padding: 10px;
-  width: 80%;
+  border-radius: 12px;
+  padding: 1em;
   box-sizing: border-box;
-  display: inline-block;
-  margin: 10px;
-  vertical-align: top;
+  margin-bottom: 2em;
+  break-inside: avoid;
+}
+
+.post-completed-div > img {
+  display: block;
+  width: 100%;
+  height: auto;
 }

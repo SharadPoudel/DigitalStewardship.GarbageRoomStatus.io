@@ -37,7 +37,7 @@ async function get_bulky_waste_status(roomnum) {
   });
 
   const mostRecentEntry = bulkyWasteReport.sort((a, b) => {
-    return b.timestamp - a.timestamp;
+    return b.timestamp - a.timestamp; 
   })[0];
 
   console.log(mostRecentEntry);
@@ -46,6 +46,7 @@ async function get_bulky_waste_status(roomnum) {
   if (mostRecentEntry.status == true) {
     warningBanner.style.display = 'grid';
   }
+
 
   return mostRecentEntry.status;
 }
@@ -123,7 +124,6 @@ var collapsibleArrows = document.getElementsByClassName("collapsible_arrow");
 for (var i = 0; i < collapsibles.length; i++) {
   collapsibles[i].addEventListener("click", function () {
     this.classList.toggle("active");
-    console.log("Collapsible was clicked");
     var content = this.nextElementSibling;
     var collapsibleArrow = this.querySelector(".collapsible_arrow");
     
