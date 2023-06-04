@@ -9,10 +9,9 @@
 
         // Firestore stuff
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-        //import { getFirestore, collection, getDocs, addDoc, query } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-
-
+        import { getFirestore, collection, getDocs, addDoc, query} from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+        
         const firebaseConfig = {
             apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
             authDomain: "digitalstewardship.firebaseapp.com",
@@ -29,14 +28,21 @@
       
       
         async function addPost(id,msg) {
-            const timestamp = Date.now();
+           const timestamp = serverTimestamp();
+           
+          try {
             const add = await addDoc(collection(db, 'sensordata'), {
                 sensorid: id,
                 message: msg,
-                timestamp: timestamp
+                timestamp:timestamp
                 });
-                await addDoc(collection(db, 'sensordata'), data);
+            console.log('Document added successfully:',ad);
+            }catch (error)) {
+                console.error('Error addimg document:',error);
                 }
+                
+                }
+                
                                   
                 
     
@@ -79,8 +85,8 @@
        // console.log("Message received: " + message.payloadString);
         var topic = message.destinationName;
         var payload = message.payloadString;
-        //var dataElement = document.getElementById("data");
-        var displayElement = document.getElementById("data");
+        var dataElement = document.getElementById("data");
+        
 
         // Extract sensor name from the topic
         var sensorName = topic.split("/")[1];
