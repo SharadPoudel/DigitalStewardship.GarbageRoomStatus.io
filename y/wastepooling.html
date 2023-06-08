@@ -50,10 +50,6 @@
 
         }
 
-        .intro-p {
-            margin: 10px;
-        }
-
         .delete-label {
 
             width: fit-content;
@@ -77,23 +73,36 @@
         }
 
         .delete-div {
-            background-color: transparent;
-            border-radius: 2px;
-            ;
-            border-style: solid;
             border-color: #E5EFE5;
+            background-color: #F9FCFA;
+            border-radius: 5px;;
+            border-style: solid;
+            font-size: 1rem;
+            font-weight: 450;
+            color: #4D8D6E;
             display: inline-block;
             width: fit-content;
+            margin-right: 1em;
+        }
+
+        .delete-div:active { 
+            background-color: #c5c5c5;
         }
 
         .contact-div {
-            background-color: transparent;
-            border-radius: 2px;
-            ;
-            border-style: solid;
             border-color: #E5EFE5;
+            background-color: #F9FCFA;
+            border-radius: 5px;;
+            border-style: solid;
+            font-size: 1rem;
+            font-weight: 450;
+            color: #4D8D6E;
             display: inline-block;
             width: fit-content;
+        }
+        
+        .contact-div:active { 
+            background-color: #c5c5c5;
         }
 
         .form-inputs-div {
@@ -126,9 +135,7 @@
         <div class="main_container">
             <div class="main_content">
                 <h1>Wastepooling</h1>
-                <p class="intro-p">On this page you can post your bulky waste in need of pickup or select a post to
-                    offer pickup in
-                    Granngården, Beckomberga. </p>
+                <p class="intro-p">Här kan du begära upphämtning av grovt avfall eller kontakta personer för att erbjuda upphämtning i Granngården, Beckomberga. </p>
 
                 <form id="post-form" class="post-form">
                     <label class="top-container-div">
@@ -257,7 +264,7 @@
                 postDelete.setAttribute('class', 'delete-div');
 
                 let postDeleteLabel = document.createElement('label');
-                postDeleteLabel.innerHTML = 'Delete?';
+                postDeleteLabel.innerHTML = 'Radera';
                 postDeleteLabel.setAttribute('class', 'delete-label');
                 postDeleteLabel.setAttribute('id', 'post-delete-button');
 
@@ -265,7 +272,7 @@
                 postContact.setAttribute('class', 'contact-div');
 
                 let postContactLabel = document.createElement('label');
-                postContactLabel.innerHTML = 'Contact';
+                postContactLabel.innerHTML = 'Kontakta';
                 postContactLabel.setAttribute('class', 'contact-label');
                 postContactLabel.setAttribute('id', 'post-contact-button');
 
