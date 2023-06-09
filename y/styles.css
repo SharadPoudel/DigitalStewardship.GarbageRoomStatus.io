@@ -265,8 +265,8 @@ body {
 .main_content p_clickmore {
   font-size: 1rem;
   font-weight: 400;
-  margin-top: 1.3em;
-  margin-bottom: 1.3em;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
   color: #F4F9F6;
   vertical-align:top;
   display: flex;

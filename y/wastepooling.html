@@ -109,11 +109,7 @@
             padding-left: 1.2em;
             padding-bottom: 1.2em;
         }
-
-        .add-info-p {
-            font-size: 12px;
-            color: #F4F9F6;
-        }
+        
     </style>
 </head>
 
@@ -272,8 +268,8 @@
                     postAddress.innerHTML = doc.data().address;
                 }
 
-                let addInfo = document.createElement('p');
-                addInfo.setAttribute('class', 'add-info-p');
+                let addInfo = document.createElement('p_clickmore');
+                addInfo.setAttribute('class', 'p_clickmore');
 
                 if(doc.data().addinfo == null) {
                     addInfo.innerHTML = '';
