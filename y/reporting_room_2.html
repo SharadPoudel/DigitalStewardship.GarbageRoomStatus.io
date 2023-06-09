@@ -46,6 +46,11 @@
             color: #F4F9F6;
             justify-self: right;
         }
+        .feedback_label{
+            display: none;
+            color: #4D8D6E;
+            font-size: 36px;
+        }
     </style>
 </head>
 
@@ -67,6 +72,7 @@
                     <h2>Nej</h2>
                 </button>
             </div>
+            <label class="feedback_label" id="feedback_label">Tack för att du har svarat</label>
         </div>
     </div>
 </body>
@@ -90,7 +96,7 @@
     const db = getFirestore(app);
 
     async function reportTrue() {
-
+        showLabel();
         var roomnum;
         var status;
         var timestamp;
@@ -106,6 +112,7 @@
 
     async function reportFalse() {
 
+        showLabel();
         var roomnum;
         var status;
         var timestamp;
@@ -117,6 +124,11 @@
         });
         console.log("stored value for report false");
 
+    }
+
+    function showLabel() {
+        document.getElementById('feedback_label').style.display = 'block';
+        setTimeout(function(){ document.getElementById("feedback_label").style.display = "none"}, 5000);
     }
 
     window.reportTrue = reportTrue;

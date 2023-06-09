@@ -30,7 +30,6 @@ async function get_bulky_waste_status(roomnum) {
   console.log(warningIcon);
 
   warningBanner.style.display = 'none';
-  warningIcon.style.display = 'none';
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach((doc) => {
@@ -44,14 +43,17 @@ async function get_bulky_waste_status(roomnum) {
     return b.timestamp - a.timestamp; 
   })[0];
 
-  console.log(mostRecentEntry);
-  console.log(mostRecentEntry.status);
+  //console.log(mostRecentEntry);
+  //console.log(mostRecentEntry.status);
 
   if (mostRecentEntry.status == true) {
     warningBanner.style.display = 'grid';
-    warningIcon.style.display = 'visible';
+  
   }
 
+  if (mostRecentEntry.status == true) {
+    warningIcon.style.display = 'inline-block';
+  }
 
   return mostRecentEntry.status;
 }
@@ -82,6 +84,11 @@ async function get_sensor_value(sensornum) {
 
   return mostRecentEntry.message;
 };
+
+setInterval(function() {
+  location.reload();
+  console.log("reloaded page");
+}, 3600000);
 
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.navbar_menu');

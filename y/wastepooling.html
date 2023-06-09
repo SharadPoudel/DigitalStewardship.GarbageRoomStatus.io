@@ -109,6 +109,11 @@
             padding-left: 1.2em;
             padding-bottom: 1.2em;
         }
+
+        .add-info-p {
+            font-size: 12px;
+            color: #F4F9F6;
+        }
     </style>
 </head>
 
@@ -143,7 +148,7 @@
                         <div class="form-container">
                             <div>
                                 <label for="item-name-input">Namn på artikeln</label>
-                                <input id="item-name-input" class="item-name-input">
+                                <input id="item-name-input" class="item-name-input" required>
                             </div>
 
                             <div>
@@ -201,7 +206,7 @@
         };
 
         // Initializing variables that has to be global since they are accessed from multiple functions
-        var postImageInput, itemName, address, email, postImagePreview, photo, postItem, postAddress, postEmail, postCompleted;
+        var postImageInput, itemName, address, email, postImagePreview, photo, postItem, postAddress, postEmail, postCompleted, addInfo, postAddInfo;
 
         // Creates an object for completed posts where we can store the posts' ids and the corresponding post
         var completedPosts = {};
@@ -217,6 +222,7 @@
         address = document.getElementById('address-input');
         email = document.getElementById('email-input');
         postImageInput = document.getElementById('file-input');
+        addInfo = document.getElementById('moreinfo-input')
         postImagePreview = document.getElementById('image-container');
 
         // Initializing firebase
@@ -255,10 +261,25 @@
                 let item = document.createElement('label');
                 item.setAttribute('class', 'item-name-label');
                 item.innerHTML = doc.data().itemname;
+                
 
                 let postAddress = document.createElement('label');
                 postAddress.setAttribute('class', 'item-address-label');
-                postAddress.innerHTML = doc.data().address;
+
+                if(doc.data().address == null) {
+                    postAddress.innerHTML = '';
+                } else {
+                    postAddress.innerHTML = doc.data().address;
+                }
+
+                let addInfo = document.createElement('p');
+                addInfo.setAttribute('class', 'add-info-p');
+
+                if(doc.data().addinfo == null) {
+                    addInfo.innerHTML = '';
+                } else {
+                    addInfo.innerHTML = doc.data().addinfo;
+                }
 
                 let postDelete = document.createElement('div');
                 postDelete.setAttribute('class', 'delete-div');
@@ -283,6 +304,7 @@
                 postCompleted.appendChild(image);
                 postCompleted.appendChild(item);
                 postCompleted.appendChild(postAddress);
+                postCompleted.appendChild(addInfo);
                 postCompleted.appendChild(postDelete);
                 postCompleted.appendChild(postContact);
 
@@ -312,13 +334,14 @@
         }
         var list = getPosts();
 
-        async function addPost(i, a, e, img) {
+        async function addPost(i, a, e, img, info) {
             const add = await addDoc(collection(db, 'digitalstewardship'), {
                 itemname: i,
                 address: a,
                 email: e,
                 image: img,
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                addinfo: info
             });
             window.location.reload();
         }
@@ -413,6 +436,8 @@
                 postEmail = document.createElement('label');
                 postEmail.innerHTML = email.value;
 
+                postAddInfo = document.createElement('p');
+                postAddInfo.innerHTML = addInfo.value;
 
                 const stream = new MediaStream();
                 let image = document.createElement('img');
@@ -492,10 +517,11 @@
             var item = postItem.innerHTML;
             var addr = postAddress.innerHTML;
             var email = postEmail.innerHTML;
+            var addInfo = postAddInfo.innerHTML;
 
-            console.log("Inserted data into Firestore: " + item + ", " + addr + ", " + email + ", " + image);
+            console.log("Inserted data into Firestore: " + item + ", " + addr + ", " + email + ", " + addInfo + ", " + image);
 
-            addPost(item, addr, email, image);
+            addPost(item, addr, email, image, addInfo);
 
             return url;
         }

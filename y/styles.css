@@ -689,9 +689,9 @@ body {
   }
 }
 
-/*.bulky_waste_warning_icon {
+.bulky_waste_warning_icon {
   display: none; /* To make the bulky_waste_warning_icon visible change it in app.js */
-/*}*/
+}
 
 .collapsible_arrow {
   justify-self: right; /* Aligns the arrow to the right within its parent container */
