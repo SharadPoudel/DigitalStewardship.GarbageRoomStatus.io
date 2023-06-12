@@ -1,4 +1,4 @@
-*:not(#mobile-menu):not(.post-form):not(.post-container-div):not(.post-completed-div):not(.addimage_button):not(.top-container-div):not(.navbar_toggle .bar):not(.collapsible):not(.warning_icon_arrow_container):not(.warning_icon_text):not(.bulky_waste_warning_icon) {
+*:not(#mobile-menu):not(.collapsible_expanded):not(.text_bar_container):not(.main_content p_expanded):not(.post-form):not(.post-container-div):not(.post-completed-div):not(.addimage_button):not(.top-container-div):not(.navbar_toggle .bar):not(.collapsible):not(.warning_icon_arrow_container):not(.warning_icon_text):not(.bulky_waste_warning_icon) {
   box-sizing: border-box;
   padding: 3px;
   font-family: 'Roboto', sans-serif;
@@ -265,8 +265,8 @@ body {
 .main_content p_clickmore {
   font-size: 1rem;
   font-weight: 400;
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   color: #F4F9F6;
   vertical-align:top;
   display: flex;
@@ -348,15 +348,16 @@ body {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .main_content h1 {
     font-size: 1.8rem;
-    margin-top: 3rem;
-    max-width: 400px; /* hard coded for a screen 480 px wide */
+    margin-top: 0.5rem;
+    max-width: 400px; /* hard coded for a screen 530 px wide */
   }
 
   .main_content h2 {
     font-size: 1.5rem;
+    margin-top: 10px;
   }
 
   .main_content h2_expanded {
@@ -372,16 +373,14 @@ body {
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 1.2rem;
-    max-width: 400px; /* hard coded for a screen 480 px wide */
   }
 
   .main__btn {
     padding: 12px 36px;
     margin: 2.5rem 0;
   }
-
-
 }
+
 
 
 @media screen and (max-width: 960px) {
@@ -395,7 +394,7 @@ body {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .services {
     height: 1400px;
   }
@@ -432,7 +431,7 @@ body {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .footer__link--items {
     margin: 0;
     padding: 10px;
@@ -465,7 +464,7 @@ body {
   font-size: 15px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .collapsible {
     background-color: #4D8D6E;
     border-style: solid;
@@ -509,7 +508,7 @@ body {
 }
 
 /* in the expanded view, the containers for each status is made one column instead of the original two columns. due to removed icons */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .collapsible_expanded__container {
     display: grid;
     grid-template-columns: 1fr;
@@ -526,7 +525,7 @@ body {
   grid-template-columns: auto auto auto 25%;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .collapsible_expanded_grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -546,13 +545,13 @@ body {
   width: 100%;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .averages_container { 
     display: grid;
     grid-template-columns: 1fr;
     height: 100%;
     width: 100%;
-    gap: 20px;
+    gap: 5px;
   }
 }
 
@@ -571,10 +570,10 @@ body {
   
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .individual_averages_container { 
     justify-self: center;
-    height: 100%;
+    height: 85%;
     width: 100%;
     background-color: #6CA081;
     border-radius: 12px;;
@@ -649,7 +648,7 @@ body {
   padding: 6px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .warning_icon_text {
     display: none; /*change this value to grid when making it visible*/
     grid-template-columns: 20% 80%;
@@ -659,15 +658,15 @@ body {
   }
 }
 
-/* hiding the bulky waste warning icon and arrow on collapsible when the screen width is 480px or less*/
-@media screen and (max-width: 480px) {
+/* hiding the bulky waste warning icon and arrow on collapsible when the screen width is 530px or less*/
+@media screen and (max-width: 530px) {
   .collapsible_arrow{
     display: none;
   }
 }
 
-/* hiding the cardboard, colored glass and uncolored glass icons in expanded view when the screen width is 480px or less*/
-@media screen and (max-width: 480px) {
+/* hiding the cardboard, colored glass and uncolored glass icons in expanded view when the screen width is 530px or less*/
+@media screen and (max-width: 530px) {
 
   .cardboard_box_img_expanded{
     display: none;
@@ -683,7 +682,7 @@ body {
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .logo{
     width: 200px;
   }
@@ -801,7 +800,7 @@ label.top-container-div {
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .post-container-div {
     column-count: 1;
     margin-top: 2em;
