@@ -1,7 +1,15 @@
-* {
+*:not(#mobile-menu):not(.collapsible_expanded):not(.text_bar_container):not(.main_content p_expanded):not(.post-form):not(.post-container-div):not(.post-completed-div):not(.addimage_button):not(.top-container-div):not(.navbar_toggle .bar):not(.collapsible):not(.warning_icon_arrow_container):not(.warning_icon_text):not(.bulky_waste_warning_icon) {
   box-sizing: border-box;
   padding: 3px;
-  font-family: 'roboto';
+  font-family: 'Roboto', sans-serif;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #F9FCFA;
 }
 
 .navbar {
@@ -17,7 +25,7 @@
   border-bottom: #D1D1D1;
 }
 
-.navbar__container {
+.navbar_container {
   display: flex;
   justify-content: space-between;
   height: 80px;
@@ -30,7 +38,7 @@
   padding-left: 50px;
 }
 
-#navbar__logo {
+#navbar_logo {
   background-color: #000000;
   background-image: linear-gradient(to top, #000000 0%, #000000 100%);
   background-size: 100%;
@@ -47,18 +55,18 @@
   margin-right: 0.5rem;
 }
 
-.navbar__menu {
+.navbar_menu {
   display: flex;
   align-items: center;
   list-style: none;
   text-align: center;
 }
 
-.navbar__item {
+.navbar_item {
   height: 80px;
 }
 
-.navbar__links {
+.navbar_links {
   color: #000000;
   display: flex;
   align-items: center;
@@ -68,13 +76,13 @@
   height: 100%;
 }
 
-.navbar__links:hover {
+.navbar_links:hover {
   color: #757575;
   transition: all 0.3s ease;
 }
 
 @media screen and (max-width: 960px) {
-  .navbar__container {
+  .navbar_container {
     display: flex;
     justify-content: space-between;
     height: 80px;
@@ -84,7 +92,7 @@
     padding: 0;
   }
 
-  .navbar__menu {
+  .navbar_menu {
     display: grid;
     grid-template-columns: auto;
     margin: 0;
@@ -97,21 +105,21 @@
     z-index: -1;
   }
 
-  .navbar__menu.active {
+  .navbar_menu.active {
     background: #ffffff;
     top: 100%;
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 99;
-    height: 50vh;
+    height: 30vh;
     font-size: 1.6rem;
   }
 
-  #navbar__logo {
+  #navbar_logo {
     padding-left: 25px;
   }
 
-  .navbar__toggle .bar {
+  .navbar_toggle .bar {
     width: 25px;
     height: 3px;
     margin: 5px auto;
@@ -119,18 +127,18 @@
     background: #000000;
   }
 
-  .navbar__item {
+  .navbar_item {
     width: 100%;
   }
 
-  .navbar__links {
+  .navbar_links {
     text-align: center;
     padding: 2rem;
     width: 100%;
     display: table;
   }
 
-  .navbar__btn {
+  .navbar_btn {
     padding-bottom: 2rem;
   }
 
@@ -150,7 +158,7 @@
     transform: translate(5%, 20%);
   }
 
-  .navbar__toggle .bar {
+  .navbar_toggle .bar {
     display: block;
     cursor: pointer;
   }
@@ -171,9 +179,10 @@
 /* Main Content CSS */
 .main {
   background-color: #F9FCFA;
+  overflow: auto;
 }
 
-.main__container {
+.main_container {
   align-items: center;
   justify-self: center;
   margin: 0 auto;
@@ -186,12 +195,13 @@
   padding-left: 50px;
 }
 
-.main__content {
+.main_content {
   color: #fff;
   width: 100%;
+  height: 100%;
 } 
 
-.main__content h1 {
+.main_content h1 {
   font-size: 3rem;
   font-weight: 400;
   margin-top: 0.67em;
@@ -199,7 +209,16 @@
   color: #000000;
 }
 
-.main__content h2 {
+.main_content h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  color: #F4F9F6;
+  text-align: left;
+}
+
+.main_content h2_reporting {
   font-size: 1.5rem;
   font-weight: 400;
   margin-top: 0.67em;
@@ -207,7 +226,7 @@
   color: #F4F9F6;
 }
 
-.main__content h2_expanded {
+.main_content h2_expanded {
   font-size: 1.5rem;
   font-weight: 400;
   margin-top: 0.67em;
@@ -216,7 +235,7 @@
 }
 
 
-.main__content p {
+.main_content p {
   font-size: 1rem;
   font-weight: 400;
   margin-top: 1.3em;
@@ -225,22 +244,32 @@
   vertical-align:top;
 }
 
-.main__content p_UI {
+.main_content p_expanded {
   font-size: 1rem;
-  font-weight: 550;
+  font-weight: 450;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  color: #4D8D6E;
+  color: #364D3D;
   vertical-align:top;
 }
 
-.main__content p_clickmore {
+.main_content p_averages {
   font-size: 1rem;
-  font-weight: 400;
-  margin-top: 1.3em;
-  margin-bottom: 1.3em;
+  font-weight: 450;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   color: #F4F9F6;
   vertical-align:top;
+}
+
+.main_content p_clickmore {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  color: #F4F9F6;
+  vertical-align:top;
+  display: flex;
 }
 
 .main__btn {
@@ -295,70 +324,63 @@
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
-  .main__container {
-    display: grid;
-    grid-template-columns: auto;
+  .main_container {
+    display: flex;
     align-items: center;
-    justify-self: center;
-    width: 100%;
-    margin: 0 auto;
+    justify-content: center;
     height: 90vh;
-    padding-left: 0px;
-    padding-right: 0px;
   }
 
-  .main__content {
-    margin-bottom: 4rem;
-  }
-
-  .main__content h1 {
+  .main_content h1 {
     font-size: 2.5rem;
     margin-top: 2rem;
   }
 
-  .main__content h2 {
+  .main_content h2 {
     font-size: 1.5rem;
     color: #F4F9F6;
   }
 
-  .main__content p {
+  .main_content p {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1rem;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .main__content h1 {
+@media screen and (max-width: 530px) {
+  .main_content h1 {
     font-size: 1.8rem;
-    margin-top: 3rem;
-    max-width: 400px; /* hard coded for a screen 480 px wide */
+    margin-top: 0.5rem;
+    max-width: 400px; /* hard coded for a screen 530 px wide */
   }
 
-  .main__content h2 {
+  .main_content h2 {
     font-size: 1.5rem;
+    margin-top: 10px;
   }
 
-  .main__content h2_expanded {
+  .main_content h2_expanded {
     font-size: 1.2rem;
     font-weight: 400;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
     color: #000000;
+    z-index: 1;
+    width: 90%;
+    display: flex;
   }
 
-  .main__content p {
+  .main_content p {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1.2rem;
-    max-width: 400px; /* hard coded for a screen 480 px wide */
   }
 
   .main__btn {
     padding: 12px 36px;
     margin: 2.5rem 0;
   }
-
-
 }
+
 
 
 @media screen and (max-width: 960px) {
@@ -372,7 +394,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .services {
     height: 1400px;
   }
@@ -409,7 +431,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .footer__link--items {
     margin: 0;
     padding: 10px;
@@ -442,7 +464,7 @@
   font-size: 15px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .collapsible {
     background-color: #4D8D6E;
     border-style: solid;
@@ -486,7 +508,7 @@
 }
 
 /* in the expanded view, the containers for each status is made one column instead of the original two columns. due to removed icons */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .collapsible_expanded__container {
     display: grid;
     grid-template-columns: 1fr;
@@ -503,7 +525,7 @@
   grid-template-columns: auto auto auto 25%;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .collapsible_expanded_grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -512,52 +534,54 @@
 
 .grid-item {
   width: 90%;
+  gap: 20px;
 }
 
 /* Creating a grid here for displaying the different bin average statuses (and the warning icon)*/
-.averages__container { 
+.averages_container { 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 100%;
   width: 100%;
 }
 
-@media screen and (max-width: 480px) {
-  .averages__container { 
+@media screen and (max-width: 530px) {
+  .averages_container { 
     display: grid;
     grid-template-columns: 1fr;
     height: 100%;
     width: 100%;
+    gap: 5px;
   }
 }
 
 /* Container for each of the averages*/
-.individual_averages__container { 
+.individual_averages_container { 
   align-items: left;
   justify-self: left;
   height: 100%;
-  background-color: #F4F9F6;
+  background-color: #6CA081;
   border-radius: 12px;;
-  border-style: solid;
-  border-color: #D1D1D1;
+  /*border-style: solid;*/
+  /* border-color: #D1D1D1;*/
   z-index: 1;
   width: 90%;
   padding: 5px;
+  
 }
 
-@media screen and (max-width: 480px) {
-  .individual_averages__container { 
-    align-items: left;
-    justify-self: left;
-    height: 100%;
-    background-color: #F4F9F6;
+@media screen and (max-width: 530px) {
+  .individual_averages_container { 
+    justify-self: center;
+    height: 85%;
+    width: 100%;
+    background-color: #6CA081;
     border-radius: 12px;;
-    border-style: solid;
-    border-color: #D1D1D1;
+    /*border-style: solid;*/
+    /* border-color: #D1D1D1;*/
     z-index: 1;
-    width: 90%;
     padding: 5px;
-    margin: 5px;
+    margin-bottom: 20px;
   }
 }
 
@@ -570,106 +594,79 @@
 }
 
 /* Container for the progress bar and description text*/
-.text_bar__container { 
-  align-items: left;
-  justify-self: left;
-  height: 100%;
+.text_bar_container {
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
   z-index: 1;
   width: 90%;
+  text-align: left; 
 }
 
 /* Bin Fullness Bar */
 .progress-bar {
   width: 100%;
   background-color: #e0e0e0;
+  border-radius: 5px;
   padding: 3px;
-  height: 30%;
+  height: 20%;
 }
 
 .progress-bar-fill {
   display: block;
   height: 100%;
   max-width: 100%;
+  border-radius: 5px;
 }
 
 /* Container for warning icon and collapsible arrow*/
-.warning_icon_arrow__container { 
-  display: grid;
-  grid-template-columns: 0.5fr 0.5fr;
+.warning_icon_arrow_container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
-  z-index: 1;
   width: 90%;
-  padding: 5px;
+}
+
+.warning_icon_arrow_container > img:nth-child(1) {
+  margin-right: auto;
+}
+
+.warning_icon_arrow_container > img:nth-child(2) {
+  margin-left: auto;
 }
 
 
 
-/*The banner warning that there is bulky waste on the floor.*/
-.warning_banner {
-  background-color: #c52525;
-  width: 100%;
-  height: 100%;
-}
-.warning_columns {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  align-items: center;
-}
-
-@media screen and (max-width: 480px) {
-  .warning_columns {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-  }
-}
-
+/*The warning inside the collapsible when expanded that there is bulky waste on the floor.*/
 .warning_icon_text {
-  display: grid;
-  grid-template-columns: 20% 80%;
+  display: none; /*change this value to grid when making it visible, and none when invisible*/
+  grid-template-columns: 8% 80%;
   align-items: center;
+  justify-self: center; 
+  margin-top: 2%;
+  padding: 6px;
 }
 
-.top-container-div {
-  background-color: #4D8D6E;
-  border-radius: 12px;
-}
-
-.form-container { 
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  height: 100%;
-  width: 100%;
-}
-
-.addimage_postbutton_container { 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100%;
-  width: 100%;
-}
-
-.button-div { 
-  background-color: transparent;
-  border-radius: 2px;;
-  border-style: solid;
-  border-color: #E5EFE5;
-}
-
-/* hiding the bulky waste warning icon and arrow on collapsible when the screen width is 480px or less*/
-@media screen and (max-width: 480px) {
-  .bulky_waste_warning_icon{
-    display: none;
+@media screen and (max-width: 530px) {
+  .warning_icon_text {
+    display: none; /*change this value to grid when making it visible*/
+    grid-template-columns: 20% 80%;
+    align-items: center;
+    justify-self: center; 
+    margin-top: 5%;
   }
+}
 
+/* hiding the bulky waste warning icon and arrow on collapsible when the screen width is 530px or less*/
+@media screen and (max-width: 530px) {
   .collapsible_arrow{
     display: none;
   }
 }
 
-/* hiding the cardboard, colored glass and uncolored glass icons in expanded view when the screen width is 480px or less*/
-@media screen and (max-width: 480px) {
+/* hiding the cardboard, colored glass and uncolored glass icons in expanded view when the screen width is 530px or less*/
+@media screen and (max-width: 530px) {
 
   .cardboard_box_img_expanded{
     display: none;
@@ -685,11 +682,150 @@
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .logo{
     width: 200px;
   }
 }
 
+.bulky_waste_warning_icon {
+  display: none; /* To make the bulky_waste_warning_icon visible change it in app.js */
+}
+
+.collapsible_arrow {
+  justify-self: right; /* Aligns the arrow to the right within its parent container */
+}
+
+/* Additional CSS for the wastepooling page */
+label.top-container-div {
+  background-color: #4D8D6E;
+  border-color: #4D8D6E;
+  border-style: solid;
+  border-radius: 12px;
+  padding: 18px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-container { 
+  display: none; /* change value to inline-grid when top-container-div is clicked */
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100%;
+  width: 100%;
+  gap: 1em;
+  font-size: 1rem;
+  font-weight: 450;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  color: #F4F9F6;
+  text-align: left;
+}
 
 
+.addimage_savepost_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 3em;
+  width: 100%;
+  margin-top: 1em;
+}
+
+.addimage_savepost_container > img:nth-child(1) {
+  margin-right: auto;
+}
+
+.addimage_savepost_container > img:nth-child(2) {
+  margin-left: auto;
+}
+
+.button-div { 
+  width: 5em;
+  text-align: center;
+  border-color: #E5EFE5;
+  background-color: #F9FCFA;
+  border-radius: 5px;;
+  border-style: solid;
+  font-size: 1rem;
+  font-weight: 450;
+  color: #4D8D6E;
+}
+
+.button-div:active { 
+  background-color: #c5c5c5;
+}
+
+
+
+.addimage_button img {
+  height: 100%;
+  object-fit: contain;
+  background-color: #F9FCFA;
+  border-radius: 5px;
+}
+
+.item-name-input {
+  background-color: transparent;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #F9FCFA;
+  height: 2em;
+  width: 70%;
+}
+
+.post-container-div {
+  column-count: 4;
+  column-gap: 2em;
+  margin-top: 2em;
+}
+
+.post-completed-div {
+  background-color: #4D8D6E;
+  border-radius: 12px;
+  padding: 1em;
+  box-sizing: border-box;
+  margin-bottom: 2em;
+  break-inside: avoid;
+}
+
+.post-completed-div > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.post-form {
+  width: 100%;
+}
+
+
+@media screen and (max-width: 530px) {
+  .post-container-div {
+    column-count: 1;
+    margin-top: 2em;
+  }
+
+  .form-container { 
+    grid-template-columns: 1fr;
+  }
+
+}
+
+label.addimage_button {
+  display: inline-flex; 
+  align-items: center; 
+  min-width: 100px; 
+}
+
+label.addimage_button img {
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain; 
+}
+
+.delete_contact_buttons_container {
+  background-color: #ffffff;
+  border-style: solid;
+  border-color: #000000;
+}
