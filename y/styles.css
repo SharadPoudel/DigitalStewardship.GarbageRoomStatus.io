@@ -1,0 +1,695 @@
+* {
+  box-sizing: border-box;
+  padding: 3px;
+  font-family: 'roboto';
+}
+
+.navbar {
+  background: #F9FCFA;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: #D1D1D1;
+}
+
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1300px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+#navbar__logo {
+  background-color: #000000;
+  background-image: linear-gradient(to top, #000000 0%, #000000 100%);
+  background-size: 100%;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.fa-gem {
+  margin-right: 0.5rem;
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.navbar__item {
+  height: 80px;
+}
+
+.navbar__links {
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+}
+
+.navbar__links:hover {
+  color: #757575;
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    padding: 0;
+  }
+
+  .navbar__menu {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: -1000px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    height: 50vh;
+    z-index: -1;
+  }
+
+  .navbar__menu.active {
+    background: #ffffff;
+    top: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 99;
+    height: 50vh;
+    font-size: 1.6rem;
+  }
+
+  #navbar__logo {
+    padding-left: 25px;
+  }
+
+  .navbar__toggle .bar {
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background: #000000;
+  }
+
+  .navbar__item {
+    width: 100%;
+  }
+
+  .navbar__links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+
+  .navbar__btn {
+    padding-bottom: 2rem;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80px;
+    margin: 0;
+  }
+
+  #mobile-menu {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    transform: translate(5%, 20%);
+  }
+
+  .navbar__toggle .bar {
+    display: block;
+    cursor: pointer;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile-menu.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+/* Main Content CSS */
+.main {
+  background-color: #F9FCFA;
+}
+
+.main__container {
+  align-items: center;
+  justify-self: center;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: #F9FCFA;
+  z-index: 1;
+  width: 100%;
+  max-width: 1300px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.main__content {
+  color: #fff;
+  width: 100%;
+} 
+
+.main__content h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  color: #000000;
+}
+
+.main__content h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  color: #F4F9F6;
+}
+
+.main__content h2_expanded {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  color: #000000;
+}
+
+
+.main__content p {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 1.3em;
+  margin-bottom: 1.3em;
+  color: #000000;
+  vertical-align:top;
+}
+
+.main__content p_UI {
+  font-size: 1rem;
+  font-weight: 550;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  color: #4D8D6E;
+  vertical-align:top;
+}
+
+.main__content p_clickmore {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 1.3em;
+  margin-bottom: 1.3em;
+  color: #F4F9F6;
+  vertical-align:top;
+}
+
+.main__btn {
+  font-size: 1rem;
+  background: #000000;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  margin-top: 2rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.35s;
+  outline: none;
+}
+
+.main__btn a {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-decoration: none;
+}
+
+.main__btn:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #4837ff;
+  transition: all 0.35s;
+  border-radius: 4px;
+}
+
+.main__btn:hover {
+  color: #fff;
+}
+
+.main__btn:hover:after {
+  width: 100%;
+}
+
+.main__img--container {
+  text-align: center;
+}
+
+#main__img {
+  height: 80%;
+  width: 80%;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .main__container {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    justify-self: center;
+    width: 100%;
+    margin: 0 auto;
+    height: 90vh;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .main__content {
+    margin-bottom: 4rem;
+  }
+
+  .main__content h1 {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .main__content h2 {
+    font-size: 1.5rem;
+    color: #F4F9F6;
+  }
+
+  .main__content p {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main__content h1 {
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    max-width: 400px; /* hard coded for a screen 480 px wide */
+  }
+
+  .main__content h2 {
+    font-size: 1.5rem;
+  }
+
+  .main__content h2_expanded {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    color: #000000;
+  }
+
+  .main__content p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    max-width: 400px; /* hard coded for a screen 480 px wide */
+  }
+
+  .main__btn {
+    padding: 12px 36px;
+    margin: 2.5rem 0;
+  }
+
+
+}
+
+
+@media screen and (max-width: 960px) {
+  .services {
+    height: 1600px;
+  }
+
+  .services h1 {
+    font-size: 2rem;
+    margin-top: 12rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .services {
+    height: 1400px;
+  }
+
+  .services h1 {
+    font-size: 1.2rem;
+  }
+
+  .services__card {
+    width: 300px;
+  }
+}
+
+
+@media screen and (max-width: 820px) {
+  .footer__links {
+    padding-top: 2rem;
+  }
+
+  #footer__logo {
+    margin-bottom: 2rem;
+  }
+
+  .website__rights {
+    margin-bottom: 2rem;
+  }
+
+  .footer__link--wrapper {
+    flex-direction: column;
+  }
+
+  .social__media--wrap {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer__link--items {
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+
+
+ /* Style the button that is used to open and close the collapsible content */
+ .collapsible_container {
+  margin-bottom: 5vh;
+  border-style: solid;
+  border-color: #4D8D6E;
+  border-radius: 12px;
+  background-color: #4D8D6E;
+}
+
+ .collapsible {
+  background-color: #4D8D6E;
+  border-style: solid;
+  border-color: #4D8D6E;
+  border-radius: 12px; 
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 480px) {
+  .collapsible {
+    background-color: #4D8D6E;
+    border-style: solid;
+    border-color: #4D8D6E;
+     /*border-radius: 12px; */
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #5A9C7C;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+
+.collapsible_expanded {
+  padding: 18px;
+  display: none;
+  background-color: #F9FCFA;
+  border-style: solid;
+  border-color: #4D8D6E;
+  border-radius: 0px 0px 12px 12px;
+  overflow: visible;
+}
+
+.collapsible_expanded__container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+  justify-self: center;
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* in the expanded view, the containers for each status is made one column instead of the original two columns. due to removed icons */
+@media screen and (max-width: 480px) {
+  .collapsible_expanded__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-self: center;
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.collapsible_expanded_grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto 25%;
+}
+
+@media screen and (max-width: 480px) {
+  .collapsible_expanded_grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+}
+
+.grid-item {
+  width: 90%;
+}
+
+/* Creating a grid here for displaying the different bin average statuses (and the warning icon)*/
+.averages__container { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .averages__container { 
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+/* Container for each of the averages*/
+.individual_averages__container { 
+  align-items: left;
+  justify-self: left;
+  height: 100%;
+  background-color: #F4F9F6;
+  border-radius: 12px;;
+  border-style: solid;
+  border-color: #D1D1D1;
+  z-index: 1;
+  width: 90%;
+  padding: 5px;
+}
+
+@media screen and (max-width: 480px) {
+  .individual_averages__container { 
+    align-items: left;
+    justify-self: left;
+    height: 100%;
+    background-color: #F4F9F6;
+    border-radius: 12px;;
+    border-style: solid;
+    border-color: #D1D1D1;
+    z-index: 1;
+    width: 90%;
+    padding: 5px;
+    margin: 5px;
+  }
+}
+
+.individual_averages__content { 
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+/* Container for the progress bar and description text*/
+.text_bar__container { 
+  align-items: left;
+  justify-self: left;
+  height: 100%;
+  z-index: 1;
+  width: 90%;
+}
+
+/* Bin Fullness Bar */
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  padding: 3px;
+  height: 30%;
+}
+
+.progress-bar-fill {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+}
+
+/* Container for warning icon and collapsible arrow*/
+.warning_icon_arrow__container { 
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  align-items: center;
+  height: 100%;
+  z-index: 1;
+  width: 90%;
+  padding: 5px;
+}
+
+
+
+/*The banner warning that there is bulky waste on the floor.*/
+.warning_banner {
+  background-color: #c52525;
+  width: 100%;
+  height: 100%;
+}
+.warning_columns {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .warning_columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+}
+
+.warning_icon_text {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: center;
+}
+
+.top-container-div {
+  background-color: #4D8D6E;
+  border-radius: 12px;
+}
+
+.form-container { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.addimage_postbutton_container { 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.button-div { 
+  background-color: transparent;
+  border-radius: 2px;;
+  border-style: solid;
+  border-color: #E5EFE5;
+}
+
+/* hiding the bulky waste warning icon and arrow on collapsible when the screen width is 480px or less*/
+@media screen and (max-width: 480px) {
+  .bulky_waste_warning_icon{
+    display: none;
+  }
+
+  .collapsible_arrow{
+    display: none;
+  }
+}
+
+/* hiding the cardboard, colored glass and uncolored glass icons in expanded view when the screen width is 480px or less*/
+@media screen and (max-width: 480px) {
+
+  .cardboard_box_img_expanded{
+    display: none;
+  }
+
+  .colored_glass__img_expanded{
+    display: none;
+  }
+
+  .uncolored_glass__img_expanded{
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .logo{
+    width: 200px;
+  }
+}
+
+
+
