@@ -16,63 +16,135 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
+// Get bulky waste status from firebase by room number and display the banner if there is bulky waste. Check if the banner is already shown.
+async function get_bulky_waste_status(roomnum) {
+
+  var bulkyWasteReport = [];
+  const q = query(collection(db, "reporting"));
+
+  var warningBanner = document.getElementById("warning_banner" + roomnum);
+  console.log(warningBanner);
+
+  var warningIcon = document.getElementById("bulky_waste_warning_" + roomnum);
+  console.log(warningIcon);
+
+  warningBanner.style.display = 'none';
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+
+    if (roomnum == doc.data().roomnum) {
+      bulkyWasteReport.push(doc.data())
+    }
+  });
+
+  const mostRecentEntry = bulkyWasteReport.sort((a, b) => {
+    return b.timestamp - a.timestamp; 
+  })[0];
+
+  //console.log(mostRecentEntry);
+  //console.log(mostRecentEntry.status);
+
+  if (mostRecentEntry.status == true) {
+    warningBanner.style.display = 'grid';
+  
+  }
+
+  if (mostRecentEntry.status == true) {
+    warningIcon.style.display = 'inline-block';
+  }
+
+  return mostRecentEntry.status;
+}
+get_bulky_waste_status(1);
+get_bulky_waste_status(2);
+
 // Get sensor value from firestore from a sensorid. Right now it just gets the last value - we need to figure out what value we want it to get. Maybe based on a timestamp or something.
 async function get_sensor_value(sensornum) {
 
-  var value
-
+  var sensorValues = [];
   const q = query(collection(db, "sensordata"));
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
 
-    // allSensorValues = querySnapshot.docs.map(doc => doc.data());
-
     if (doc.data().sensorid == sensornum) {
-      value = doc.data().message;
-      value = value.split(" ") //remove when we have the right message
-      value = value[3] //remove when we have the right message
-      value = value.replace(/[^a-zA-Z0-9 ]/g, '') //remove when we have the right message
-      value = parseInt(value); 
-      console.log(value);
+      sensorValues.push(doc.data())
     }
   });
 
-  return value;
-}
+  const mostRecentEntry = sensorValues.sort((a, b) => {
+    return b.timestamp - a.timestamp;
+  })[0];
 
-var value = get_sensor_value('sensor1');
+  if (mostRecentEntry.message === undefined) {
+    mostRecentEntry.message = 50;
+  }
 
+  return mostRecentEntry.message;
+};
 
-//value.then(function (result) {
-  //console.log(result);
-//});
-
+setInterval(function() {
+  location.reload();
+  console.log("reloaded page");
+}, 3600000);
 
 const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.navbar__menu');
+const menuLinks = document.querySelector('.navbar_menu');
 
 menu.addEventListener('click', function () {
   menu.classList.toggle('is-active');
   menuLinks.classList.toggle('active');
 });
 
+//removing/adding the form and changing the heading in top-container-div on the wastepooling page on click
+document.addEventListener('DOMContentLoaded', function() { //make the wastepooling top-container-div interactive once the DOM, or the HTML page has been loaded. this basically prevents the collapsible from being non-interactive
+var inputs = document.querySelectorAll('.form-container input');
+var form = document.querySelector('.form-container');
+var button = document.querySelector('.top-container-div');
+var heading = document.getElementById('form-heading');
 
+//ensuring that clicking the input field doesn't close the whole form, aka setting the top-container-div display to none
+for (var i = 0; i < inputs.length; i++) { 
+  inputs[i].addEventListener('click', function (event) {
+    event.stopPropagation();
+  });
+}
+
+var FormVisible = false; 
+// if top-container-div has been clicked, and if the form is not visible then set it to visible and cheange the h2 to "Ny artikel"
+button.addEventListener('click', function (event) {
+  if (!FormVisible) {
+    heading.textContent = 'Ny artikel';
+    form.style.display = 'inline-grid';
+    FormVisible = true;
+  } else { //if the top-container-div has been clicked, and the form is visible, then set the form to not visible and change the h2 
+    heading.textContent = 'Har du något grovt avfall som behöver hämtas?';
+    form.style.display = 'none';
+    FormVisible = false;
+  }
+  event.stopPropagation(); //make sure this doesn't affect the parents
+});
+});
 
 
 //this is for making the collapsible interactive
-var coll = document.getElementsByClassName("collapsible");
-var i;
+var collapsibles = document.getElementsByClassName("collapsible");
+var collapsibleArrows = document.getElementsByClassName("collapsible_arrow");
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
+for (var i = 0; i < collapsibles.length; i++) {
+  collapsibles[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
+    var collapsibleArrow = this.querySelector(".collapsible_arrow");
+    
     if (content.style.display === "block") {
       content.style.display = "none";
-      document.getElementById("collapsible_arrow").src="collapsible_arrow_up.svg";
+      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_down.svg"); // set the source image to the down arrow
     } else {
       content.style.display = "block";
+      collapsibleArrow.setAttribute("src", "images/collapsible_arrow_up.svg"); // set the source image to the up arrow
     }
   });
 }
@@ -81,15 +153,15 @@ for (i = 0; i < coll.length; i++) {
 
 //dicts for each recycling room. these are dicts in dicts. in the first level key is waste type and value is sensor info. in the second level the key is the sensor name and the value is the ID in the HTML
 var sensors_R6 = {
-  'cardboard': { 'sensor1': 'progressbar1', 'sensor2': 'progressbar2', 'sensor3': 'progressbar3', 'sensor4': 'progressbar4', 'sensor5': 'progressbar5' },
-  'colored_glass': { 'sensor6': 'progressbar6', 'sensor7': 'progressbar7', 'sensor8': 'progressbar8' },
-  'uncolored_glass': { 'sensor9': 'progressbar9', 'sensor10': 'progressbar10', 'sensor11': 'progressbar11' }
+  'cardboard': { 'sensor1': 'progressbar1', 'sensor2': 'progressbar2', 'sensor3': 'progressbar3', 'sensor4': 'progressbar4', 'sensor5': 'progressbar5', 'sensor6': 'progressbar6' },
+  'colored_glass': { 'sensor7': 'progressbar7', 'sensor8': 'progressbar8', 'sensor9': 'progressbar9' },
+  'uncolored_glass': { 'sensor10': 'progressbar10', 'sensor11': 'progressbar11' }
 };
 
 var sensors_R7 = {
-  'cardboard': { 'sensor12': 'progressbar12', 'sensor13': 'progressbar13', 'sensor14': 'progressbar14', 'sensor15': 'progressbar15', 'sensor16': 'progressbar16' },
-  'colored_glass': { 'sensor17': 'progressbar17', 'sensor18': 'progressbar18', 'sensor19': 'progressbar19' },
-  'uncolored_glass': { 'sensor20': 'progressbar20', 'sensor21': 'progressbar21', 'sensor22': 'progressbar22' }
+  'cardboard': { 'sensor12': 'progressbar12', 'sensor13': 'progressbar13', 'sensor14': 'progressbar14', 'sensor15': 'progressbar15', 'sensor16': 'progressbar16', 'sensor17': 'progressbar17' },
+  'colored_glass': { 'sensor18': 'progressbar18', 'sensor19': 'progressbar19', 'sensor20': 'progressbar20' },
+  'uncolored_glass': { 'sensor21': 'progressbar21', 'sensor22': 'progressbar22' }
 };
 
 //progress_bar_setup() takes the sensor_dict (sensors_R6 or sensors_R7) and pane. pane is top (collapsible) or bottom (collapsible). 
@@ -107,7 +179,7 @@ function progress_bar_setup(sensor_dict, pane) {
       var value = get_sensor_value(sensorName);
 
       value.then(function (sensorValue) {
-        console.log(sensorValue);
+        // console.log(sensorValue);
         var progressbar_color = document.getElementById(pane + progressName + "-color");
         const color = get_progressbar_color(sensorValue);
         progressbar_color.style.backgroundColor = color; //color the progress bar
@@ -118,8 +190,8 @@ function progress_bar_setup(sensor_dict, pane) {
 
         var progressbar_span = document.getElementById(pane + progressName + "-color");
         progressbar_span.style.width = sensorValue + "%"; //set the span of the progress bar
-    
-    });
+
+      });
 
     }
     averages[typeName] = averages[typeName] / Object.keys(sensors).length; // calculate the average sensor value per waste type

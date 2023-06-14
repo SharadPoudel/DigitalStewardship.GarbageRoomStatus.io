@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Stewardship</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet" />
 
 
@@ -21,16 +19,11 @@
         .item-address-label {
             font-size: 12px;
         }
+
         label {
             display: block;
             overflow-wrap: break-word;
             text-align: left;
-        }
-
-        .image-container {
-            width: fit-content;
-            padding: 10px;
-
         }
 
         .post-image-label {
@@ -57,37 +50,6 @@
 
         }
 
-        .intro-p {
-            margin: 10px;
-        }
-
-
-
-        .top-container-div {
-            padding: 10px;
-            margin: 10px;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .post-completed-div {
-            inline-size: min-content;
-            background-color: #4D8D6E;
-
-            padding: 10px;
-            box-sizing: border-box;
-            display: inline-block;
-            margin: 10px;
-            vertical-align: top;
-        }
-
-        .button-div {
-            width: 20em;
-            text-align: center;
-            border-color: #E5EFE5;
-            color: #E5EFE5;
-        }
-
         .delete-label {
 
             width: fit-content;
@@ -111,97 +73,110 @@
         }
 
         .delete-div {
-            background-color: transparent;
-            border-radius: 2px;
-            ;
-            border-style: solid;
             border-color: #E5EFE5;
+            background-color: #F9FCFA;
+            border-radius: 5px;;
+            border-style: solid;
+            font-size: 1rem;
+            font-weight: 450;
+            color: #4D8D6E;
             display: inline-block;
             width: fit-content;
+            margin-right: 1em;
+        }
+
+        .delete-div:active { 
+            background-color: #c5c5c5;
         }
 
         .contact-div {
-            background-color: transparent;
-            border-radius: 2px;
-            ;
-            border-style: solid;
             border-color: #E5EFE5;
+            background-color: #F9FCFA;
+            border-radius: 5px;;
+            border-style: solid;
+            font-size: 1rem;
+            font-weight: 450;
+            color: #4D8D6E;
             display: inline-block;
             width: fit-content;
         }
-
-        .top-container-div {
-            display: inline-block;
+        
+        .contact-div:active { 
+            background-color: #c5c5c5;
         }
 
         .form-inputs-div {
             padding-left: 1.2em;
             padding-bottom: 1.2em;
         }
+        
     </style>
 </head>
 
 <body>
     <!-- Navbar Section -->
     <nav class="navbar">
-        <div class="navbar__container">
-            <img id="logo" src="images/logo.svg" width="20%" />
-            <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span> <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="/status_page.html" class="navbar__links">Status</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="/wastepooling.html" class="navbar__links">WastePooling</a>
-                </li>
-            </ul>
+        <div class="navbar_container">
+          <img id="logo" class="logo" src="images/logo.svg" width="20%"/>
+          <div class="navbar_toggle" id="mobile-menu">
+            <span class="bar"></span> <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <ul class="navbar_menu">
+            <li class="navbar_item">
+              <a href="/status_page.html" class="navbar_links">Status</a>
+            </li>
+            <li class="navbar_item">
+              <a href="/wastepooling.html" class="navbar_links">WastePooling</a>
+            </li>
+          </ul>
         </div>
-    </nav>
+      </nav>
     <div class="main">
-        <div class="main__container">
-            <div class="main__content">
+        <div class="main_container">
+            <div class="main_content">
                 <h1>Wastepooling</h1>
-                <p class="intro-p">On this page you can post your bulky waste in need of pickup or select a post to
-                    offer pickup in
-                    Granngården, Beckomberga. </p>
+                <p class="intro-p">Här kan du begära upphämtning av grovt avfall eller kontakta personer för att erbjuda upphämtning i Granngården, Beckomberga. </p>
 
-                <form id="post-form">
-                    <div class="top-container-div">
-                        <h2>Do you have any bulky waste in need of pickup?</h2>
+                <form id="post-form" class="post-form">
+                    <label class="top-container-div">
+                        <h2 id="form-heading">Har du något grovt avfall som behöver hämtas?</h2>
                         <div class="form-container">
-                            <div class="image-and-input-container">
-                                <label for="file-input">
-                                <img src="../images/image_preview.png" width="160" height="160" id="image-container">
-                                <input type="file" class="image-capture" accept="image/*" id="file-input"
-                                    onchange="sendImage()">
-                                </label>
-
+                            <div>
+                                <label for="item-name-input">Namn på artikeln</label>
+                                <input id="item-name-input" class="item-name-input" required>
                             </div>
 
-                            <div class="form-inputs-div">
-                                <div>
-                                    <label for="item-name-input">Namn på artikeln: </label>
-                                    <input id="item-name-input">
-                                </div>
+                            <div>
+                                <label for="personal-name-input">Ditt namn</label>
+                                <input id="personal-name-input" class="item-name-input">
+                            </div>
 
-                                <div>
-                                    <label for="address-input">Adress: </label>
-                                    <input id="address-input">
-                                </div>
+                            <div>
+                                <label for="address-input">Adress</label>
+                                <input id="address-input" class="item-name-input">
+                            </div>
 
-                                <div>
-                                    <label for="email-input">E-post: </label>
-                                    <input id="email-input">
-                                </div>
+                            <div>
+                                <label for="email-input">E-post</label>
+                                <input id="email-input" class="item-name-input">
+                            </div>
 
+                            <div>
+                                <label for="moreinfo-input">Ytterligare information</label>
+                                <input id="moreinfo-input" class="item-name-input">
                             </div>
 
                         </div>
-                        <input type="button" class="button-div" onclick="savePost()" value="Post">
-                    </div>
+                        <div class="addimage_savepost_container">
+                            <label class="addimage_button">
+                              <img src="../images/addimage.svg" id="image-container">
+                              <input type="file" class="image-capture" accept="image/*" id="file-input" onchange="sendImage()">
+                            </label>
+                            <input type="button" class="button-div" onclick="savePost()" value="Publicera">
+                          </div>
+                          
+                    </label>
                 </form>
                 <div id="post-container-div" class="post-container-div" onload="getPosts()"></div>
             </div>
@@ -227,7 +202,7 @@
         };
 
         // Initializing variables that has to be global since they are accessed from multiple functions
-        var postImageInput, itemName, address, email, postImagePreview, photo, postItem, postAddress, postEmail, postCompleted;
+        var postImageInput, itemName, address, email, postImagePreview, photo, postItem, postAddress, postEmail, postCompleted, addInfo, postAddInfo;
 
         // Creates an object for completed posts where we can store the posts' ids and the corresponding post
         var completedPosts = {};
@@ -243,6 +218,7 @@
         address = document.getElementById('address-input');
         email = document.getElementById('email-input');
         postImageInput = document.getElementById('file-input');
+        addInfo = document.getElementById('moreinfo-input')
         postImagePreview = document.getElementById('image-container');
 
         // Initializing firebase
@@ -281,16 +257,31 @@
                 let item = document.createElement('label');
                 item.setAttribute('class', 'item-name-label');
                 item.innerHTML = doc.data().itemname;
+                
 
                 let postAddress = document.createElement('label');
                 postAddress.setAttribute('class', 'item-address-label');
-                postAddress.innerHTML = doc.data().address;
+
+                if(doc.data().address == null) {
+                    postAddress.innerHTML = '';
+                } else {
+                    postAddress.innerHTML = doc.data().address;
+                }
+
+                let addInfo = document.createElement('p_clickmore');
+                addInfo.setAttribute('class', 'p_clickmore');
+
+                if(doc.data().addinfo == null) {
+                    addInfo.innerHTML = '';
+                } else {
+                    addInfo.innerHTML = doc.data().addinfo;
+                }
 
                 let postDelete = document.createElement('div');
                 postDelete.setAttribute('class', 'delete-div');
 
                 let postDeleteLabel = document.createElement('label');
-                postDeleteLabel.innerHTML = 'Delete?';
+                postDeleteLabel.innerHTML = 'Radera';
                 postDeleteLabel.setAttribute('class', 'delete-label');
                 postDeleteLabel.setAttribute('id', 'post-delete-button');
 
@@ -298,7 +289,7 @@
                 postContact.setAttribute('class', 'contact-div');
 
                 let postContactLabel = document.createElement('label');
-                postContactLabel.innerHTML = 'Contact';
+                postContactLabel.innerHTML = 'Kontakta';
                 postContactLabel.setAttribute('class', 'contact-label');
                 postContactLabel.setAttribute('id', 'post-contact-button');
 
@@ -309,6 +300,7 @@
                 postCompleted.appendChild(image);
                 postCompleted.appendChild(item);
                 postCompleted.appendChild(postAddress);
+                postCompleted.appendChild(addInfo);
                 postCompleted.appendChild(postDelete);
                 postCompleted.appendChild(postContact);
 
@@ -321,7 +313,7 @@
 
                 var postid = postCompleted.childNodes[i].src;
 
-                // console.log(postid);
+
                 i++
 
 
@@ -329,33 +321,29 @@
 
                 postDeleteLabel.onclick = function () { deletePost(postid) };
 
-                //console.log(postCompleted.src);
+
 
             });
-            // console.log(completedPosts);
+
             return postList;
 
         }
         var list = getPosts();
 
-        // console.log(completedPosts);
-
-        async function addPost(i, a, e, img) {
+        async function addPost(i, a, e, img, info) {
             const add = await addDoc(collection(db, 'digitalstewardship'), {
                 itemname: i,
                 address: a,
                 email: e,
-                image: img
+                image: img,
+                timestamp: Date.now(),
+                addinfo: info
             });
             window.location.reload();
         }
 
         // send the image url as id.
         async function deletePost(postid) {
-
-            //console.log(Object.keys(post));
-            // console.log(postid);
-            // console.log(post.childNodes[0].src);
 
             const q = query(collection(db, "digitalstewardship"));
             const querySnapshot = await getDocs(q);
@@ -436,92 +424,51 @@
 
         const savePost = () => {
 
-            /*          postCompleted = document.createElement('div');
-                        postCompleted.setAttribute('class', 'post-completed-div');
-                        postCompleted.setAttribute('id', 'post-completed-div');
-            
-            
-                        postItem = document.createElement('label');
-                        postItem.setAttribute('class', 'item-name-label'); 
-                        postItem.innerHTML = itemName.value;
-            
-                        postEmail = document.createElement('label');
-                        postEmail.setAttribute('class', 'email-label');
-                        postEmail.innerHTML = email.value;
-            
-                        postAddress = document.createElement('label');
-                        postAddress.innerHTML = address.value;
-            
-                        let postDelete = document.createElement('div');
-                        postDelete.setAttribute('class', 'delete-div');
-            
-                        let postDeleteLabel = document.createElement('label');
-                        postDeleteLabel.innerHTML = 'Delete?';
-                        postDeleteLabel.setAttribute('class', 'delete-label');
-                        postDeleteLabel.setAttribute('id', 'post-delete-button');
-                        postDeleteLabel.onclick = function () { deletePost('1fhMEJ52e0CVkPqshGdy') };
-            
-                        let postContact = document.createElement('div');
-                        postContact.setAttribute('class', 'contact-div');
-            
-            
-                        let postContactLabel = document.createElement('label');
-                        postContactLabel.innerHTML = 'Contact';
-                        postContactLabel.setAttribute('class', 'contact-label');
-                        postContactLabel.setAttribute('id', 'post-contact-button');
-            
-            
-                        postContactLabel.onclick = function () { contactPeer() };
-            
-                        postDelete.appendChild(postDeleteLabel);
-            
-                        postContact.appendChild(postContactLabel);
-            
-                        postCompleted.appendChild(image);
-                        postCompleted.appendChild(postItem);
-                        postCompleted.appendChild(postAddress);
-                        postCompleted.appendChild(postDelete);
-                        postCompleted.appendChild(postContact); */
+            if (photo) {
 
+                postItem = document.createElement('label');
+                postItem.innerHTML = itemName.value;
 
-            postItem = document.createElement('label');
-            postItem.innerHTML = itemName.value;
+                postEmail = document.createElement('label');
+                postEmail.innerHTML = email.value;
 
-            postEmail = document.createElement('label');
-            postEmail.innerHTML = email.value;
+                postAddInfo = document.createElement('p');
+                postAddInfo.innerHTML = addInfo.value;
 
+                const stream = new MediaStream();
+                let image = document.createElement('img');
+                image.srcObject = stream;
+                image.src = "../images/image_preview.png";
+                image.src = window.URL.createObjectURL(photo);
 
-            const stream = new MediaStream();
-            let image = document.createElement('img');
-            image.srcObject = stream;
-            image.src = window.URL.createObjectURL(photo);
+                postAddress = document.createElement('label');
+                postAddress.innerHTML = address.value;
 
-            postAddress = document.createElement('label');
-            postAddress.innerHTML = address.value;
+                uploadImage(photo);
 
-            uploadImage(photo);
+                // document.getElementById('post-container-div').appendChild(postCompleted);
+                document.getElementById('post-form').reset();
 
-            // document.getElementById('post-container-div').appendChild(postCompleted);
-            document.getElementById('post-form').reset();
+                getDownloadURL(imagePreviewRef)
+                    .then((url) => {
 
-            getDownloadURL(imagePreviewRef)
-                .then((url) => {
+                        document.getElementById('image-container').src = url;
+                    })
+                    .catch((error) => {
 
-                    document.getElementById('image-container').src = url;
-                })
-                .catch((error) => {
+                        switch (error.code) {
+                            case 'storage/object-not-found':
+                                break;
+                            case 'storage/unauthorized':
+                                break;
+                            case 'storage/canceled':
+                                break;
+                            case 'storage/unknown':
+                                break;
+                        }
+                    });
+            }
 
-                    switch (error.code) {
-                        case 'storage/object-not-found':
-                            break;
-                        case 'storage/unauthorized':
-                            break;
-                        case 'storage/canceled':
-                            break;
-                        case 'storage/unknown':
-                            break;
-                    }
-                });
         }
 
         window.savePost = savePost;
@@ -566,10 +513,11 @@
             var item = postItem.innerHTML;
             var addr = postAddress.innerHTML;
             var email = postEmail.innerHTML;
+            var addInfo = postAddInfo.innerHTML;
 
-            console.log("Inserted data into Firestore: " + item + ", " + addr + ", " + email + ", " + image);
+            console.log("Inserted data into Firestore: " + item + ", " + addr + ", " + email + ", " + addInfo + ", " + image);
 
-            addPost(item, addr, email, image);
+            addPost(item, addr, email, image, addInfo);
 
             return url;
         }
@@ -595,7 +543,7 @@
 
     </script>
 
-
+<script type="module" src="app.js"></script>
 </body>
 
 </html>
