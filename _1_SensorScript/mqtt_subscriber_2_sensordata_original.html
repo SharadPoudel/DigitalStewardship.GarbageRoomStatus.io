@@ -9,8 +9,7 @@
 
         // Firestore stuff
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-        import { getFirestore, collection, getDocs, addDoc, query} from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+        import { getFirestore, collection, getDocs, addDoc, query, serverTimestamp} from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
         
         const firebaseConfig = {
             apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
@@ -28,7 +27,7 @@
       
       
         async function addPost(id,msg) {
-           const timestamp = serverTimestamp();
+           const timestamp = Date.now();
            
           try {
             const add = await addDoc(collection(db, 'sensordata'), {

@@ -75,14 +75,13 @@ while True:
     # Publish distance and percentage to MQTT topics
     topic1 = "sensordata/sensor1"
     #message1 = "{} cm / {}%".format(distance1, percentage1)
-    
     #topic1 = 1
     message1 = percentage1
-    
     client.publish(topic1, message1)
+    
+    
     topic2 = "sensordata/sensor2"
     #message2 = "{} cm / {}%".format(distance2, percentage2)
-    
     #topic2 = 2
     message2 = percentage2
     

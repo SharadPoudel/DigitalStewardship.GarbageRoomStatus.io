@@ -8,10 +8,9 @@
         <script type="module"> 
 
         // Firestore stuff
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-        //import { getFirestore, collection, getDocs, addDoc, query } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-
+               import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getFirestore, collection, getDocs, addDoc, query, serverTimestamp} from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+   
 
         const firebaseConfig = {
             apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
@@ -35,12 +34,11 @@
                 message: msg,
                 timestamp: timestamp
                 });
-                await addDoc(collection(db, 'sensordata'), data);
+                
                 }
                                   
                 
-    
-    
+      
    
     
       // Connect to the MQTT broker
@@ -79,7 +77,7 @@
        // console.log("Message received: " + message.payloadString);
         var topic = message.destinationName;
         var payload = message.payloadString;
-        //var dataElement = document.getElementById("data");
+        var dataElement = document.getElementById("data");
         var displayElement = document.getElementById("data");
 
         // Extract sensor name from the topic
@@ -88,7 +86,7 @@
       
         // Update the HTML based on the sensor name
         if (sensorName === "sensor1") {
-          dataElement.innerHTML = "Message received from sensor 1: " + payload + "<br>";
+        dataElement.innerHTML = "Message received from sensor 1: " + payload + "<br>";
         console.log(sensorName);
         
         addPost(sensorName,payload);
