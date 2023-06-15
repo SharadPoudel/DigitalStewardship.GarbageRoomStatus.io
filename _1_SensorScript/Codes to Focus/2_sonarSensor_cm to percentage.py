@@ -4,10 +4,10 @@ import paho.mqtt.client as mqtt
 
 # Set up the GPIO pins
 GPIO.setmode(GPIO.BOARD)
-TRIG1 = 18
-ECHO1 = 16
-TRIG2 = 15
-ECHO2 = 22
+TRIG1 = 3
+ECHO1 = 5
+TRIG2 = 7
+ECHO2 = 8
 GPIO.setup(TRIG1, GPIO.OUT)
 GPIO.setup(ECHO1, GPIO.IN)
 GPIO.setup(TRIG2, GPIO.OUT)
