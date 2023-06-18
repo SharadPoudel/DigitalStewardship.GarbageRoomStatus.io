@@ -1,6 +1,19 @@
 import RPi.GPIO as GPIO
 import time
-#import paho.mqtt.client as mqtt
+
+"""
+# Code for Communication to Database 5-13, 88-..
+import paho.mqtt.client as mqtt
+
+# Add a client name and set the client details
+client_name = "my-client"
+client = mqtt.Client(client_name)
+
+# Connect to the MQTT broker
+client.connect("localhost", 1883, 60)
+"""
+
+
 
 
 # Set up the GPIO pins
@@ -57,17 +70,9 @@ def measure_distance(trig_pin, echo_pin):
      
     time.sleep(0.2)
     return distance
-"""
-    # Calculate percentage for sensors
-    if distance < 15:
-        percentage = 100
-    elif distance >= 150:
-        percentage = 0
-    else:
-        percentage = 100 - ((distance - 50) / 150 * 100)
-    percentage = round(percentage)
 
-"""
+    
+
 
  
 try:
@@ -76,11 +81,46 @@ try:
         for i in range(len(trig_pins)):
             distance = measure_distance(trig_pins[i], echo_pins[i])
             if distance <= 0.1:
-                 print(f"Sensor {i+1}: Distance = FAILED")
+                print(f"Sensor {i+1}: Distance = FAILED")
             else:
                 print(f"Sensor {i+1}: Distance = {distance:.2f} cm")
         time.sleep(1)
 
+    """
+    # Calculate percentage for sensors
+    if distance < 15:
+        percentage = 100
+    elif distance >= 150:
+        percentage = 0
+    else:
+        percentage = 100 - ((distance - 50) / 150 * 100)
+    percentage = round(percentage)
+    
+    
+    # Publish data for 11 sensors
+    sensor_data = {
+    "sensor1": percentage1,
+    "sensor2": percentage2,
+    "sensor3": percentage3,
+    # ... add more sensors and percentages here
+    "sensor11": percentage11
+    }
+    
+    for sensor, percentage in sensor_data.items():
+    topic = "sensordata/" + sensor
+    message = str(percentage)  # Convert percentage to string if necessary
+    client.publish(topic, message)
+    
+    
+    #communicating with mqtt broker    
+    topic1 = "sensordata/sensor1"
+    message1 = percentage
+    client.publish(topic, message)
+    
+    
+    
+    #--------    
+    """
 except KeyboardInterrupt:
     print("Measurement stopped by the user")
 finally:
