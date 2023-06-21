@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-
+import os
 """
 # Code for Communication to Database 5-13, 88-..
 import paho.mqtt.client as mqtt
@@ -20,11 +20,17 @@ client.connect("localhost", 1883, 60)
 GPIO.setmode(GPIO.BOARD)
 
 
-#trig_pins =[3,7,11,13,15,19,23,29,31,33,35,37]
-#echo_pins =[5,8,10,16,18,21,24,26,32,36,38,40]
+trig_pins =[3,7,11,13,15,19,23,29,31,33,35]
+echo_pins =[5,8,10,16,18,21,24,26,32,36,38]
 #Working sensors: S1,S2,S3,S4,S5..
-trig_pins = [3,7,11,13,15]
-echo_pins = [5,8,10,16,18]
+#trig_pins = [3,7,11,13,15]
+#echo_pins = [5,8,10,16,18]
+
+#trig_pins = [19,23,29]
+#echo_pins = [21,24,26]
+
+#trig_pins =[19,23,29,31,33]#,35,37]
+#echo_pins =[21,24,26,32,36]#,#38,40]
 
 def measure_distance(trig_pin, echo_pin):
     # Set the trigger pin as output and echo pin as input
@@ -77,26 +83,43 @@ def measure_distance(trig_pin, echo_pin):
  
 try:
     while True:
+        
         print("------------------------")
+        
+        
         for i in range(len(trig_pins)):
             distance = measure_distance(trig_pins[i], echo_pins[i])
+            sensorID= i+1
+   #distance for sensor s9         
+            if i==8:
+                distance= distance + 8
+                sensorID= 8
+            #print(sensorID)    
+                  
             if distance <= 0.1:
-                print(f"Sensor {i+1}: Distance = FAILED")
+                
+                print(f"{sensorID}: Distance = FAILED")
+                
+                
+           # else:
+               # print(f"{sensorID}: Distance = {distance:.2f} cm")
+                
+                # Calculate percentage for sensors
+            elif distance < 45:
+                percentage = 100
+            elif distance >= 115:
+                percentage = 0
             else:
-                print(f"Sensor {i+1}: Distance = {distance:.2f} cm")
-        time.sleep(1)
+                percentage = 100 - ((distance - 45) / 150 * 100)
+            percentage = round(percentage)
+            print(f"{sensorID}: Distance = {distance:.2f} cm Percentage= {percentage:.2f}")         
+        
+        time.sleep(10)
 
+    
+   
+    
     """
-    # Calculate percentage for sensors
-    if distance < 15:
-        percentage = 100
-    elif distance >= 150:
-        percentage = 0
-    else:
-        percentage = 100 - ((distance - 50) / 150 * 100)
-    percentage = round(percentage)
-    
-    
     # Publish data for 11 sensors
     sensor_data = {
     "sensor1": percentage1,
