@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MQTT Subscriber for Sensor Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+    <script type="module">
+      // Firestore stuff
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+      import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+      const firebaseConfig = {
+        // Firebase configuration
+            apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
+            authDomain: "digitalstewardship.firebaseapp.com",
+            projectId: "digitalstewardship",
+            storageBucket: "digitalstewardship.appspot.com",
+            messagingSenderId: "469552118705",
+            appId: "1:469552118705:web:98fa6c5262ac8258d79b90"
+        
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      async function addPost(sensorID, message) {
+        const timestamp = Date.now();
+        await addDoc(collection(db, 'sensordata'), {
+          sensorID,
+          message,
+          timestamp
+        });
+      }
+
+      // Connect to the MQTT broker
+      const client = new Paho.MQTT.Client("localhost", Number(8084), "html_subscriber");
+
+      // Set callback handlers
+      client.onConnectionLost = onConnectionLost;
+      client.onMessageArrived = onMessageArrived;
+
+      // Connect the client
+      client.connect({ onSuccess: onConnect });
+
+      // Called when the client connects
+      function onConnect() {
+        console.log("Connected to MQTT broker");
+        client.subscribe("sensordata/sensor12");
+        client.subscribe("sensordata/sensor13");
+        client.subscribe("sensordata/sensor14");
+        client.subscribe("sensordata/sensor15");
+        client.subscribe("sensordata/sensor16");
+        client.subscribe("sensordata/sensor17");
+        client.subscribe("sensordata/sensor18");
+        client.subscribe("sensordata/sensor19");
+        client.subscribe("sensordata/sensor20");
+        client.subscribe("sensordata/sensor21");
+        client.subscribe("sensordata/sensor22");
+      }
+
+      // Called when the client loses its connection
+      function onConnectionLost(responseObject) {
+        if (responseObject.errorCode !== 0) {
+          console.log("Connection lost: " + responseObject.errorMessage);
+        }
+      }
+
+      // Called when a message arrives
+      function onMessageArrived(message) {
+        const topic = message.destinationName;
+        const payload = message.payloadString;
+
+        console.log("Message received: Topic = " + topic + ", Payload = " + payload);
+
+        addPost(topic, payload);
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>MQTT Subscriber for Sensor Data</h1>
+    <div id="data"></div>
+  </body>
+</html>
