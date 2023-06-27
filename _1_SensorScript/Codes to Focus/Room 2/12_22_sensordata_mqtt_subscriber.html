@@ -7,10 +7,11 @@
     <script type="module">
       // Firestore stuff
       import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-      import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+      import { getFirestore, collection, getDocs, addDoc, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
       const firebaseConfig = {
         // Firebase configuration
+        
             apiKey: "AIzaSyDZFmGewFYpK6aDnfjVltwK8bHE5x6___o",
             authDomain: "digitalstewardship.firebaseapp.com",
             projectId: "digitalstewardship",
@@ -27,9 +28,9 @@
       async function addPost(sensorID, message) {
         const timestamp = Date.now();
         await addDoc(collection(db, 'sensordata'), {
-          sensorID,
-          message,
-          timestamp
+          sensorid: sensorID,
+          message: message,
+          timestamp: timestamp
         });
       }
 
@@ -46,17 +47,17 @@
       // Called when the client connects
       function onConnect() {
         console.log("Connected to MQTT broker");
-        client.subscribe("sensordata/sensor12");
-        client.subscribe("sensordata/sensor13");
-        client.subscribe("sensordata/sensor14");
-        client.subscribe("sensordata/sensor15");
-        client.subscribe("sensordata/sensor16");
-        client.subscribe("sensordata/sensor17");
-        client.subscribe("sensordata/sensor18");
-        client.subscribe("sensordata/sensor19");
-        client.subscribe("sensordata/sensor20");
-        client.subscribe("sensordata/sensor21");
-        client.subscribe("sensordata/sensor22");
+        client.subscribe("sensor1");
+        client.subscribe("sensor2");
+        client.subscribe("sensor3");
+        client.subscribe("sensor4");
+        client.subscribe("sensor5");
+        client.subscribe("sensor6");
+        client.subscribe("sensor7");
+        client.subscribe("sensor8");
+        client.subscribe("sensor9");
+        client.subscribe("sensor10");
+        client.subscribe("sensor11");
       }
 
       // Called when the client loses its connection
@@ -75,6 +76,7 @@
 
         addPost(topic, payload);
       }
+      window.addPost = addPost;
     </script>
   </head>
 

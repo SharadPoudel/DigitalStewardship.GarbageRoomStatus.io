@@ -120,7 +120,7 @@ try:
                 elif sensorID == 11:
                     percentage11 = percentage
 
-        time.sleep(1800)
+        time.sleep(900)
 
         # Publish data for 11 sensors
         sensor_data = {
