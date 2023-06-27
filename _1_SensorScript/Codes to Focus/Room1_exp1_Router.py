@@ -1,8 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 import os
-"""
+
 # Code for Communication to Database 5-13, 88-..
+import paho.mqtt as mqtt
 import paho.mqtt.client as mqtt
 
 # Add a client name and set the client details
@@ -11,8 +12,6 @@ client = mqtt.Client(client_name)
 
 # Connect to the MQTT broker
 client.connect("localhost", 1883, 60)
-"""
-
 
 
 
@@ -23,14 +22,8 @@ GPIO.setmode(GPIO.BOARD)
 trig_pins =[3,7,11,13,15,19,23,29,31,33,35]
 echo_pins =[5,8,10,16,18,21,24,26,32,36,38]
 #Working sensors: S1,S2,S3,S4,S5..
-#trig_pins = [3,7,11,13,15]
-#echo_pins = [5,8,10,16,18]
 
-#trig_pins = [19,23,29]
-#echo_pins = [21,24,26]
 
-#trig_pins =[19,23,29,31,33]#,35,37]
-#echo_pins =[21,24,26,32,36]#,#38,40]
 
 def measure_distance(trig_pin, echo_pin):
     # Set the trigger pin as output and echo pin as input
@@ -78,8 +71,6 @@ def measure_distance(trig_pin, echo_pin):
     return distance
 
     
-
-
  
 try:
     while True:
@@ -113,37 +104,49 @@ try:
                 percentage = 100 - ((distance - 45) / 150 * 100)
             percentage = round(percentage)
             print(f"{sensorID}: Distance = {distance:.2f} cm Percentage= {percentage:.2f}")         
-        
+            
+            if sensorID== 1: percentage1 =percentage
+            elif sensorID== 2: percentage2 =percentage
+            elif sensorID== 3: percentage3 =percentage
+            elif sensorID== 4: percentage4 =percentage
+            elif sensorID== 5: percentage5 =percentage
+            elif sensorID== 6: percentage6 =percentage
+            elif sensorID== 7: percentage7 =percentage
+            elif sensorID== 8: percentage8 =percentage
+            elif sensorID== 9: percentage9 =percentage
+            elif sensorID== 10: percentage10 =percentage
+            elif sensorID== 11: percentage11=percentage
+               
         time.sleep(10)
 
     
    
     
-    """
-    # Publish data for 11 sensors
-    sensor_data = {
-    "sensor1": percentage1,
-    "sensor2": percentage2,
-    "sensor3": percentage3,
-    # ... add more sensors and percentages here
-    "sensor11": percentage11
-    }
+
+        # Publish data for 11 sensors
+        sensor_data = {
+        "sensor1": percentage1,
+        "sensor2": percentage2,
+        "sensor3": percentage3,
+        "sensor4": percentage4,
+        "sensor5": percentage5,
+        "sensor6": percentage6,
+        "sensor7": percentage7,
+        "sensor8": percentage8,
+        "sensor9": percentage9,
+        "sensor10": percentage10,
+        "sensor11": percentage11
+        }
     
-    for sensor, percentage in sensor_data.items():
-    topic = "sensordata/" + sensor
-    message = str(percentage)  # Convert percentage to string if necessary
-    client.publish(topic, message)
+        for sensor, percentage in sensor_data.items():
+            topic = "sensordata/" + sensor
+            message = str(percentage)  # Convert percentage to string if necessary
+            client.publish(topic, message)
     
-    
-    #communicating with mqtt broker    
-    topic1 = "sensordata/sensor1"
-    message1 = percentage
-    client.publish(topic, message)
-    
-    
+     
     
     #--------    
-    """
+    
 except KeyboardInterrupt:
     print("Measurement stopped by the user")
 finally:
