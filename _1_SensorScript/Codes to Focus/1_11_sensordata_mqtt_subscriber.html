@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MQTT Subscriber for Sensor Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+    <script type="module">
+      // Firestore stuff
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+      import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+      const firebaseConfig = {
+        // Firebase configuration
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      async function addPost(sensorID, message) {
+        const timestamp = Date.now();
+        await addDoc(collection(db, 'sensordata'), {
+          sensorID,
+          message,
+          timestamp
+        });
+      }
+
+      // Connect to the MQTT broker
+      const client = new Paho.MQTT.Client("localhost", Number(8084), "html_subscriber");
+
+      // Set callback handlers
+      client.onConnectionLost = onConnectionLost;
+      client.onMessageArrived = onMessageArrived;
+
+      // Connect the client
+      client.connect({ onSuccess: onConnect });
+
+      // Called when the client connects
+      function onConnect() {
+        console.log("Connected to MQTT broker");
+        client.subscribe("sensordata/sensor1");
+        client.subscribe("sensordata/sensor2");
+        client.subscribe("sensordata/sensor3");
+        client.subscribe("sensordata/sensor4");
+        client.subscribe("sensordata/sensor5");
+        client.subscribe("sensordata/sensor6");
+        client.subscribe("sensordata/sensor7");
+        client.subscribe("sensordata/sensor8");
+        client.subscribe("sensordata/sensor9");
+        client.subscribe("sensordata/sensor10");
+        client.subscribe("sensordata/sensor11");
+      }
+
+      // Called when the client loses its connection
+      function onConnectionLost(responseObject) {
+        if (responseObject.errorCode !== 0) {
+          console.log("Connection lost: " + responseObject.errorMessage);
+        }
+      }
+
+      // Called when a message arrives
+      function onMessageArrived(message) {
+        const topic = message.destinationName;
+        const payload = message.payloadString;
+
+        console.log("Message received: Topic = " + topic + ", Payload = " + payload);
+
+        addPost(topic, payload);
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>MQTT Subscriber for Sensor Data</h1>
+    <div id="data"></div>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import paho.mqtt.client as mqtt
-"""
+
 # Set up the GPIO pins
 GPIO.setmode(GPIO.BOARD)
 TRIG1 = 3
@@ -12,14 +12,14 @@ GPIO.setup(TRIG1, GPIO.OUT)
 GPIO.setup(ECHO1, GPIO.IN)
 GPIO.setup(TRIG2, GPIO.OUT)
 GPIO.setup(ECHO2, GPIO.IN)
-"""
+
 # Add a client name and set the client details
 client_name = "my-client"
 client = mqtt.Client(client_name)
 
 # Connect to the MQTT broker
 client.connect("localhost", 1883, 60)
-"""
+
 while True:
     # Measure distance for sensor 1
     GPIO.output(TRIG1, True)
@@ -45,7 +45,7 @@ while True:
     pulse_duration = pulse_end - pulse_start
     distance2 = (pulse_duration * 34000) / 2
     distance2 = round(distance2, 2)
-    """
+    
 
        # Calculate percentage for sensor 1
     if distance1 < 15:
