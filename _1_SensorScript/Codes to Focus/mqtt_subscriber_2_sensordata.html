@@ -77,16 +77,16 @@
        // console.log("Message received: " + message.payloadString);
         var topic = message.destinationName;
         var payload = message.payloadString;
-        var dataElement = document.getElementById("data");
-        var displayElement = document.getElementById("data");
+     //--   var dataElement = document.getElementById("data");
+     //--   var displayElement = document.getElementById("data");
 
         // Extract sensor name from the topic
         var sensorName = topic.split("/")[1];
         
       
         // Update the HTML based on the sensor name
-        if (sensorName === "sensor1") {
-        dataElement.innerHTML = "Message received from sensor 1: " + payload + "<br>";
+     //--   if (sensorName === "sensor1") {
+     //-- dataElement.innerHTML = "Message received from sensor 1: " + payload + "<br>";
         console.log(sensorName);
         
         addPost(sensorName,payload);

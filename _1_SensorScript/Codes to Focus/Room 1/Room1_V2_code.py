@@ -17,19 +17,17 @@ GPIO.setmode(GPIO.BOARD)
 trig_pins = [3, 7, 11, 13, 15, 19, 23, 29, 31, 33, 35]
 echo_pins = [5, 8, 10, 16, 18, 21, 24, 26, 32, 36, 38]
 
-
-
 # Initialize percentage variables
-percentage12 = 0
-percentage13 = 0
-percentage14 = 0
-percentage15 = 0
-percentage16 = 0
-percentage17= 0
-percentage18 = 0
-percentage19 = 0
-percentage20= 0
-percentage21 = 0
+percentage1 = 0
+percentage2 = 0
+percentage3 = 0
+percentage4 = 0
+percentage5 = 0
+percentage6 = 0
+percentage7 = 0
+percentage8 = 0
+percentage9 = 0
+percentage10 = 0
 percentage11 = 0
 
 def measure_distance(trig_pin, echo_pin):
@@ -79,11 +77,11 @@ try:
 
         for i in range(len(trig_pins)):
             distance = measure_distance(trig_pins[i], echo_pins[i])
-            sensorID = i + 12
+            sensorID = i + 1
 
-            if i == 9:
+            if i == 8:
                 distance = distance + 8
-                sensorID = 21
+                sensorID = 8
 
             if distance <= 0.1:
                 print(f"{sensorID}: Distance = FAILED")
@@ -94,53 +92,53 @@ try:
                 elif distance >= 115:
                     percentage = 0
                 else:
-                    percentage = 100 - ((distance - 26) / 150 * 100)
+                    percentage = 100 - ((distance - 45) / 150 * 100)
                 percentage = round(percentage)
                 print(f"{sensorID}: Distance = {distance:.2f} cm Percentage = {percentage:.2f}")
 
                 # Assign percentage values to respective variables
-                if sensorID == 12:
-                    percentage12 = percentage
-                elif sensorID == 13:
-                    percentage13 = percentage
-                elif sensorID == 14:
-                    percentage14 = percentage
-                elif sensorID == 15:
-                    percentage15 = percentage
-                elif sensorID == 16:
-                    percentage16 = percentage
-                elif sensorID == 17:
-                    percentage17 = percentage
-                elif sensorID == 18:
-                    percentage18 = percentage
-                elif sensorID == 19:
-                    percentage19 = percentage
-                elif sensorID == 20:
-                    percentage20 = percentage
-                elif sensorID == 21:
-                    percentage21 = percentage
-                elif sensorID == 22:
-                    percentage22 = percentage
+                if sensorID == 1:
+                    percentage1 = percentage
+                elif sensorID == 2:
+                    percentage2 = percentage
+                elif sensorID == 3:
+                    percentage3 = percentage
+                elif sensorID == 4:
+                    percentage4 = percentage
+                elif sensorID == 5:
+                    percentage5 = percentage
+                elif sensorID == 6:
+                    percentage6 = percentage
+                elif sensorID == 7:
+                    percentage7 = percentage
+                elif sensorID == 8:
+                    percentage8 = percentage
+                elif sensorID == 9:
+                    percentage9 = percentage
+                elif sensorID == 10:
+                    percentage10 = percentage
+                elif sensorID == 11:
+                    percentage11 = percentage
 
-        time.sleep(10)
+        time.sleep(1800)
 
         # Publish data for 11 sensors
         sensor_data = {
-            "sensor12": percentage12,
-            "sensor13": percentage13,
-            "sensor14": percentage14,
-            "sensor15": percentage15,
-            "sensor16": percentage16,
-            "sensor17": percentage17,
-            "sensor18": percentage18,
-            "sensor19": percentage19,
-            "sensor20": percentage20,
-            "sensor21": percentage21,
-            "sensor22": percentage22
+            "sensor1": percentage1,
+            "sensor2": percentage2,
+            "sensor3": percentage3,
+            "sensor4": percentage4,
+            "sensor5": percentage5,
+            "sensor6": percentage6,
+            "sensor7": percentage7,
+            "sensor8": percentage8,
+            "sensor9": percentage9,
+            "sensor10": percentage10,
+            "sensor11": percentage11
         }
 
         for sensor, percentage in sensor_data.items():
-            topic = "sensordata/" + sensor
+            topic = str(sensor)
             message = str(percentage)  # Convert percentage to string if necessary
             client.publish(topic, message)
             client.loop()
