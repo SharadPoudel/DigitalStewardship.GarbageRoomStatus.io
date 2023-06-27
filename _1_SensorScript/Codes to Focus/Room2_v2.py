@@ -17,17 +17,19 @@ GPIO.setmode(GPIO.BOARD)
 trig_pins = [3, 7, 11, 13, 15, 19, 23, 29, 31, 33, 35]
 echo_pins = [5, 8, 10, 16, 18, 21, 24, 26, 32, 36, 38]
 
+
+
 # Initialize percentage variables
-percentage1 = 0
-percentage2 = 0
-percentage3 = 0
-percentage4 = 0
-percentage5 = 0
-percentage6 = 0
-percentage7 = 0
-percentage8 = 0
-percentage9 = 0
-percentage10 = 0
+percentage12 = 0
+percentage13 = 0
+percentage14 = 0
+percentage15 = 0
+percentage16 = 0
+percentage17= 0
+percentage18 = 0
+percentage19 = 0
+percentage20= 0
+percentage21 = 0
 percentage11 = 0
 
 def measure_distance(trig_pin, echo_pin):
@@ -79,9 +81,9 @@ try:
             distance = measure_distance(trig_pins[i], echo_pins[i])
             sensorID = i + 12
 
-          #  if i == 8:
-           #     distance = distance + 8
-            #    sensorID = 9
+            if i == 9:
+                distance = distance + 8
+                sensorID = 21
 
             if distance <= 0.1:
                 print(f"{sensorID}: Distance = FAILED")
@@ -92,7 +94,7 @@ try:
                 elif distance >= 115:
                     percentage = 0
                 else:
-                    percentage = 100 - ((distance - 45) / 150 * 100)
+                    percentage = 100 - ((distance - 26) / 150 * 100)
                 percentage = round(percentage)
                 print(f"{sensorID}: Distance = {distance:.2f} cm Percentage = {percentage:.2f}")
 

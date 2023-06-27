@@ -93,7 +93,7 @@ try:
    #distance for sensor s9         
             if i==8:
                 distance= distance + 8
-                sensorID= 8
+                sensorID= 9
             #print(sensorID)    
                   
             if distance <= 0.1:
