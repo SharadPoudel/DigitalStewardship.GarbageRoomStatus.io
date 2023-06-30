@@ -147,15 +147,15 @@ for (var i = 0; i < collapsibles.length; i++) {
 
 //dicts for each recycling room. these are dicts in dicts. in the first level key is waste type and value is sensor info. in the second level the key is the sensor name and the value is the ID in the HTML
 var sensors_R6 = {
-  'cardboard': { 'sensor1': 'progressbar1', 'sensor2': 'progressbar2', 'sensor3': 'progressbar3', 'sensor4': 'progressbar4', 'sensor5': 'progressbar5', 'sensor6': 'progressbar6' },
-  'colored_glass': { 'sensor7': 'progressbar7', 'sensor8': 'progressbar8', 'sensor9': 'progressbar9' },
-  'uncolored_glass': { 'sensor10': 'progressbar10', 'sensor11': 'progressbar11' }
+  'cardboard': { 'sensor6': 'progressbar6', 'sensor7': 'progressbar7', 'sensor8': 'progressbar8', 'sensor9': 'progressbar9', 'sensor10': 'progressbar10', 'sensor11': 'progressbar11' },
+  'colored_glass': { 'sensor3': 'progressbar3', 'sensor4': 'progressbar4', 'sensor5': 'progressbar5' },
+  'uncolored_glass': { 'sensor1': 'progressbar1', 'sensor2': 'progressbar2' }
 };
 
 var sensors_R7 = {
-  'cardboard': { 'sensor12': 'progressbar12', 'sensor13': 'progressbar13', 'sensor14': 'progressbar14', 'sensor15': 'progressbar15', 'sensor16': 'progressbar16', 'sensor17': 'progressbar17' },
-  'colored_glass': { 'sensor18': 'progressbar18', 'sensor19': 'progressbar19', 'sensor20': 'progressbar20' },
-  'uncolored_glass': { 'sensor21': 'progressbar21', 'sensor22': 'progressbar22' }
+  'cardboard': { 'sensor17': 'progressbar17', 'sensor18': 'progressbar18', 'sensor19': 'progressbar19', 'sensor20': 'progressbar20', 'sensor21': 'progressbar21', 'sensor22': 'progressbar22' },
+  'colored_glass': { 'sensor13': 'progressbar13', 'sensor16': 'progressbar16', 'sensor15': 'progressbar15' },
+  'uncolored_glass': { 'sensor12': 'progressbar12', 'sensor14': 'progressbar14' }
 };
 
 var averages = {
