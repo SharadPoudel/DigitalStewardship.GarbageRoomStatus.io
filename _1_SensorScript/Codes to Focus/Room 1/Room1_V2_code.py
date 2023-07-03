@@ -9,7 +9,7 @@ client_name = "my-client"
 client = mqtt.Client(client_name)
 
 # Connect to the MQTT broker
-client.connect("localhost", 1883, 60)
+client.connect("localhost", 1883, 1000)
 
 # Set up the GPIO pins
 GPIO.setmode(GPIO.BOARD)
@@ -120,7 +120,7 @@ try:
                 elif sensorID == 11:
                     percentage11 = percentage
 
-        time.sleep(900)
+        time.sleep(50)
 
         # Publish data for 11 sensors
         sensor_data = {
